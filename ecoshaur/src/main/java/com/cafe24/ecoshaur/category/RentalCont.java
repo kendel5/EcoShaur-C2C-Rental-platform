@@ -139,4 +139,13 @@ public ModelAndView Rental_resister() {
    return mav;
  }// CategoryList() end
  
+ // 상품수정
+ @RequestMapping(value = "rental_update.do", method = RequestMethod.GET)
+ public ModelAndView Rental_update() {
+   ModelAndView mav = new ModelAndView();
+   mav.setViewName("category/rental_update");   
+   mav.addObject("minor", dao.MNcategory());
+   return mav;
+ }// CategoryList() end
+ 
 }
