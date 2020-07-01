@@ -53,7 +53,7 @@ public class MemberDAO {
 	    return grade;  
 	  }//loginProc() end
 	
-	public int duplecateID(String id) {
+	public int duplicateID(String id) {
 	    int cnt=0;
 	    try {
 	      con=dbopen.getConnection();          
@@ -75,7 +75,7 @@ public class MemberDAO {
 	    return cnt;
 	  }//duplecateID() end
 	
-	public int duplecateEmail(String email) {
+	public int duplicateEmail(String email) {
 	    int cnt=0;
 	    try {
 	      con=dbopen.getConnection();          

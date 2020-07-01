@@ -2,6 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="ssi.jsp"%>
 <%@ include file="../header.jsp"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
 <style>
@@ -102,6 +104,23 @@
 <br>
 <br>
 
+<c:if test="${empty id }">
+<%
+	// 쿠키값 가져오기------------------------------------------------
+	// myweb서버에 의해 사용자PC에 저장된 모든 쿠키값 가져오기
+	Cookie cookies[] = request.getCookies();
+	String c_id = "";
+	if(cookies != null){ // 쿠키가 존재하는지?
+		for(int i=0;i<cookies.length; i++){
+			Cookie cookie = cookies[i];
+			// 쿠키변수 c_id 인지?
+			if(cookie.getName().equals("c_id") == true){
+				c_id = cookie.getValue();
+			}
+		}// for end
+	}// if end
+	// -----------------------------------------------------------
+%>
 
 <h4>* 로 그 인 *</h4>
 <div class="login-form">    
@@ -111,21 +130,26 @@
 	      onsubmit="return loginCheck(this)">
     	<h4 class="modal-title"></h4>
         <div class="form-group">
-            <input type="text" name="id" value="${dto.id }" placeholder="아이디" required>
+            <input type="text" name="id" value="<%= c_id %>" placeholder="아이디" required>
         </div>
         <div class="form-group">
             <input type="password" name="pw" placeholder="비밀번호" required>
         </div>
         <div class="form-group small clearfix">
-            <input type="checkbox" name="c_id"  value="SAVE" >아이디저장
-            <a href="#" class="forgot-link">아이디/비밀번호를 잊으셨나요?</a>
+            <input type="checkbox" name="c_id"  value="SAVE" <% if(!(c_id.isEmpty())) out.print("checked"); %>>아이디저장
+            <a href="findPw.do" class="forgot-link">비밀번호를 잊으셨나요?</a>
         </div> 
         <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">              
     </form>			
     <div class="text-center small">회원이 아니신가요? <a href="agree.do">회원가입</a></div>
 </div>
+</c:if>
 
-
+<c:if test="${id != null }">
+		<script>
+			location.href='mypage.do'
+		</script>
+	</c:if>
 
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

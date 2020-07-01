@@ -1,6 +1,11 @@
-<%@page import="java.sql.Timestamp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="ssi.jsp"%>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
@@ -17,7 +22,7 @@
 	<h3>이메일 중복확인</h3>
 	<br>
 	<form method="post"
-		  action="emailCheckProc.jsp"
+		  action="emailCheckPro.do"
 		  onsubmit="return blankCheck(this)">
 		이메일:
 		<input type='text' name='email' autofocus>

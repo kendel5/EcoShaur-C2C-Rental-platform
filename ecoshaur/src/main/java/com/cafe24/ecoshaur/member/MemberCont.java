@@ -76,12 +76,17 @@ public class MemberCont {
 	  return mav;
   }
   
-  //id중복확인
+  //id중복확인결과
   @RequestMapping(value="idCheckPro.do", method=RequestMethod.POST)
-  public ModelAndView idCheckPro(HttpSession session) {
+  public ModelAndView idCheckPro(HttpServletRequest req) {
 	  ModelAndView mav = new ModelAndView();
 	  mav.setViewName("member/idCheckProc");
+	  
+	  String id = req.getParameter("id").trim();
+	  int cnt = dao.duplicateID(id);
+		
 	  mav.addObject("root", Utility.getRoot());
+	  mav.addObject("cnt", cnt);
 	
 	  return mav;
   }
@@ -92,6 +97,21 @@ public class MemberCont {
 	  ModelAndView mav = new ModelAndView();
 	  mav.setViewName("member/emailCheckForm");
 	  mav.addObject("root", Utility.getRoot());
+	
+	  return mav;
+  }
+  
+  //email중복확인결과
+  @RequestMapping(value="emailCheckPro.do", method=RequestMethod.POST)
+  public ModelAndView emailCheckPro(HttpServletRequest req) {
+	  ModelAndView mav = new ModelAndView();
+	  mav.setViewName("member/emailCheckProc");
+	  
+	  String email = req.getParameter("email").trim();
+	  int cnt = dao.duplicateEmail(email);
+		
+	  mav.addObject("root", Utility.getRoot());
+	  mav.addObject("cnt", cnt);
 	
 	  return mav;
   }

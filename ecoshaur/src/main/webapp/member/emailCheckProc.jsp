@@ -21,20 +21,20 @@
 <!-- 본문 시작 template.jsp-->
 
 <div style="text-align: center">
-<h3>* 아이디 중복확인  결과 *</h3>
+<h3>* 이메일 중복확인  결과 *</h3>
 
 <c:if test="${requestScope.cnt==1 }">
-	<p style='color:red'>해당 아이디는 사용할 수 없습니다!!</p>
+	<p style='color:red'>해당 이메일은 사용할 수 없습니다!!</p>
 </c:if>
 
 <c:if test="${requestScope.cnt==0 }">
-	<p>사용 가능한 아이디입니다</p>
+	<p>사용 가능한 이메일입니다</p>
 	<a class='btn btn-success' href='javascript:apply(\"" + id + "\")'>적용</a>
 		<script>
-	function apply(id){
+	function apply(email){
 		//alert(id);
 		// 중복이 확인된 id를 부모창(opener)에 적용
-		opener.memberForm.id.value=id;
+		opener.memberForm.email.value=email;
 		window.close();
 	}// apply() end
 	</script>

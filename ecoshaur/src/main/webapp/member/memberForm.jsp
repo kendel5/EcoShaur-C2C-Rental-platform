@@ -82,7 +82,7 @@ function emailCheck(){
                     	<span class="input-group-addon" style="min-width:120px;">* 아이디</span>
                         <input type="text" class="form-control" name="id" id="id" size="15" placeholder="아이디 중복확인을 해주세요" readonly>
                     	<div class="input-group-btn">
-                     		<input class="btn btn-default" type="button" value="ID중복확인" onclick="idCheck()">
+                     		<input class="btn btn-default" id="idcheck" type="button" value="ID중복확인" onclick="idCheck()">
                     	</div>
                     </div>
                 </div>
