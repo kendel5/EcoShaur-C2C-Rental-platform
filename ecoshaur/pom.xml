@@ -115,7 +115,53 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>       
+		
+		<!-- 파일 업로드/다운로드 라이브러리 maven에서 fileupload로 검색해야 함. 띄어쓰면 안 됨 -->
+      <dependency>
+         <groupId>commons-fileupload</groupId>
+         <artifactId>commons-fileupload</artifactId>
+         <version>1.3.3</version>
+      </dependency>
+
+   		<!-- spring-jdbc 라이브러리. STS 버전보다 높으면  오류 가능성! -->
+       <!--  https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-jdbc</artifactId>
+           <version>3.1.1.RELEASE</version>
+       </dependency>
+      
+      <!-- mariaDB -->
+      <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+		    <groupId>org.mariadb.jdbc</groupId>
+		    <artifactId>mariadb-java-client</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+      
+      <!-- MySQL 라이브러리 -->
+      <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>5.1.47</version>
+      </dependency>
+      
+      <!-- json-simple 라이브러리 -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- java mail 라이브러리 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		
+		 
 	</dependencies>
     <build>
         <plugins>

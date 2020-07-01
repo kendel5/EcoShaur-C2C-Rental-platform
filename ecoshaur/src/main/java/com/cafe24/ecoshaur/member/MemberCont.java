@@ -1,30 +1,112 @@
 package com.cafe24.ecoshaur.member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cafe24.ecoshaur.home.HomeDTO;
+import net.utility.UploadSaveManager;
 import net.utility.Utility;
 
 @Controller
 public class MemberCont {
+  
   @Autowired
   private MemberDAO dao;
   
-
   public MemberCont() {
-    System.out.println("---HomeCont()객체 생성됨...");
+    System.out.println("---MemberCont()객체 생성됨");
+  }  
+   
+  //로그인
+  @RequestMapping(value="login.do", method=RequestMethod.GET)
+  public ModelAndView loginForm(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("member/loginForm");
+    mav.addObject("root", Utility.getRoot());
+ 
+    return mav;
+  }//createForm() end
+  
+  //로그인 결과
+  @RequestMapping(value="loginProc.do", method=RequestMethod.POST)
+  public ModelAndView loginProc(MemberDTO dto, HttpServletRequest req , HttpServletResponse resp, HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+ 
+    mav.setViewName("member/loginProc");
+    mav.addObject("member", dao.loginProc(dto));
+//-------------------------------------------
+
+    return mav;
   }
   
-//상세보기
- @RequestMapping(value = "Member.do", method = RequestMethod.GET)
- public ModelAndView read() {
-   ModelAndView mav = new ModelAndView();
-   mav.setViewName("member/abc");   
-   return mav;
- }// read() end
+  //로그아웃 처리
+  @RequestMapping(value="loginOut.do", method=RequestMethod.GET)
+  public ModelAndView logOut(HttpSession session) {
+	  ModelAndView mav = new ModelAndView();
+	  mav.addObject("root", Utility.getRoot());
+	  mav.setViewName("member/logout");
+	  mav.addObject("msg", "logout");
+	  return mav;
+  }
   
-}
+  //약관동의
+  @RequestMapping(value="agree.do", method=RequestMethod.GET)
+  public ModelAndView agreement(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("member/agreement");
+    mav.addObject("root", Utility.getRoot());
+ 
+    return mav;
+  }//createForm() end
+  
+  //id중복확인
+  @RequestMapping(value="idCheck.do", method=RequestMethod.GET)
+  public ModelAndView idCheck(HttpSession session) {
+	  ModelAndView mav = new ModelAndView();
+	  mav.setViewName("member/idCheckForm");
+	  mav.addObject("root", Utility.getRoot());
+	
+	  return mav;
+  }
+  
+  //id중복확인
+  @RequestMapping(value="idCheckPro.do", method=RequestMethod.POST)
+  public ModelAndView idCheckPro(HttpSession session) {
+	  ModelAndView mav = new ModelAndView();
+	  mav.setViewName("member/idCheckProc");
+	  mav.addObject("root", Utility.getRoot());
+	
+	  return mav;
+  }
+  
+  //email중복확인
+  @RequestMapping(value="emailCheck.do", method=RequestMethod.GET)
+  public ModelAndView emailCheck(HttpSession session) {
+	  ModelAndView mav = new ModelAndView();
+	  mav.setViewName("member/emailCheckForm");
+	  mav.addObject("root", Utility.getRoot());
+	
+	  return mav;
+  }
+  
+  //회원가입
+  @RequestMapping(value="memberForm.do", method=RequestMethod.GET)
+  public ModelAndView memberForm(HttpSession session, MemberDTO dto) {
+	  ModelAndView mav=new ModelAndView();
+	  mav.setViewName("member/memberForm");
+	  mav.addObject("root", Utility.getRoot());
+	  
+	  return mav;
+  }//memberForm() end
+  
+  
+  
+  
+}//class end
