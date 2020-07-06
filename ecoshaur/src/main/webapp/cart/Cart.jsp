@@ -57,7 +57,14 @@
                        </td>
                    </tr>
                   </c:forEach> 
-                  
+                  <tr>
+                  		<td colspan="2"></td>
+                  		<td colspan="1"><div class="total">
+                              	총 ${price} 원
+                           </div>
+                        </td>
+                        <td/>
+                  </tr>
                  </tbody>
              </table>
                    

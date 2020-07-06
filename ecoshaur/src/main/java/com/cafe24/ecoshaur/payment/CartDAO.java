@@ -366,4 +366,26 @@ public class CartDAO {
       return cnt;
     }// delete() end
     
+    //장바구니 총금액
+    public int total(String id) {
+      int total = 0;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT SUM(TOTAL_PRICE) price FROM CART ");
+        sql.append(" WHERE id=? ");
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setString(1, id);
+        rs = pstmt.executeQuery();
+        if(rs.next()) {
+          total=rs.getInt("price");
+        }//if end
+      } catch (Exception e) {
+        System.out.println("장바구니 총금액 가져오기 실패 : " + e);
+      } finally {
+        dbclose.close(con, pstmt);
+      }
+      return total;
+    }// delete() end
+    
 } // cart class  () end 

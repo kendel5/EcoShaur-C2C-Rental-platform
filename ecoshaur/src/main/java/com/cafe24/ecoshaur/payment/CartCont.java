@@ -34,6 +34,8 @@ public class CartCont {
      mav.addObject("cart_list", dao.list(id));
      mav.addObject("rental_list", dao.rental_pdlist(id));
      mav.addObject("id", id);
+     mav.addObject("price", dao.total(id));
+    
      return mav;
    }// read() end
    
