@@ -2,7 +2,7 @@ package com.cafe24.ecoshaur.payment;
 
 public class OrderHistoryDTO {
 
-	private String order_detail_no;
+	private int order_detail_no;
 	private int order_no;
 	private String product_no;
 	private int quantity;
@@ -12,12 +12,13 @@ public class OrderHistoryDTO {
 	private String card_num;
 	private String payment_date;
 	private char Order_condition;
+	private int deposit;
 	
 	
-	public String getOrder_detail_no() {
+	public int getOrder_detail_no() {
 		return order_detail_no;
 	}
-	public void setOrder_detail_no(String order_detail_no) {
+	public void setOrder_detail_no(int order_detail_no) {
 		this.order_detail_no = order_detail_no;
 	}
 	public int getOrder_no() {
@@ -75,7 +76,13 @@ public class OrderHistoryDTO {
 		Order_condition = order_condition;
 	}
 	
-	@Override
+	public int getDeposit() {
+    return deposit;
+  }
+  public void setDeposit(int deposit) {
+    this.deposit = deposit;
+  }
+  @Override
 	public String toString() {
 		return "OrderHistroryDTO [order_detail_no=" + order_detail_no + ", order_no=" + order_no + ", product_no="
 				+ product_no + ", quantity=" + quantity + ", total_price=" + total_price + ", payment=" + payment

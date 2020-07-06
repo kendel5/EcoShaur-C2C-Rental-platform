@@ -10,16 +10,17 @@ public class MemberDTO {
 	private String zip;
 	private String address;
 	private String address_r;
-	private String grade;
+	private char grade;
 	private String joined_date;
 	private String lastdate;
 	private String pro_name;
+	
 	public MemberDTO() { }
 	
 	
 	
   public MemberDTO(String id, String mem_name, String pw, String birth, String contact_number, String email, String zip,
-      String address, String address_r, String grade, String joined_date, String lastdate, String pro_name) {
+      String address, String address_r, char grade, String joined_date, String lastdate, String pro_name) {
     super();
     this.id = id;
     this.mem_name = mem_name;
@@ -33,7 +34,7 @@ public class MemberDTO {
     this.grade = grade;
     this.joined_date = joined_date;
     this.lastdate = lastdate;
-    this.pro_name=pro_name;
+    this.pro_name = pro_name;
   }
 
 
@@ -92,10 +93,10 @@ public class MemberDTO {
 	public void setAddress_r(String address_r) {
 		this.address_r = address_r;
 	}
-	public String getGrade() {
+	public char getGrade() {
 		return grade;
 	}
-	public void setGrade(String grade) {
+	public void setGrade(char grade) {
 		this.grade = grade;
 	}
 	public String getJoined_date() {
@@ -110,12 +111,19 @@ public class MemberDTO {
 	public void setLastdate(String lastdate) {
 		this.lastdate = lastdate;
 	}
-	public String getPro_name() {
-		return pro_name;
-	}
-	public void setPro_name(String pro_name) {
-		this.pro_name = pro_name;
-	}
+
+
+
+  public String getPro_name() {
+    return pro_name;
+  }
+
+
+
+  public void setPro_name(String pro_name) {
+    this.pro_name = pro_name;
+  }
+	
 	
 
 }

@@ -2,38 +2,83 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
+<link href="css/cart_payment.css" rel="stylesheet" type="text/css">
+<script src="../js/cart_payment.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <br><br><br><br><br><br><br><br>
-
-<h3>장바구니</h3>
-<table border="1" align="center">
-<c:forEach var="dto" items="${list}">
-
-    <tr>
-      <td>${dto.cart_no}</td>
-      <td><a href="../ecoshaur/list.do?Cartno=${dto.cart_no}">${dto.product_no}</a></td>
-      
-      <td>
-      <td>${dto.id}</td>
-      
-      <td>${dto.quantity}</td>
-      
-      <td>${dto.rental_period}</td>
-      
-      <td>${dto.receipt_date}</td>
-       
-      <td>${dto.cart_date}</td>
-       
-      <td>${dto.total_price}</td>
-      
-      	
-      
-      
-    </tr>
-  </c:forEach>
-  </table>
-  
-  <input type="button"  value="쇼핑계속하기" onclick="location.href='./'">
-      	<input type="button" value="결제" onclick="location.href='./Cartpayment.do?id=${id}'">
+	<div class="cart-wrap">
+	<div class="container">
+	<div class="row">
+	    <div class="col-lg-12">
+	        <div class="main-heading">장바구니</div>
+	        <div class="table-cart"   id="cartlist">
+            <table>
+                <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Total</th>
+                      <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="dto" items="${rental_list}" varStatus="status">
+                   <tr>
+                       <td>
+                       	<div class="display-flex align-center">
+                            <div class="img-product">
+                                <img src="category/storage/${dto.thmb_name}" alt="" class="mCS_img_loaded">
+                            </div>
+                            <div class="name-product">
+                                ${dto.title}
+                                <br>${category_code}
+                            </div>
+                            <div class="price"><small>
+                                	일일 대여료 : ${dto.price_daily}<br>
+                                	보증금 : ${dto.deposit}</small>
+                            </div>
+                           </div>
+                       </td>
+                       <td class="product-count" ><small>
+                         	수량 : ${cart_list[status.index].quantity}개<br>
+                         	대여기간 : ${cart_list[status.index].rental_period }일<br>
+                         	수령일 : ${cart_list[status.index].receipt_date }</small>
+                       </td>
+                       <td>
+                           <div class="total">
+                               ${cart_list[status.index].total_price} 원
+                           </div>
+                       </td>
+                       <td>
+                           <input type="button" id="delete" class="btn btn-danger" value="X">
+                           <input id="no" type="hidden" value="${cart_list[status.index].cart_no}">
+                       </td>
+                   </tr>
+                  </c:forEach> 
+                  
+                 </tbody>
+             </table>
+                   
+	        </div>
+	        <!-- /.table-cart -->
+	        <a href="./Category.do" class="btn btn-primary">쇼핑 계속하기</a>
+  <a href="Cartpayment.do?id=${id}" class="btn btn-info">결제</a>
+	    </div>
+<script>
+	//1)X 버튼을 클릭했을때
+	$("#delete").click(function(){
+		var params="no=" + $("#no").val();
+		$.post("CartDel.do", params, check, "json");
+		
+	});//click() end
+	
+	//4)콜백함수 작성
+	function check(result){	
+		location.reload();
+	}//checkID() end
+</script>
 <!-- 본문끝 -->
 
 <%@ include file="../e_footer.jsp"%>

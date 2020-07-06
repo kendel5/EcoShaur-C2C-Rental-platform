@@ -1,9 +1,12 @@
 package com.cafe24.ecoshaur.member;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +27,9 @@ public class MemberCont {
     System.out.println("---MemberCont()객체 생성됨");
   }  
    
-  //로그인
+//로그인
   @RequestMapping(value="login.do", method=RequestMethod.GET)
-  public ModelAndView loginForm(HttpSession session) {
+  public ModelAndView loginForm(MemberDTO dto) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("member/loginForm");
     mav.addObject("root", Utility.getRoot());
@@ -35,25 +38,31 @@ public class MemberCont {
   }//createForm() end
   
   //로그인 결과
-  @RequestMapping(value="loginProc.do", method=RequestMethod.POST)
-  public ModelAndView loginProc(MemberDTO dto, HttpServletRequest req , HttpServletResponse resp, HttpSession session) {
-    ModelAndView mav = new ModelAndView();
- 
-    mav.setViewName("member/loginProc");
-    mav.addObject("member", dao.loginProc(dto));
-//-------------------------------------------
-
-    return mav;
-  }
-  
-  //로그아웃 처리
-  @RequestMapping(value="loginOut.do", method=RequestMethod.GET)
-  public ModelAndView logOut(HttpSession session) {
-	  ModelAndView mav = new ModelAndView();
-	  mav.addObject("root", Utility.getRoot());
-	  mav.setViewName("member/logout");
-	  mav.addObject("msg", "logout");
+  @RequestMapping(value="login.do", method=RequestMethod.POST)
+  public ModelAndView loginProc(MemberDTO dto, HttpServletRequest request, HttpServletResponse response){
+	  ModelAndView mav= new ModelAndView();
+	  String grade = dao.loginProc(dto);
+	  
+	  HttpSession session = request.getSession();
+	  if(grade!=null) {
+		  mav.setViewName("member/loginProc");
+		  session.setAttribute("id", dto.getId());
+	  }
+	  session.setAttribute("grade", grade);
+	  
 	  return mav;
+  }
+  //로그아웃
+  @RequestMapping(value="logout.do", method=RequestMethod.POST)
+  public ModelAndView logout(MemberDTO dto, HttpServletRequest request, HttpServletResponse response) throws Exception	{
+    ModelAndView mav= new ModelAndView();
+    HttpSession session = request.getSession();
+
+    mav.setViewName("member/logout");
+    session.invalidate();
+
+   
+    return mav;
   }
   
   //약관동의
@@ -66,30 +75,45 @@ public class MemberCont {
     return mav;
   }//createForm() end
   
-  //id중복확인
-  @RequestMapping(value="idCheck.do", method=RequestMethod.GET)
-  public ModelAndView idCheck(HttpSession session) {
-	  ModelAndView mav = new ModelAndView();
-	  mav.setViewName("member/idCheckForm");
-	  mav.addObject("root", Utility.getRoot());
-	
-	  return mav;
-  }
   
-  //id중복확인결과
-  @RequestMapping(value="idCheckPro.do", method=RequestMethod.POST)
-  public ModelAndView idCheckPro(HttpServletRequest req) {
-	  ModelAndView mav = new ModelAndView();
-	  mav.setViewName("member/idCheckProc");
-	  
-	  String id = req.getParameter("id").trim();
-	  int cnt = dao.duplicateID(id);
-		
-	  mav.addObject("root", Utility.getRoot());
-	  mav.addObject("cnt", cnt);
-	
-	  return mav;
-  }
+//쿠키를 활용하여 아이디 중복확인을 해야만 회원가입 한다
+ @RequestMapping("memberForm.do")
+ public void idCheckProc3(HttpServletRequest req, HttpServletResponse resp) {
+	 String uid=req.getParameter("uid");
+	 
+	 if(uid != null) {
+		 try{
+			 int cnt=dao.duplicateID(uid);
+		     System.out.println("asd");
+		     //1)text응답-----------------------
+		     /*
+		     resp.setContentType("text/plain; charset=UTF-8");
+		     PrintWriter out=resp.getWriter();
+		     out.println(cnt);
+		     out.flush();
+		     out.close();
+		     */ 
+		     
+		     //2)json응답-----------------------
+		     // https://mvnrepository.com에서
+		     // json-simple검색후 
+		     // pom.xml에 의존성 추가해야 함
+		     JSONObject json=new JSONObject();
+		     //json.put(key, value)
+		     json.put("count", cnt);
+		     resp.setContentType("text/plain; charset=UTF-8");
+		     PrintWriter out=resp.getWriter();
+		     out.println(json.toString());
+		     out.flush();
+		     out.close();
+    
+		 }catch (Exception e) {
+		     System.out.println("아이디중복확인쿠키실패:"+e);
+		   }//try end
+	 }
+
+   
+ }//idCheckProc3() end
   
   //email중복확인
   @RequestMapping(value="emailCheck.do", method=RequestMethod.GET)
@@ -101,24 +125,10 @@ public class MemberCont {
 	  return mav;
   }
   
-  //email중복확인결과
-  @RequestMapping(value="emailCheckPro.do", method=RequestMethod.POST)
-  public ModelAndView emailCheckPro(HttpServletRequest req) {
-	  ModelAndView mav = new ModelAndView();
-	  mav.setViewName("member/emailCheckProc");
-	  
-	  String email = req.getParameter("email").trim();
-	  int cnt = dao.duplicateEmail(email);
-		
-	  mav.addObject("root", Utility.getRoot());
-	  mav.addObject("cnt", cnt);
-	
-	  return mav;
-  }
   
   //회원가입
   @RequestMapping(value="memberForm.do", method=RequestMethod.GET)
-  public ModelAndView memberForm(HttpSession session, MemberDTO dto) {
+  public ModelAndView memberForm(MemberDTO dto, HttpServletRequest req, HttpSession session) throws Exception{
 	  ModelAndView mav=new ModelAndView();
 	  mav.setViewName("member/memberForm");
 	  mav.addObject("root", Utility.getRoot());
@@ -126,7 +136,16 @@ public class MemberCont {
 	  return mav;
   }//memberForm() end
   
-  
+//회원가입 결과
+  @RequestMapping(value="memberProc.do", method=RequestMethod.POST)
+  public ModelAndView memberProc(MemberDTO dto, HttpServletRequest req, HttpSession session) throws Exception {
+	  ModelAndView mav = new ModelAndView();
+	  
+	  mav.addObject("check", dao.insertmember(dto));
+	  
+	  mav.setViewName("member/memberProc");
+	  return mav;
+  }
   
   
 }//class end

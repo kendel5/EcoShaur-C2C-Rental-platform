@@ -1,5 +1,7 @@
 package com.cafe24.ecoshaur.community;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class NoticeDTO {
 	//공지사항
 	private int postno;
@@ -10,6 +12,30 @@ public class NoticeDTO {
 	private long image_size;
 	private String post_date;
 	private int view;
+	
+  //1)스프링 파일 객체 멤버 변수 선언
+  //<input type='file' name='posterMF'>
+  private MultipartFile posterMF;
+  
+  //<input type='file' name='filenameMF'>
+  private MultipartFile filenameMF;
+  
+  //2)getter와 setter작성
+  public MultipartFile getPosterMF() {
+    return posterMF;
+  }
+
+  public void setPosterMF(MultipartFile posterMF) {
+    this.posterMF = posterMF;
+  }
+
+  public MultipartFile getFilenameMF() {
+    return filenameMF;
+  }
+
+  public void setFilenameMF(MultipartFile filenameMF) {
+    this.filenameMF = filenameMF;
+  }
 	
 	public NoticeDTO() { }
 	

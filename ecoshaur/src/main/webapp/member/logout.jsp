@@ -1,14 +1,17 @@
-﻿<%@ page contentType="text/html; charset=UTF-8"%>
-<!-- 본문시작 logout.jsp -->
-<br><br><br><br>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="../header.jsp"%>
 
-<h3>로그아웃</h3>
+<!-- 본문 시작 template.jsp-->
+
 <%
-	//로그아웃
-	session.removeAttribute("s_id");
-	session.removeAttribute("s_pw");
-	session.removeAttribute("s_grade");
 	
-	//첫페이지로 이동
-	response.sendRedirect("loginForm.do");
+	
+//2 : 로그인 페이지로 이동시킴 
+response.sendRedirect("login.do");
+
+
 %>
+
+
+<!-- 본문 끝 -->		
+<%@ include file="../e_footer.jsp" %>

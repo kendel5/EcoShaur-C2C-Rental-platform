@@ -15,4 +15,4 @@
 
 %>
 
-<%@ include file="../footer.jsp"%>
+<%@ include file="../e_footer.jsp"%>

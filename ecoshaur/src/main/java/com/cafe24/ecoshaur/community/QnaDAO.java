@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cafe24.ecoshaur.community.QnaDTO;
+
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -24,8 +24,127 @@ public class QnaDAO {
     ResultSet rs = null;
     StringBuilder sql = null;
     ArrayList<QnaDTO> list = null;
-
-    public QnaDAO() { }
-
     
+    QnaDTO dto = null;
+    public QnaDAO() { }
+    
+    public ArrayList<QnaDTO> list(){
+      try{
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT postno, head, title, contents, image_name, post_date, ");
+        sql.append(" id, pcode, ccode FROM qna ");       
+        sql.append(" ORDER BY pcode DESC, ccode, postno DESC");
+        
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if(rs.next()){
+          list = new ArrayList<QnaDTO>();
+          do {
+            dto = new QnaDTO();
+            dto.setPostno(rs.getInt("postno"));
+            dto.setHead(rs.getString("head"));
+            dto.setTitle(rs.getString("title"));
+            dto.setContents(rs.getString("contents"));
+            dto.setImage_name(rs.getString("image_name"));
+            dto.setPost_date(rs.getString("post_date"));
+            dto.setId(rs.getString("id"));
+            dto.setPcode(rs.getInt("pcode"));
+            dto.setCcode(rs.getInt("ccode"));
+            list.add(dto);
+          } while(rs.next());
+        }else{
+          list = null;
+        }
+
+      }catch(Exception e){
+         System.out.println("질문목록 실패:"+e);
+      }finally{
+         DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }//list() end
+    
+    public QnaDTO read(int postno){
+      try{
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT postno, head, title, contents, image_name, post_date, ");
+        sql.append(" id, pcode, ccode FROM qna ");      
+        sql.append(" WHERE postno = ?");       
+        
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setInt(1, postno);
+        rs = pstmt.executeQuery();
+        if(rs.next()){
+            dto = new QnaDTO();
+            dto.setPostno(rs.getInt("postno"));
+            dto.setHead(rs.getString("head"));
+            dto.setTitle(rs.getString("title"));
+            dto.setContents(rs.getString("contents"));
+            dto.setImage_name(rs.getString("image_name"));
+            dto.setPost_date(rs.getString("post_date"));
+            dto.setId(rs.getString("id"));
+            dto.setPcode(rs.getInt("pcode"));
+            dto.setCcode(rs.getInt("ccode"));
+        }
+      }catch(Exception e){
+         System.out.println("문의목록 보기 실패:"+e);
+      }finally{
+         DBClose.close(con, pstmt, rs);
+      }
+      return dto;
+    }//read end  
+    
+    public int create(QnaDTO dto) {
+      int cnt = 0;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" INSERT INTO qna(postno, head, title, contents, image_name, post_date,id, pcode)");
+        sql.append(" VALUES((select ifnull(max(postno),0)+1 from qna as TB),");
+        sql.append(" ?, ?, ?, ?, now(), ?, (select ifnull(max(pcode),0)+1 from qna as TB))");
+       
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setString(1, dto.getHead());
+        pstmt.setString(2, dto.getTitle());
+        pstmt.setString(3, dto.getContents());
+        pstmt.setString(4, dto.getImage_name());
+        pstmt.setString(5, dto.getId());
+
+
+        cnt = pstmt.executeUpdate();
+      } catch (Exception e) {
+          System.out.println("문의사항 등록실패"+e);
+      } finally {
+          dbclose.close(con, pstmt, rs);
+      }//end
+      return cnt;
+    }//create() end
+    
+    public int Rcreate(QnaDTO dto) {
+      int cnt = 0;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" INSERT INTO qna(postno, head, title, contents, image_name, post_date,id, pcode, ccode)");
+        sql.append(" VALUES((select ifnull(max(postno),0)+1 from qna as TB),");
+        sql.append(" ?, ?, ?, ?, now(), ?, ?,?)");
+       
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setString(1, dto.getHead());
+        pstmt.setString(2, dto.getTitle());
+        pstmt.setString(3, dto.getContents());
+        pstmt.setString(4, dto.getImage_name());
+        pstmt.setString(5, dto.getId());
+        pstmt.setInt(6, dto.getPcode());
+        pstmt.setInt(7, dto.getCcode());
+        cnt = pstmt.executeUpdate();
+      } catch (Exception e) {
+          System.out.println("답변등록 실패"+e);
+      } finally {
+          dbclose.close(con, pstmt, rs);
+      }//end
+      return cnt;
+    }//create() end 
 }

@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cafe24.ecoshaur.category.RentalDTO;
+
 import com.cafe24.ecoshaur.category.CategoryDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
+import net.utility.Utility;
 
 @Component
 
@@ -435,7 +437,7 @@ public class RentalDAO {
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" SELECT product_no, title, sub_title, description, product_name, price_daily, deposit, total_quantity, remaining_quantity, thmb_name, category_code, id ");
+        sql.append(" SELECT product_no, title, sub_title, description, product_name, price_daily, deposit, total_quantity, remaining_quantity, thmb_name, image_name, category_code, id ");
         sql.append(" FROM RENTAL_LIST ");
         sql.append(" WHERE product_no = ? ");
         pstmt = con.prepareStatement(sql.toString());
@@ -452,6 +454,7 @@ public class RentalDAO {
           dto.setTotal_quantity(rs.getInt("total_quantity"));
           dto.setRemaining_quantity(rs.getInt("remaining_quantity"));
           dto.setThmb_name(rs.getString("thmb_name"));
+          dto.setImage_name(rs.getString("image_name"));
           dto.setCategory_code(rs.getString("category_code"));
           dto.setId(rs.getString("id"));
         }
@@ -462,4 +465,69 @@ public class RentalDAO {
       }
       return dto;
     } 
+    
+  //수정
+    public int update(RentalDTO dto, String saveDirectory) {
+      int cnt = 0;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" UPDATE rental_list ");
+        sql.append(" set product_name=?, title=?, sub_title=?, description=?, deposit=?, total_quantity=?, remaining_quantity=?, thmb_name=?, image_name=?, id=?, category_code=? ");
+        sql.append(" WHERE product_no=? ");
+        pstmt = con.prepareStatement(sql.toString());
+
+        pstmt.setString(1, dto.getProduct_name());
+        pstmt.setString(2, dto.getTitle());
+        pstmt.setString(3, dto.getSub_title());
+        pstmt.setString(4, dto.getDescription());
+        pstmt.setInt(5, dto.getDeposit());
+        pstmt.setInt(6, dto.getTotal_quantity());
+        pstmt.setInt(7, dto.getTotal_quantity());
+        pstmt.setString(8, dto.getThmb_name());
+        pstmt.setString(9, dto.getImage_name());
+        pstmt.setString(10, dto.getId());
+        pstmt.setString(11, dto.getCategory_code());
+        pstmt.setString(12, dto.getProduct_no());
+
+        cnt = pstmt.executeUpdate();
+        if(cnt==1) {
+          Utility.deleteFile(saveDirectory, dto.getThmb_name());
+          Utility.deleteFile(saveDirectory, dto.getImage_name());
+        }
+      } catch (Exception e) {
+        System.out.println("상품 수정실패 : " + e);
+      } finally {
+        dbclose.close(con, pstmt);
+      }
+      return cnt;
+    }// update() end
+
+    //삭제
+    public int delete(String product_no, String saveDirectory, String thum, String image) {
+      int cnt = 0;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" DELETE FROM rental_list ");
+        sql.append(" WHERE product_no=? ");
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setString(1, product_no);
+        cnt = pstmt.executeUpdate();
+        if(cnt==1) {
+          Utility.deleteFile(saveDirectory, thum);
+          Utility.deleteFile(saveDirectory, image);
+        }
+      } catch (Exception e) {
+        System.out.println("상품삭제실패 : " + e);
+      } finally {
+        dbclose.close(con, pstmt);
+      }
+      return cnt;
+    }// delete() end
+    
+    
+    
+    
+    
 }

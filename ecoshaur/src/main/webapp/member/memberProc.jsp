@@ -1,6 +1,5 @@
 <%@page import="java.sql.Timestamp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="ssi.jsp"%>
 <%@ include file="../header.jsp"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
@@ -18,18 +17,25 @@
 <br><br><br><br>
 
 <h3> * 회 원 가 입  결과 * </h3>
-<!-- 본문시작 -->
-	<div align="center">
-	<c:if test="${res==1 }">
-		<meta http-equiv="Refresh" content="0;url=loginForm.do">
+<div class="container">
+
+<div align="center">
+	<c:if test="${check==1}">
+		<script>
+			alert("회원가입에 성공하였습니다.");
+			window.location.href = './login.do';
+		</script>
 	</c:if>
 	
-	<c:if test="${res==0 }">
-		회원가입에 실패했습니다<br>
-		<a href="javascript:history.go(-1)">[돌아가기]</a>
+	<c:if test="${check==0 }">
+		<script>
+			alert("회원가입에 성공하였습니다.");
+			histroy.go(-1);
+		</script>
 	</c:if>
 	</div>
-<!-- 본문끝 -->
+
+</div>
 
 
 

@@ -1,6 +1,5 @@
 <%@page import="java.sql.Timestamp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="ssi.jsp"%>
 <%@ include file="../header.jsp"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
@@ -18,19 +17,28 @@
 <br><br><br><br>
 
 <h3>로그인 결과</h3>
-
-<!-- 본문시작 -->
-	<div align="center">
-	<c:if test="${res==1 }">
-		<c:set var="memid" value="${s_id }" scope="session"/>
-		<meta http-equiv="Refresh" content="0;url=loginForm.do">
-	</c:if>
+<c:choose>
+	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
+    	아이디 :${id } <br>
+    	등급 :${grade }
+	</c:when>
+	<c:otherwise>
+		
+	</c:otherwise>
+</c:choose>
 	
-	<c:if test="${res==0 }">
-		아이디 또는 비밀번호를 확인해주세요<br>
-		<a href="javascript:history.go(-1)">[돌아가기]</a>
-	</c:if>
-	</div>
-<!-- 본문끝 -->
+<br><br>
+<tr>
+    <td colspan="2" align="center">
+    	<form method="post" action="logout.do">
+      		<input type="submit" value="로그아웃" >
+        </form>
+        
+        <a class="btn btn-primary" href="./">메인페이지</a>
+
+    	<a class="btn btn-primary" href="mypage.do">마이페이지</a>
+
+    </td>
+</tr>
 <br><br><br><br>
 <%@ include file="../e_footer.jsp" %>

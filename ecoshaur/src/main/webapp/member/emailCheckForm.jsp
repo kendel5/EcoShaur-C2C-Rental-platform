@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="ssi.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,7 +24,7 @@
 		  action="emailCheckPro.do"
 		  onsubmit="return blankCheck(this)">
 		이메일:
-		<input type='text' name='email' autofocus>
+		<input type='text' name='uemail' autofocus>
 		<input class="btn btn-default" type="submit" value="중복확인">
 	</form>
 	<script>

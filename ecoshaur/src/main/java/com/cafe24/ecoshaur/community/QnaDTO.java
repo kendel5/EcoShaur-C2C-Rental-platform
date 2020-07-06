@@ -1,21 +1,49 @@
 package com.cafe24.ecoshaur.community;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class QnaDTO {
 
-	private int postno;
-	private char head;
-	private String title;
-	private String contents;
-	private String image_name;
-	private long image_size;
-	private String post_date;
-	private String id;
-	private int pcode;
-	
+  private int postno;
+  private String head;
+  private String title;
+  private String contents;
+  private String image_name;
+  private long image_size;
+  private String post_date;
+  private String id;
+  private int pcode;
+  private int ccode;
+  
+  //1)스프링 파일 객체 멤버 변수 선언
+  //<input type='file' name='posterMF'>
+  private MultipartFile posterMF;
+  
+  //<input type='file' name='filenameMF'>
+  private MultipartFile filenameMF;
+  
+  //2)getter와 setter작성
+  public MultipartFile getPosterMF() {
+    return posterMF;
+  }
+
+  public void setPosterMF(MultipartFile posterMF) {
+    this.posterMF = posterMF;
+  }
+
+  public MultipartFile getFilenameMF() {
+    return filenameMF;
+  }
+
+  public void setFilenameMF(MultipartFile filenameMF) {
+    this.filenameMF = filenameMF;
+  }
+  
   public QnaDTO() { }
 
-  public QnaDTO(int postno, char head, String title, String contents, String image_name, long image_size,
-      String post_date, String id, int pcode) {
+  public QnaDTO(int postno, String head, String title, String contents, String image_name, long image_size,
+      String post_date, String id, int pcode, int ccode) {
+    super();
     this.postno = postno;
     this.head = head;
     this.title = title;
@@ -25,6 +53,7 @@ public class QnaDTO {
     this.post_date = post_date;
     this.id = id;
     this.pcode = pcode;
+    this.ccode = ccode;
   }
 
   public int getPostno() {
@@ -35,11 +64,11 @@ public class QnaDTO {
     this.postno = postno;
   }
 
-  public char getHead() {
+  public String getHead() {
     return head;
   }
 
-  public void setHead(char head) {
+  public void setHead(String head) {
     this.head = head;
   }
 
@@ -98,9 +127,14 @@ public class QnaDTO {
   public void setPcode(int pcode) {
     this.pcode = pcode;
   }
-	
+
+  public int getCcode() {
+    return ccode;
+  }
+
+  public void setCcode(int ccode) {
+    this.ccode = ccode;
+  }
+
   
-	
-	
-	
 }

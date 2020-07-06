@@ -54,48 +54,28 @@ public class MemberDAO {
 	  }//loginProc() end
 	
 	public int duplicateID(String id) {
-	    int cnt=0;
-	    try {
-	      con=dbopen.getConnection();          
-	      sql=new StringBuilder();
-	      sql.append(" SELECT COUNT(id) as cnt");
-	      sql.append(" FROM member");
-	      sql.append(" WHERE id=?");
-	      pstmt=con.prepareStatement(sql.toString());
-	      pstmt.setString(1, id);
-	      rs=pstmt.executeQuery();
-	      if(rs.next()) {
-	        cnt=rs.getInt("cnt");
-	      }
-	    }catch (Exception e) {
-	      System.out.println("아이디 중복 확인 실패 : " + e);
-	    }finally {
-	      DBClose.close(con, pstmt, rs);
-	    }//try end
-	    return cnt;
+		 int cnt=0;
+	      try {
+	        con=dbopen.getConnection();          
+	        sql=new StringBuilder();
+	        sql.append(" SELECT COUNT(id) as cnt ");
+	        sql.append(" FROM member ");
+	        sql.append(" WHERE id=? ");
+	        pstmt=con.prepareStatement(sql.toString());
+	        pstmt.setString(1, id);
+	        rs=pstmt.executeQuery();
+	        if(rs.next()) {
+	          cnt=rs.getInt("cnt");
+	        }
+	      }catch (Exception e) {
+	        System.out.println("아이디 중복 확인 실패 : " + e);
+	      }finally {
+	        DBClose.close(con, pstmt, rs);
+	      }//try end
+	      return cnt;
+
 	  }//duplecateID() end
 	
-	public int duplicateEmail(String email) {
-	    int cnt=0;
-	    try {
-	      con=dbopen.getConnection();          
-	      sql=new StringBuilder();
-	      sql.append(" SELECT COUNT(email) as cnt");
-	      sql.append(" FROM member");
-	      sql.append(" WHERE email=?");
-	      pstmt=con.prepareStatement(sql.toString());
-	      pstmt.setString(1, email);
-	      rs=pstmt.executeQuery();
-	      if(rs.next()) {
-	        cnt=rs.getInt("cnt");
-	      }
-	    }catch (Exception e) {
-	      System.out.println("이메일 중복 확인 실패 : " + e);
-	    }finally {
-	      DBClose.close(con, pstmt, rs);
-	    }//try end
-	    return cnt;
-	  }//duplecateEmail() end
 	
 	public int insertmember(MemberDTO dto) {
 		int cnt=0;
@@ -103,8 +83,8 @@ public class MemberDAO {
 			con = dbopen.getConnection();
 	        sql = new StringBuilder();
 	        sql.append(" INSERT INTO MEMBER(id, mem_name, pw, birth, contact_number, email, "
-	                  + "zip, address, address_r, joined_date, lastdate, pro_name) ");
-	        sql.append("values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	                  + "zip, address, address_r, grade, joined_date, lastdate, pro_name) ");
+	        sql.append("values(?,?,?,?,?,?,?,?,?, 'U', now(),now(),?)");
 	        pstmt = con.prepareStatement(sql.toString());
 	        pstmt.setString(1, dto.getId());
 	        pstmt.setString(2, dto.getMem_name());
@@ -115,16 +95,14 @@ public class MemberDAO {
 	        pstmt.setString(7, dto.getZip());
 	        pstmt.setString(8, dto.getAddress());
 	        pstmt.setString(9, dto.getAddress_r());
-	        pstmt.setString(10, dto.getJoined_date());
-	        pstmt.setString(11, dto.getLastdate());
-	        pstmt.setString(12, dto.getPro_name());
+	        pstmt.setString(10, dto.getPro_name());
 	        cnt = pstmt.executeUpdate();
 	      } catch (Exception e) {
-	        System.out.println("회원등록실패 : " + e);
+	        System.out.println("회원가입실패 : " + e);
 	      } finally {
 	        dbclose.close(con, pstmt);
 	      }
 	      return cnt;
-		}
+		}//insertmember() end
 	
 }

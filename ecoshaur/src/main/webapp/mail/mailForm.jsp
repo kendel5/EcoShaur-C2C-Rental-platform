@@ -38,4 +38,4 @@
  </table>
  </form>
 <!-- 본문끝 -->
-<%@ include file="../footer.jsp"%>
+<%@ include file="../e_footer.jsp"%>

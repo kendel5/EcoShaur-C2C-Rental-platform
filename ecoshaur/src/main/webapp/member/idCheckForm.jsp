@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="ssi.jsp"%>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,7 +24,7 @@
 		  action="idCheckPro.do"
 		  onsubmit="return blankCheck(this)">
 		아이디:
-		<input type='text' name='id' maxlength='10' autofocus>
+		<input type='text' name='uid' maxlength='10' autofocus>
 		<input class="btn btn-default" type="submit" value="중복확인">
 	</form>
 	<script>

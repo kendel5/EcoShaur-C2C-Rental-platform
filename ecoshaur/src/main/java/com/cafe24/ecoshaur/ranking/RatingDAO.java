@@ -15,17 +15,16 @@ import net.utility.DBOpen;
 @Component
 public class RatingDAO {
     @Autowired
-    private DBOpen dbopen;
+    static private DBOpen dbopen;
     @Autowired
-    private DBClose dbclose;
+    static private DBClose dbclose;
 
-    Connection con = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    StringBuilder sql = null;
-    ArrayList<RatingDTO> list = null;
-
+    static Connection con = null;
+    static PreparedStatement pstmt = null;
+    static ResultSet rs = null;
+    static StringBuilder sql = null;
+    
     public RatingDAO() { }
 
-    
+
 }

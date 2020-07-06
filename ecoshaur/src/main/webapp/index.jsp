@@ -8,14 +8,32 @@
 <html lang="ko">
 
 <style>
-body {
-	background-image: url("https://cdn.imweb.me/thumbnail/20200415/590a940fa6c5a.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 50% 50%;
-	height: 937px;
-	border-color: transparent;
+body, html {
+  height: 100%;
+  width: 100%;
 }
+
+.bg {
+  /* The image used */
+  background-image: url("https://cdn.imweb.me/thumbnail/20200415/590a940fa6c5a.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+    
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
 header{
 	position:absolute;
 	width:100%;
@@ -334,19 +352,20 @@ a.dropdown-item {
 			  <a class="dropdown-item" href="./category/CategoryDT.do?category=카메라">카메라</a>
 			</div>
 		  </li>
-		  <li class="nav-item"> <a class="nav-link" href="Community.jsp">커뮤니티</a> </li>
+		  <li class="nav-item"> <a class="nav-link" href="Board.do">커뮤니티</a> </li>
 		   <li class="nav-item dropdown">
-		  	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">고객센터</a>
+		  	<a class="nav-link dropdown-toggle" href="Notice.do" id="navbarDropdown" role="button">고객센터</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <a class="dropdown-item" href="community/Notice.jsp">공지사항</a>
-			  <a class="dropdown-item" href="community/Qna.jsp">QnA</a>
+			  <a class="dropdown-item" href="Notice.do">공지사항</a>
+			  <a class="dropdown-item" href="Qna.do">QnA</a>
 			</div>
 		  </li>
 		  <li class="nav-item dropdown">
-		  	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">마이페이지</a>
+		  	<a class="nav-link dropdown-toggle" href="login.do" id="navbarDropdown" role="button">마이페이지</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <a class="dropdown-item" href="member/Login.jsp">로그인/회원가입</a>
-			  <a class="dropdown-item" href="member/Mypage.jsp">회원정보</a>
+			  <a class="dropdown-item" href="login.do">로그인/회원가입</a>
+			  <a class="dropdown-item" href="member/Mypage.do">회원정보</a>
+			  <a class="dropdown-item" href="Cart.do?id=Buyer">장바구니</a>
 			</div>
 		  </li>
 		
@@ -380,7 +399,7 @@ a.dropdown-item {
     </header>
 </head>
 	
-<body>	 
+<body class="bg">	 
 	<div class="banner">
       <div class="banner-innner">
 	    <div class="container">
@@ -389,7 +408,7 @@ a.dropdown-item {
 		    <div class="col-md-12">
 			  <div class="banner-left">
 			    <h1> 비싼 가격 때문에 고민이라면 <br> 대여하자! </h1>
-				<a href="#">글작성하기</a>
+				<a href="login.do">글작성하기</a>
 			  </div>
 			</div>
 

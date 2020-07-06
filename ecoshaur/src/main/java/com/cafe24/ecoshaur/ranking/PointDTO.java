@@ -6,45 +6,46 @@ public class PointDTO {
   private int point;
   private String date;
 
-  public PointDTO() {}
-  
+  public PointDTO() {
+  }
+
   public PointDTO(int no, String id, int point, String date) {
-	  this.no = no;
-	  this.id = id;
-	  this.point = point;
-	  this.date = date;
+    this.no = no;
+    this.id = id;
+    this.point = point;
+    this.date = date;
   }
 
   public int getNo() {
-	  return no;
+    return no;
   }
 
   public void setNo(int no) {
-	  this.no = no;
+    this.no = no;
   }
 
   public String getId() {
-	  return id;
+    return id;
   }
 
   public void setId(String id) {
-	  this.id = id;
+    this.id = id;
   }
 
   public int getPoint() {
-	  return point;
+    return point;
   }
 
   public void setPoint(int point) {
-	  this.point = point;
+    this.point = point;
   }
 
   public String getDate() {
-	  return date;
+    return date;
   }
 
   public void setDate(String date) {
-	  this.date = date;
+    this.date = date;
   }
 
 }

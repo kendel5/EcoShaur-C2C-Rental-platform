@@ -1,4 +1,3 @@
-<%@page import="java.sql.Timestamp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
@@ -20,40 +19,6 @@
 <br>
 <br>
 
-<!-- 함수 -->
-<script type="text/javascript">
-function idCheck(){
-	//아이디 중복확인
-	
-	//부트스트랩 모달창
-	//->부모창과 자식창이 한몸으로 구성되어 있음
-	
-	//새창만들기
-	//->부모창과 자식창이 별개로 구성되어 있음
-	//->모바일에 기반을 둔 frontend단에서는 사용하지 말것!!
-	//window.open("파일명","새창이름","다양한옵션들")
-	window.open("idCheck.do"
-			  , "idcheck"
-			  , "width=400, height=350");
-	
-}//idCheck() end
-
-function emailCheck(){
-	//아이디 중복확인
-	
-	//부트스트랩 모달창
-	//->부모창과 자식창이 한몸으로 구성되어 있음
-	
-	//새창만들기
-	//->부모창과 자식창이 별개로 구성되어 있음
-	//->모바일에 기반을 둔 frontend단에서는 사용하지 말것!!
-	//window.open("파일명","새창이름","다양한옵션들")
-	window.open("emailCheck.do"
-			  , "idwin"
-			  , "width=400, height=350");
-	
-}//emailCheck() end
-</script>
 
 <div class="container">
 <form class="form-horizontal"
@@ -82,7 +47,7 @@ function emailCheck(){
                     	<span class="input-group-addon" style="min-width:120px;">* 아이디</span>
                         <input type="text" class="form-control" name="id" id="id" size="15" placeholder="아이디 중복확인을 해주세요" readonly>
                     	<div class="input-group-btn">
-                     		<input class="btn btn-default" id="idcheck" type="button" value="ID중복확인" onclick="idCheck()">
+                     		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#idcheck"> 아이디 중복확인 </button>
                     	</div>
                     </div>
                 </div>
@@ -91,103 +56,29 @@ function emailCheck(){
                     <div class="input-group">
                     	<span class="input-group-addon font1" style="min-width:120px;">* 비밀번호</span>
                         <input type="password" class="form-control" name="pw" id="pw" size="15" required>
+                        
                     </div>
                 </div>
                 
                 <div class="form-group text-left">
                     <div class="input-group">
                     	<span class="input-group-addon font1" style="min-width:120px;">* 비밀번호 확인</span>
-                        <input type="password" class="form-control" name="repasswd" id="repasswd" size="15" required>
+                        <input type="password" class="form-control" name="pw2" id="pw2" size="15" required>
                     </div>
                 </div>
                 
                 <div class="form-group text-left font1">
-                    <div class="input-group">
+                    <div class="input-group" id="name_check">
                     	<span class="input-group-addon" style="min-width:120px;">* 이름</span>
                         <input type="text" class="form-control" name="mem_name" id="mem_name" size="15" required>
                     </div>
                 </div>
                 
                 <div class="form-group text-left font1">
-                    <div class="input-group">
+                    <div class="input-group" id="birth">
                     	<span class="input-group-addon" style="min-width:120px;">* 생년월일</span>
-                        <select name="birth_year">
-                         <option value="1980" selected>1980</option> 
-                         <option value="1981" selected>1981</option> 
-		                 <option value="1982" selected>1982</option> 
-		                 <option value="1983" selected>1983</option> 
-		                 <option value="1984" selected>1984</option> 
-		                 <option value="1985" selected>1985</option> 
-                         <option value="1986" selected>1986</option> 
-		                 <option value="1987" selected>1987</option> 
-		                 <option value="1988" selected>1988</option> 
-		                 <option value="1989" selected>1989</option> 
-                         <option value="1990" selected>1990</option> 
-                         <option value="1991" selected>1991</option> 
-		                 <option value="1992" selected>1992</option> 
-		                 <option value="1993" selected>1993</option> 
-		                 <option value="1994" selected>1994</option> 
-		                 <option value="1995" selected>1995</option> 
-                         <option value="1996" selected>1996</option> 
-		                 <option value="1997" selected>1997</option> 
-		                 <option value="1998" selected>1998</option> 
-		                 <option value="1999" selected>1999</option> 
-		                 <option value="2000" selected>2000</option> 
-		                 <option value="2001" selected>2001</option> 
-                        </select>
-                                                     년 &nbsp;
-                         
-                         <select name="birth_month">
-                         <option value="1">1</option> 
-		                <option value="2">2</option> 
-		                <option value="3">3</option> 
-		                <option value="4">4</option> 
-		                <option value="5">5</option> 
-		                <option value="6">6</option> 
-		                <option value="7">7</option> 
-		                <option value="8">8</option> 
-		                <option value="9">9</option> 
-		                <option value="10">10</option> 
-		                <option value="11">11</option> 
-		                <option value="12">12</option> 
-                        </select>
-                                                      월&nbsp;&nbsp;
-                         
-                        <select name="birth_day"> 
-
-		                <option value="1">1</option> 
-		                <option value="2">2</option> 
-		                <option value="3">3</option> 
-		                <option value="4">4</option> 
-		                <option value="5">5</option> 
-		                <option value="6">6</option> 
-		                <option value="7">7</option> 
-		                <option value="8">8</option> 
-		                <option value="9">9</option> 
-		                <option value="10">10</option> 
-		                <option value="11">11</option> 
-		                <option value="12">12</option> 
-		                <option value="13">13</option> 
-		                <option value="14">14</option> 
-		                <option value="15">15</option> 
-		                <option value="16">16</option> 
-		                <option value="17">17</option> 
-		                <option value="18">18</option> 
-		                <option value="19">19</option> 
-		                <option value="20">20</option> 
-		                <option value="21">21</option> 
-		                <option value="22">22</option> 
-		                <option value="23">23</option> 
-		                <option value="24">24</option> 
-		                <option value="25">25</option> 
-		                <option value="26">26</option> 
-		                <option value="27">27</option> 
-		                <option value="28">28</option> 
-		                <option value="29">29</option> 
-		                <option value="30">30</option> 
-		                <option value="31">31</option> 
-		            </select> 
- 					일 &nbsp;&nbsp;&nbsp;
+                        <input type="date" id="birth" name="birth">
+ 					&nbsp;&nbsp;&nbsp;
  					*만 19세 미만은 가입 제한 	
                     </div> 
                 </div> 
@@ -195,10 +86,7 @@ function emailCheck(){
                 <div class="form-group text-left font1">
                     <div class="input-group">
                     	<span class="input-group-addon" style="min-width:120px;">* 이메일</span>
-                        <input type="email" class="form-control" name="email" id="email" readonly>
-                        <div class="input-group-btn">
-                     		<input class="btn btn-default" type="button" value="Email 중복확인" onclick="emailCheck()">
-                    	</div>
+                        <input type="text" class="form-control" name="email" id="email" size="15">
                     </div>
                 </div>
 
@@ -283,8 +171,8 @@ function emailCheck(){
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('address1').value = fullAddr;
+                document.getElementById('zip').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('address').value = fullAddr;
 
                 // iframe을 넣은 element를 안보이게 한다.
                 // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -293,7 +181,7 @@ function emailCheck(){
                 // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
                 document.body.scrollTop = currentScroll;
                 
-                $('#address2').focus();
+                $('#address_r').focus();
             },
             // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
             onresize : function(size) {
@@ -310,9 +198,104 @@ function emailCheck(){
 </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
 
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <div class="modal" id="idcheck">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">아이디 중복확인</h4>
+
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <form name="memfrm" id="memfrm" onsubmit="return send()">
+        <input type="text" name="uid" id="uid">
+      <input type="button" id="checkId" value="중복확인">
+      <span id="panel_id"></span> <!-- ID 중복 관련 메세지 -->
+      </form>
+      
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <div class="container">
+           <button type="button" class="btn btn-success" data-dismiss="modal" id="sm">적용</button>
+             <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+        </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+<!-- 아이디 중복확인 -->
+<script>
+$(function(){
+   $.removeCookie("checkID");
+});
+
+//1)중복확인 버튼을 클릭했을때
+$("#checkId").click(function(){
+   //2)입력한 아이디를 변수에 대입하기
+   var params="uid=" + $("#uid").val();
+   
+   //3)post방식으로 서버에 요청해서 응답받기
+   //$.post("요청명령어", 전달값, 콜백함수, 응답받는형식)
+   //$.post("idCheckProc3.do", params, checkID, "text");
+   $.post("memberForm.do", params, checkID, "json");
+   
+});//click() end
+
+//4)콜백함수 작성하기
+function checkID(result){
+   //5)서버에서 응답받은 메세지를
+   //  id=panel_id에 출력하기
+   
+   //①text응답
+   //alert(result);
+   
+   //②json응답
+   //alert(result);//[object Object]
+   //alert(result.count);   
+   var count=eval(result.count);//형변환
+   if(count==0){
+     $("#panel_id").css("color", "blue");
+     $("#panel_id").text("사용 가능한 아이디 입니다");
+     //$.cookie("쿠키변수명", 값)
+     $.cookie("checkID", "PASS");      
+   }else{
+     $("#panel_id").css("color", "red");
+     $("#panel_id").text("중복된 아이디 입니다");
+     $("#uid").focus(); //커서생성
+   }//if end
+}//checkID() end
+
+//7)아이디 중복확인을 해야만
+//  회원가입폼이 서버로 전송
+function send(){
+  //쿠키변수값 가져오기
+  var checkID=$.cookie("checkID");
+  if(checkID=="PASS"){
+     return true;
+  }else{
+     $("#panel_id").css("color", "green");
+     $("#panel_id").text("아이디 중복확인을 해주세요");
+     $("#uid").focus(); //커서생성
+     return false;
+  }//if end
+}//send() end
+
+$("#sm").click(function() {
+   var x = $("#uid").val();
+    $('#id').val(x);
+});
+</script>
 
 <!-- 본문 끝 -->		
 <br><br><br>
