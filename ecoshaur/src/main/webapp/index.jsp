@@ -343,7 +343,7 @@ a.dropdown-item {
 		<ul class="navbar-nav">
 	     <li class="nav-item"> <a class="nav-link" href="ranking/Top.jsp">TOP</a> </li>
 		  <li class="nav-item dropdown">
-		  	<a class="nav-link" href="Category.do" id="navbarDropdown" role="button">대여목록</a>
+		  	<a class="nav-link" href="Category.do?nowpage=1" id="navbarDropdown" role="button">대여목록</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			  <a class="dropdown-item" href="./category/CategoryDT.do?category=컴퓨터">컴퓨터</a>
 			  <a class="dropdown-item" href="./category/CategoryDT.do?category=TV/영상가전">TV/영상가전</a>
@@ -365,7 +365,7 @@ a.dropdown-item {
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			  <a class="dropdown-item" href="login.do">로그인/회원가입</a>
 			  <a class="dropdown-item" href="member/Mypage.do">회원정보</a>
-			  <a class="dropdown-item" href="Cart.do?id=Buyer">장바구니</a>
+			  <a class="dropdown-item" href="Cart.do?id=Buyer&nowpage=1">장바구니</a>
 			</div>
 		  </li>
 		

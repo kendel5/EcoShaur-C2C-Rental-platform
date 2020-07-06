@@ -34,15 +34,19 @@ public class RentalDAO {
     public RentalDAO() { }
 
   //목록
-    public ArrayList<RentalDTO> list() {
+    public ArrayList<RentalDTO> list(int nowpage, int recordPerPage) {
       try {
         RentalDTO dto = new RentalDTO();
+        int startRow = ((nowpage-1) * recordPerPage) ;
+        int endRow   = recordPerPage;
+        
         con = dbopen.getConnection();
         sql = new StringBuilder();
         sql.append(" SELECT product_no, title, sub_title, product_name, price_daily, deposit, total_quantity, remaining_quantity, thmb_name, id ");
         sql.append(" FROM RENTAL_LIST ");
         sql.append(" WHERE availability='Y' ");
         sql.append(" ORDER BY product_no DESC ");
+        sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;
         pstmt = con.prepareStatement(sql.toString());
         rs = pstmt.executeQuery();
         if (rs.next()) {
@@ -64,7 +68,6 @@ public class RentalDAO {
         } else {
           list = null;
         } // if end
-
       } catch (Exception e) {
         System.out.println("Category목록 실패:" + e);
       } finally {
@@ -73,10 +76,110 @@ public class RentalDAO {
       return list;
     }
     
+    // 목록 최대 페이징 수
+    public int count() {
+      int count=0;
+      try {
+        // DB연결
+        con = dbopen.getConnection();
+        
+        //4)SQL문 작성
+          sql=new StringBuilder();
+          sql.append(" SELECT count(*) as cnt FROM Rental_list ");
+          sql.append(" WHERE availability='Y' ");
+          pstmt=con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+        if(rs.next()) { // cursor 가 있는지?
+          count = rs.getInt("cnt");
+        }else {
+          System.out.println("행 갯수를 얻지못함!!");
+        }// if end
+      }catch(Exception e) {
+        System.out.println(" 카운트실패:" + e);
+      }finally {
+        DBClose.close(con, pstmt ,rs);
+      }// try end
+      return count;
+    } // count() end
+    
+ // 세부목록 최대 페이징 수
+    public int countDT(String category) {
+      int count=0;
+      try {
+        // DB연결
+        con = dbopen.getConnection();
+        
+        //4)SQL문 작성
+          sql=new StringBuilder();
+          sql.append(" SELECT count(*) as cnt ");
+          sql.append(" FROM RENTAL_LIST A ");
+          sql.append(" INNER JOIN RENTAL_CATEGORY B ");
+          sql.append(" ON A.Category_code = B.code ");
+          if(category.equals("컴퓨터"))
+            sql.append(" WHERE availability='Y' and B.major = '컴퓨터' ");
+          else if(category.equals("TV/영상가전"))
+            sql.append(" WHERE availability='Y' and B.major = 'TV/영상가전' ");
+          else if(category.equals("음향기기"))
+            sql.append(" WHERE availability='Y' and B.major = '음향기기' ");
+          else if(category.equals("콘솔/게이밍"))
+            sql.append(" WHERE availability='Y' and B.major = '콘솔/게이밍' ");
+          else
+            sql.append(" WHERE availability='Y' and B.major = '카메라' ");
+          pstmt=con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+        if(rs.next()) { // cursor 가 있는지?
+          count = rs.getInt("cnt");
+        }else {
+          System.out.println("DT행 갯수를 얻지못함!!");
+        }// if end
+      }catch(Exception e) {
+        System.out.println(" 카운트실패:" + e);
+      }finally {
+        DBClose.close(con, pstmt ,rs);
+      }// try end
+      return count;
+    } // count() end
+    
+ // 세부목록 최대 페이징 수
+    public int countDTC(String[] category, int size) {
+      int count=0;
+      try {
+        // DB연결
+        con = dbopen.getConnection();
+        
+        //4)SQL문 작성
+          sql=new StringBuilder();
+          sql.append(" SELECT count(*) as cnt ");
+          sql.append(" FROM RENTAL_LIST A ");
+          sql.append(" INNER JOIN RENTAL_CATEGORY B ");
+          sql.append(" ON A.Category_code = B.code ");
+          sql.append(" WHERE availability='Y'");
+          for(int i=0;i<size;i++) {
+            sql.append(" and B.minor = '" + category[i] + "' ");
+          }
+          
+          pstmt=con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+        if(rs.next()) { // cursor 가 있는지?
+          count = rs.getInt("cnt");
+        }else {
+          System.out.println("DT행 갯수를 얻지못함!!");
+        }// if end
+      }catch(Exception e) {
+        System.out.println(" 카운트실패:" + e);
+      }finally {
+        DBClose.close(con, pstmt ,rs);
+      }// try end
+      return count;
+    } // count() end
+    
   //세부목록
-    public ArrayList<RentalDTO> listDT(String category) {
+    public ArrayList<RentalDTO> listDT(String category, int nowpage, int recordPerPage) {
       try {
         RentalDTO dto = new RentalDTO();
+        int startRow = ((nowpage-1) * recordPerPage) ;
+        int endRow   = recordPerPage;
+        
         con = dbopen.getConnection();
         sql = new StringBuilder();
         sql.append(" SELECT product_no, title, sub_title, product_name, price_daily, deposit, total_quantity, remaining_quantity, thmb_name, id ");
@@ -94,6 +197,7 @@ public class RentalDAO {
         else
           sql.append(" WHERE availability='Y' and B.major = '카메라' ");
         sql.append(" ORDER BY product_no DESC ");
+        sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;
         pstmt = con.prepareStatement(sql.toString());
         rs = pstmt.executeQuery();
         if (rs.next()) {
@@ -175,7 +279,10 @@ public class RentalDAO {
     
     
     //선택카테고리 가져오기(대분류 가져오면 해당하는 상품들 리스트 가져오기)
-    public ArrayList<RentalDTO> select_listDT(String[] category, int size) {
+    public ArrayList<RentalDTO> select_listDT(String[] category, int size,  int nowpage, int recordPerPage) {
+      int startRow = ((nowpage-1) * recordPerPage) ;
+      int endRow   = recordPerPage;
+      
       try {
         RentalDTO dto = new RentalDTO();
         con = dbopen.getConnection();
@@ -189,6 +296,8 @@ public class RentalDAO {
           sql.append(" and B.minor = '" + category[i] + "' ");
         }
         sql.append(" ORDER BY product_no DESC ");
+        sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;
+        
         pstmt = con.prepareStatement(sql.toString());
         rs = pstmt.executeQuery();
         if (rs.next()) {

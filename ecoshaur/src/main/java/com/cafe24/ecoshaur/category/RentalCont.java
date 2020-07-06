@@ -32,38 +32,64 @@ public class RentalCont {
   
 //전체보기 
  @RequestMapping(value = "Category.do", method = RequestMethod.GET)
- public ModelAndView CategoryList() {
+ public ModelAndView CategoryList(int nowpage) {
+   // recordPerPage = 현재페이지에 표시될 갯수
+   int recordPerPage = 8;
+   int endRow   = nowpage * recordPerPage;
+
+   
    ModelAndView mav = new ModelAndView();
    mav.setViewName("category/Category");   
    mav.addObject("root", Utility.getRoot());// 
-   mav.addObject("list", dao.list());
+   mav.addObject("list", dao.list(nowpage, recordPerPage));
+   mav.addObject("recordPerPage", recordPerPage);
+   mav.addObject("end", endRow);
+   mav.addObject("nowpage", nowpage);
+   mav.addObject("count", dao.count());
    return mav;
  }// CategoryList() end
  
  
 //소그룹
 @RequestMapping(value = "CategoryDT.do", method = RequestMethod.GET)
-public ModelAndView CategoryDTList(String category) {
+public ModelAndView CategoryDTList(String category, int nowpage) {
+  int recordPerPage = 8;
+  int endRow   = nowpage * recordPerPage;
+  
   ModelAndView mav = new ModelAndView();
   mav.setViewName("category/CategoryDT");   
   mav.addObject("root", Utility.getRoot());// 
   mav.addObject("cg", category);
-  mav.addObject("list", dao.listDT(category));
+  mav.addObject("list", dao.listDT(category, nowpage, recordPerPage));
   mav.addObject("category", dao.category(category));
+  
+  mav.addObject("recordPerPage", recordPerPage);
+  mav.addObject("end", endRow);
+  mav.addObject("nowpage", nowpage);
+  mav.addObject("count", dao.countDT(category));
   return mav;
 }// CategoryList() end
 
 
 @RequestMapping(value = "CategoryDT.do", method = RequestMethod.POST)
-public ModelAndView testCheck(HttpServletRequest req, String cg) {
+public ModelAndView testCheck(HttpServletRequest req, String cg, int nowpage) {
+  int recordPerPage = 8;
+  int endRow   = nowpage * recordPerPage;
+  
   String[] valueArr = req.getParameterValues("test_check");
   ModelAndView mav = new ModelAndView();
   mav.setViewName("category/CategoryDT");
   int size = valueArr.length;
   mav.addObject("root", Utility.getRoot());// 
   mav.addObject("cg", cg);
-  mav.addObject("list", dao.select_listDT(valueArr ,size));
+  mav.addObject("list", dao.select_listDT(valueArr ,size, nowpage, recordPerPage));
   mav.addObject("category", dao.category(cg));
+  
+  
+  mav.addObject("recordPerPage", recordPerPage);
+  mav.addObject("end", endRow);
+  mav.addObject("nowpage", nowpage);
+  mav.addObject("count", dao.countDTC(valueArr ,size));
   return mav;
 }
  
@@ -183,9 +209,9 @@ public ModelAndView Rental_resister() {
 
    int cnt = dao.update(dto, saveDirectory);
    if(cnt!=1) {
-     mav.addObject("msg1", "<script>alert('상품수정에 실패하였습니다'); window.location.href = './Category.do';</script>");
+     mav.addObject("msg1", "<script>alert('상품수정에 실패하였습니다'); window.location.href = './Category.do?nowpage=1';</script>");
    } else {
-     mav.addObject("msg1", "<script>alert('상품수정에 성공하였습니다'); window.location.href = './Category.do';</script>");
+     mav.addObject("msg1", "<script>alert('상품수정에 성공하였습니다'); window.location.href = './Category.do?nowpage=1';</script>");
    }
    
    return mav;
@@ -213,9 +239,9 @@ public ModelAndView Rental_deleteProc(String product_no) {
  String image = dto.getImage_name();
  int cnt = dao.delete(product_no, saveDirectory, thum, image);
  if(cnt!=1) {
-   mav.addObject("msg1", "<script>alert('상품삭제에 실패하였습니다'); window.location.href = './Category.do';</script>");
+   mav.addObject("msg1", "<script>alert('상품삭제에 실패하였습니다'); window.location.href = './Category.do?nowpage=1';</script>");
  } else {
-   mav.addObject("msg1", "<script>alert('상품삭제에 성공하였습니다'); window.location.href = './Category.do';</script>");
+   mav.addObject("msg1", "<script>alert('상품삭제에 성공하였습니다'); window.location.href = './Category.do?nowpage=1';</script>");
  }
  
  return mav;

@@ -19,7 +19,7 @@
 <div class="container">
 	<h3>* 상품 등록 *</h3>
 	<p>
-		<a href="Category.do" class="btn btn-success">상품 목록</a>
+		<a href="Category.do?nowpage=1" class="btn btn-success">상품 목록</a>
 	</p>
 	<form name="rentalfrm" method="post" action="Rental_resister.do" enctype="multipart/form-data">
 		<input type="hidden" value="TEST02" name="id">

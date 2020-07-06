@@ -17,23 +17,24 @@
 	<nav class="category">
 		<div class="list">
 			<ul class="menu"><!-- class="active" -->
-				<li><a href="Category.do">전체보기</a></li>
-				<c:choose><c:when test="${cg eq '컴퓨터'}"> <li class="active"> <a href="CategoryDT.do?category=컴퓨터">컴퓨터</a> </li> </c:when>
-				<c:otherwise> <li> <a href="CategoryDT.do?category=컴퓨터">컴퓨터</a> </li> </c:otherwise> </c:choose>
+				<li><a href="Category.do?nowpage=1">전체보기</a></li>
+				<c:choose><c:when test="${cg eq '컴퓨터'}"> <li class="active"> <a href="CategoryDT.do?category=컴퓨터&nowpage=1">컴퓨터</a> </li> </c:when>
+				<c:otherwise> <li> <a href="CategoryDT.do?category=컴퓨터&nowpage=1">컴퓨터</a> </li> </c:otherwise> </c:choose>
 				
-				<c:choose><c:when test="${cg eq 'TV/영상가전'}"> <li class="active"> <a href="CategoryDT.do?category=TV/영상가전">TV/영상가전</a> </li> </c:when>
-				<c:otherwise> <li> <a href="CategoryDT.do?category=TV/영상가전">TV/영상가전</a> </li></c:otherwise> </c:choose>
+				<c:choose><c:when test="${cg eq 'TV/영상가전'}"> <li class="active"> <a href="CategoryDT.do?category=TV/영상가전&nowpage=1">TV/영상가전</a> </li> </c:when>
+				<c:otherwise> <li> <a href="CategoryDT.do?category=TV/영상가전&nowpage=1">TV/영상가전</a> </li></c:otherwise> </c:choose>
 				
-				<c:choose><c:when test="${cg eq '음향기기'}"> <li class="active"> <a href="CategoryDT.do?category=음향기기">음향기기</a></li> </c:when>
-				<c:otherwise> <li> <a href="CategoryDT.do?category=음향기기">음향기기</a></li> </c:otherwise> </c:choose>
+				<c:choose><c:when test="${cg eq '음향기기'}"> <li class="active"> <a href="CategoryDT.do?category=음향기기&nowpage=1">음향기기</a></li> </c:when>
+				<c:otherwise> <li> <a href="CategoryDT.do?category=음향기기&nowpage=1">음향기기</a></li> </c:otherwise> </c:choose>
 				
-				<c:choose><c:when test="${cg eq '콘솔/게이밍'}"> <li class="active"> <a href="CategoryDT.do?category=콘솔/게이밍">콘솔/게이밍</a></li> </c:when>
-				<c:otherwise> <li> <a href="CategoryDT.do?category=콘솔/게이밍">콘솔/게이밍</a></li> </c:otherwise> </c:choose>
+				<c:choose><c:when test="${cg eq '콘솔/게이밍'}"> <li class="active"> <a href="CategoryDT.do?category=콘솔/게이밍&nowpage=1">콘솔/게이밍</a></li> </c:when>
+				<c:otherwise> <li> <a href="CategoryDT.do?category=콘솔/게이밍&nowpage=1">콘솔/게이밍</a></li> </c:otherwise> </c:choose>
 				
-				<c:choose><c:when test="${cg eq '카메라'}"> <li class="active"><a href="CategoryDT.do?category=카메라">카메라</a></li> </c:when>
-				<c:otherwise> <li><a href="CategoryDT.do?category=카메라">카메라</a></li> </c:otherwise> </c:choose>
+				<c:choose><c:when test="${cg eq '카메라'}"> <li class="active"><a href="CategoryDT.do?category=카메라&nowpage=1">카메라</a></li> </c:when>
+				<c:otherwise> <li><a href="CategoryDT.do?category=카메라&nowpage=1">카메라</a></li> </c:otherwise> </c:choose>
 			</ul>
 			<form method="post" action="CategoryDT.do" onsubmit="return searchCheck(this)">
+			<input type="hidden" name="nowpage" id="nowpage" value="${nowpage}">
 			<table align="center">
 				<tr class="checktd">
 				<c:forEach var="cdto" items="${category}">
@@ -75,6 +76,30 @@
         
         </div>
 </div>
+<br>
+        <nav class="nav justify-content-center" aria-label="Page navigation example">
+		  <ul class="pagination">
+		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+		    
+		    <c:forEach var="i" begin="1" end="${count%recordPerPage==0 ? (count/recordPerPage) : (count/recordPerPage)+1}">
+		    	<li class="page-item ${nowpage==i ? 'active' : ''}">
+		    	
+		    	<c:choose><c:when test="${cg eq '컴퓨터'}"> <a class="page-link" href="CategoryDT.do?category=컴퓨터&nowpage=${i}"><c:out value="${i}"/></a></li> </c:when> </c:choose>
+				
+				<c:choose><c:when test="${cg eq 'TV/영상가전'}"> <a class="page-link" href="CategoryDT.do?category=TV/영상가전&nowpage=${i}"><c:out value="${i}"/></a></li>  </c:when></c:choose>
+				
+				<c:choose><c:when test="${cg eq '음향기기'}"> <a class="page-link" href="CategoryDT.do?category=음향기기&nowpage=${i}"><c:out value="${i}"/></a></li>  </c:when></c:choose>
+				
+				<c:choose><c:when test="${cg eq '콘솔/게이밍'}"> <a class="page-link" href="CategoryDT.do?category=콘솔/게이밍&nowpage=${i}"><c:out value="${i}"/></a></li>  </c:when></c:choose>
+				
+				<c:choose><c:when test="${cg eq '카메라'}"> <a class="page-link" href="CategoryDT.do?category=카메라&nowpage=${i}"><c:out value="${i}"/></a></li> </c:when></c:choose>
+		    	
+		    	
+		    </c:forEach>
+		    
+		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+		  </ul>
+		</nav>
 
 
 

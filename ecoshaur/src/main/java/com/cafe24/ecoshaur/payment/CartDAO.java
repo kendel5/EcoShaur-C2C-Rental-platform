@@ -27,8 +27,11 @@ public class CartDAO {
     public CartDAO() {
     	dbopen=new DBOpen();
     }
-    
-    public ArrayList<CartDTO> list(String id){
+    //페이징
+    public ArrayList<CartDTO> list(String id, int nowpage, int recordPerPage){
+      int startRow = ((nowpage-1) * recordPerPage) ;
+      int endRow   = recordPerPage;
+      
     	 ArrayList<CartDTO> list=null;
 		  try {
 			  con=dbopen.getConnection();
@@ -37,6 +40,7 @@ public class CartDAO {
 			  sql.append(" FROM Cart");
 			  sql.append(" WHERE id= ? ");
 			  sql.append(" ORDER BY Cart_no DESC");
+			  sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;
 			  
 			  pstmt=con.prepareStatement(sql.toString());
 			  pstmt.setString(1, id);
@@ -67,8 +71,11 @@ public class CartDAO {
 		  return list;
     } //list end
     
-    
-    public ArrayList<RentalDTO> rental_pdlist(String id) {
+    //페이징
+    public ArrayList<RentalDTO> rental_pdlist(String id, int nowpage, int recordPerPage) {
+      int startRow = ((nowpage-1) * recordPerPage) ;
+      int endRow   = recordPerPage;
+      
     	RentalDTO dto = null;
     	ArrayList<RentalDTO> list=null;
 	    try {
@@ -80,6 +87,7 @@ public class CartDAO {
         sql.append(" ON A.product_no = B.product_no ");
         sql.append(" WHERE B.id = ? ");
         sql.append(" ORDER BY A.product_no ");
+        sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;
 	      pstmt = con.prepareStatement(sql.toString());
 	      pstmt.setString(1, id);
 	      rs = pstmt.executeQuery();
@@ -105,6 +113,113 @@ public class CartDAO {
 	    }//end
 	    return list;
 	  }//read() end
+    
+    // 페이징X 목록
+    public ArrayList<CartDTO> list(String id){
+       ArrayList<CartDTO> list=null;
+      try {
+        con=dbopen.getConnection();
+        sql=new StringBuilder();
+        sql.append(" SELECT cart_no, id, product_no, quantity, rental_period, receipt_date, cart_date, total_price");
+        sql.append(" FROM Cart");
+        sql.append(" WHERE id= ? ");
+        sql.append(" ORDER BY Cart_no DESC");
+        
+        pstmt=con.prepareStatement(sql.toString());
+        pstmt.setString(1, id);
+        rs=pstmt.executeQuery();
+        if(rs.next()){
+          list = new ArrayList<CartDTO>(); 
+              do {
+                CartDTO dto=new CartDTO();
+                dto = new CartDTO();
+                dto.setCart_no(rs.getInt("cart_no"));
+                dto.setId(rs.getString("id"));
+                dto.setProduct_no(rs.getString("product_no"));
+                dto.setQuantity(rs.getInt("quantity"));
+                dto.setRental_period(rs.getString("rental_period"));
+                dto.setReceipt_date(rs.getString("receipt_date"));
+                dto.setCart_date(rs.getString("cart_date"));
+                dto.setTotal_price(rs.getInt("total_price"));
+                list.add(dto);
+              } while(rs.next());
+            }else{
+              list = null;
+            }//if end
+      }catch(Exception e) {
+        System.out.println("목록 확인 실패:" +e);
+      }finally {
+        DBClose.close(con,pstmt,rs);
+      }
+      return list;
+    } //list end
+    
+    // 페이징X 목록
+    public ArrayList<RentalDTO> rental_pdlist(String id) {
+      
+      RentalDTO dto = null;
+      ArrayList<RentalDTO> list=null;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT A.product_no product_no, A.title title, A.price_daily price_daily, A.deposit deposit, A.thmb_name thmb_name, A.id id, A.category_code category_code ");
+        sql.append(" FROM rental_list A ");
+        sql.append(" INNER JOIN Cart B ");
+        sql.append(" ON A.product_no = B.product_no ");
+        sql.append(" WHERE B.id = ? ");
+        sql.append(" ORDER BY A.product_no ");
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setString(1, id);
+        rs = pstmt.executeQuery();
+        if(rs.next()) {
+          list = new ArrayList<RentalDTO>();
+          do {
+            dto = new RentalDTO();
+            dto.setProduct_no(rs.getString("product_no"));
+            dto.setTitle(rs.getString("title"));
+            dto.setPrice_daily(rs.getInt("price_daily"));
+            dto.setDeposit(rs.getInt("deposit"));
+            dto.setThmb_name(rs.getString("thmb_name"));
+            dto.setId(rs.getString("id"));
+            dto.setCategory_code(rs.getString("category_code"));
+            list.add(dto);
+          } while (rs.next());
+        }//if end
+
+      } catch (Exception e) {
+          System.out.println("대여상품목록 확인"+e);
+      } finally {
+          DBClose.close(con, pstmt, rs);
+      }//end
+      return list;
+    }//read() end
+    
+ // 목록 최대 페이징 수
+    public int count(String id) {
+      int count=0;
+      try {
+        // DB연결
+        con = dbopen.getConnection();
+        
+        //4)SQL문 작성
+          sql=new StringBuilder();
+          sql.append(" SELECT count(*) as cnt FROM cart ");
+          sql.append(" WHERE id=? ");
+          pstmt=con.prepareStatement(sql.toString());
+          pstmt.setString(1, id);
+          rs = pstmt.executeQuery();
+        if(rs.next()) { // cursor 가 있는지?
+          count = rs.getInt("cnt");
+        }else {
+          System.out.println("행 갯수를 얻지못함!!");
+        }// if end
+      }catch(Exception e) {
+        System.out.println(" 카운트실패:" + e);
+      }finally {
+        DBClose.close(con, pstmt ,rs);
+      }// try end
+      return count;
+    } // count() end
     
     
     public int Point(String id ) {

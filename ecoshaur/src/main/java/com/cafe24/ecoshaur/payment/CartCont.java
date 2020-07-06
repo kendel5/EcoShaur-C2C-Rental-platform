@@ -27,21 +27,29 @@ public class CartCont {
   
 //상세보기
    @RequestMapping(value = "Cart.do", method = RequestMethod.GET)
-   public ModelAndView list(String id) {
+   public ModelAndView list(String id, int nowpage) {
+     int recordPerPage = 4;
+     int endRow   = nowpage * recordPerPage;
      ModelAndView mav = new ModelAndView();
      
      mav.setViewName("cart/Cart");
-     mav.addObject("cart_list", dao.list(id));
-     mav.addObject("rental_list", dao.rental_pdlist(id));
+     mav.addObject("cart_list", dao.list(id, nowpage, recordPerPage));
+     mav.addObject("rental_list", dao.rental_pdlist(id, nowpage, recordPerPage));
      mav.addObject("id", id);
      mav.addObject("price", dao.total(id));
     
+     mav.addObject("recordPerPage", recordPerPage);
+     mav.addObject("end", endRow);
+     mav.addObject("nowpage", nowpage);
+     mav.addObject("count", dao.count(id));
      return mav;
    }// read() end
    
    // 장바구니 추가
    @RequestMapping(value = "Cart.do", method = RequestMethod.POST)
-   public ModelAndView add(int price_daily, int deposit, CartDTO dto) {
+   public ModelAndView add(int price_daily, int deposit, CartDTO dto, int nowpage) {
+     int recordPerPage = 4;
+     int endRow   = nowpage * recordPerPage;
      ModelAndView mav = new ModelAndView();
      mav.setViewName("cart/Cart");
      
@@ -52,23 +60,36 @@ public class CartCont {
      // 장바구니 추가
      int cnt = dao.create(dto);
      
-     mav.addObject("cart_list", dao.list(dto.getId()));
-     mav.addObject("rental_list", dao.rental_pdlist(dto.getId()));
+     mav.addObject("cart_list", dao.list(dto.getId(), nowpage, recordPerPage));
+     mav.addObject("rental_list", dao.rental_pdlist(dto.getId(), nowpage, recordPerPage));
      mav.addObject("id", dto.getId());
+     
+     
+     mav.addObject("recordPerPage", recordPerPage);
+     mav.addObject("end", endRow);
+     mav.addObject("nowpage", nowpage);
+     mav.addObject("count", dao.count(dto.getId()));
      return mav;
    }// read() end
    
   //장바구니 결제페이지
   @RequestMapping(value = "Cartpayment.do", method = RequestMethod.GET)
-  public ModelAndView rental_pdlist(String id) {
+  public ModelAndView rental_pdlist(String id, int nowpage) {
+    int recordPerPage = 4;
+    int endRow   = nowpage * recordPerPage;
     ModelAndView mav = new ModelAndView();
     
     mav.setViewName("cart/Cartpayment");
-    mav.addObject("cart_list", dao.list(id));
-    mav.addObject("rental_list", dao.rental_pdlist(id));
+    mav.addObject("cart_list", dao.list(id, nowpage, recordPerPage));
+    mav.addObject("rental_list", dao.rental_pdlist(id, nowpage, recordPerPage));
     mav.addObject("point", dao.Point(id));
     mav.addObject("id", id);
     mav.addObject("total_price", dao.total_price(id));
+    
+    mav.addObject("recordPerPage", recordPerPage);
+    mav.addObject("end", endRow);
+    mav.addObject("nowpage", nowpage);
+    mav.addObject("count", dao.count(id));
     return mav;
   }// read() end
 

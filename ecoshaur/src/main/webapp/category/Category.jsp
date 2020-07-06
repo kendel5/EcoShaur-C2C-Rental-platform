@@ -16,12 +16,12 @@
 	<nav class="category">
 		<div class="list">
 			<ul class="menu">
-				<li class="active"><a href="Category.do">전체보기</a></li>
-				<li> <a href="CategoryDT.do?category=컴퓨터">컴퓨터</a> </li>
-				<li> <a href="CategoryDT.do?category=TV/영상가전">TV/영상가전</a> </li>
-				<li> <a href="CategoryDT.do?category=음향기기">음향기기</a></li>
-				<li> <a href="CategoryDT.do?category=콘솔/게이밍">콘솔/게이밍</a></li>
-				<li><a href="CategoryDT.do?category=카메라">카메라</a></li>
+				<li class="active"><a href="Category.do?nowpage=1">전체보기</a></li>
+				<li> <a href="CategoryDT.do?category=컴퓨터&nowpage=1">컴퓨터</a> </li>
+				<li> <a href="CategoryDT.do?category=TV/영상가전&nowpage=1">TV/영상가전</a> </li>
+				<li> <a href="CategoryDT.do?category=음향기기&nowpage=1">음향기기</a></li>
+				<li> <a href="CategoryDT.do?category=콘솔/게이밍&nowpage=1">콘솔/게이밍</a></li>
+				<li><a href="CategoryDT.do?category=카메라&nowpage=1">카메라</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -51,8 +51,30 @@
             
         </c:forEach>
         </div>
+       
+        
 </div>
+<br>
 
+        <nav class="nav justify-content-center" aria-label="Page navigation example">
+		  <ul class="pagination">
+		    <li class="page-item">
+		    <c:choose><c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
+		    		  <c:otherwise> <a class="page-link" href="Category.do?nowpage=${nowpage-1 }"> </c:otherwise>
+		    </c:choose>
+		    Previous</a></li>
+		    
+		    <c:forEach var="i" begin="1" end="${count%recordPerPage==0 ? (count/recordPerPage) : (count/recordPerPage)+1}">
+		    	<li class="page-item ${nowpage==i ? 'active' : ''}"><a class="page-link" href="Category.do?nowpage=${i}"><c:out value="${i}"/></a></li>
+		    </c:forEach>
+		    
+		    <li class="page-item">
+		    <c:choose><c:when test="${nowpage == i}"> <a class="page-link disabled">  </c:when>
+		    		  <c:otherwise> <a class="page-link" href="Category.do?nowpage=${nowpage+1 }"> </c:otherwise>
+		    </c:choose>
+		    Next</a></li>
+		  </ul>
+		</nav>
 
 
 <br><br><br><br><br>
