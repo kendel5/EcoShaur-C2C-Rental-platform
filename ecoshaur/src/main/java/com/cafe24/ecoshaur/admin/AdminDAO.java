@@ -236,6 +236,123 @@ public class AdminDAO {
       return list;
     }
     
+//---------------------------------------------------------------------------------------
+//     최근 주문목록
+//----------------------------------------------------------------------------------------
+  //상품 목록 가져오기
+    public ArrayList<RentalDTO> Rental_list_t() {
+      RentalDTO dto = new RentalDTO();
+      ArrayList<RentalDTO> list = new ArrayList<RentalDTO>();
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT A.product_no, A.title, A.sub_title, A.product_name, A.price_daily, A.deposit, A.total_quantity, A.remaining_quantity, A.thmb_name, A.id ");
+        sql.append(" FROM RENTAL_LIST A ");
+        sql.append(" INNER JOIN order_history B ");
+        sql.append(" ON A.product_no = B.product_no ");
+        sql.append(" ORDER BY B.payment_date DESC ");
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          do {
+            dto = new RentalDTO();
+            dto.setProduct_no(rs.getString("product_no"));
+            dto.setTitle(rs.getString("title").trim());
+            dto.setSub_title(rs.getString("sub_title").trim());
+            dto.setProduct_name(rs.getString("product_name").trim());
+            dto.setPrice_daily(rs.getInt("price_daily"));
+            dto.setDeposit(rs.getInt("deposit"));
+            dto.setTotal_quantity(rs.getInt("total_quantity"));
+            dto.setRemaining_quantity(rs.getInt("remaining_quantity"));
+            dto.setThmb_name(rs.getString("thmb_name").trim());
+            dto.setId(rs.getString("id").trim());
+            list.add(dto);
+          } while (rs.next());
+        } else {
+          list = null;
+        } // if end
+      } catch (Exception e) {
+        System.out.println("Category목록 실패:" + e);
+      } finally {
+        DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }
+    
+ // 주문내역서 목록
+    public ArrayList<OrderHistoryDTO> orderhistory_list_t() {
+      OrderHistoryDTO dto = new OrderHistoryDTO();
+      ArrayList<OrderHistoryDTO> list = null;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT ORDER_DETAIL_NO, order_no, product_no, quantity, total_price, payment, credit_card, card_num, payment_date, Order_condition, deposit ");
+        sql.append(" FROM ORDER_HISTORY ");
+        sql.append(" ORDER BY payment_date DESC");
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          list = new ArrayList<OrderHistoryDTO>();
+          do {
+            dto = new OrderHistoryDTO();
+            dto.setOrder_detail_no(rs.getInt("ORDER_DETAIL_NO"));
+            dto.setOrder_no(rs.getInt("order_no"));
+            dto.setProduct_no(rs.getString("product_no").trim());
+            dto.setQuantity(rs.getInt("quantity"));
+            dto.setTotal_price(rs.getInt("total_price"));
+            dto.setPayment(rs.getString("payment"));
+            dto.setCredit_card(rs.getString("credit_card"));
+            dto.setCard_num(rs.getString("card_num"));
+            dto.setPayment_date(rs.getString("payment_date").trim());
+            dto.setOrder_condition(rs.getString("Order_condition"));
+            dto.setDeposit(rs.getInt("deposit"));
+            list.add(dto);
+          } while (rs.next());
+        } else {
+          list = null;
+        } // if end
+      } catch (Exception e) {
+        System.out.println("Category목록 실패:" + e);
+      } finally {
+        DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }
+    
+  //최근 주문목록 id 리스트 가져오기
+    public ArrayList<OrderDTO> ID_list_t() {
+      OrderDTO dto = new OrderDTO();
+      ArrayList<OrderDTO> list = null;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT A.id ");
+        sql.append(" FROM Order_sheet A ");
+        sql.append(" INNER JOIN order_history B ");
+        sql.append(" ON A.order_no = B.order_no ");
+        sql.append(" ORDER BY B.payment_date DESC ");
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          list = new ArrayList<OrderDTO>();
+          do {
+            dto = new OrderDTO();
+            dto.setId(rs.getString("id").trim());
+            list.add(dto);
+          } while (rs.next());
+        } else {
+          list = null;
+        } // if end
+      } catch (Exception e) {
+        System.out.println("최근주문목록 id목록 가져오기 실패:" + e);
+      } finally {
+        DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }
+//---------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+    
     // top 유저포인트
     public ArrayList<PointDTO> top_point() {
       PointDTO dto = new PointDTO();

@@ -57,4 +57,21 @@ public class AdminCont {
    return mav;
  }// read() end
   
+  //상세보기
+  @RequestMapping(value = "admin/pages/newOrderList.do", method = RequestMethod.GET)
+  public ModelAndView newOrderList() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("admin/pages/newOrderList");     
+    
+    // 최근 거래목록
+    // Rental
+    mav.addObject("Rlist", dao.Rental_list_t());
+    // Order_history
+    mav.addObject("Olist", dao.orderhistory_list_t());
+    // Order_sheet -> id
+    mav.addObject("IDlist", dao.ID_list_t());
+    
+    return mav;
+  }
+ 
 }
