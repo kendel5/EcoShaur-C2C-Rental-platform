@@ -11,7 +11,7 @@ public class OrderHistoryDTO {
 	private String credit_card;
 	private String card_num;
 	private String payment_date;
-	private char Order_condition;
+	private String Order_condition;
 	private int deposit;
 	
 	
@@ -69,10 +69,10 @@ public class OrderHistoryDTO {
 	public void setPayment_date(String payment_date) {
 		this.payment_date = payment_date;
 	}
-	public char getOrder_condition() {
+	public String getOrder_condition() {
 		return Order_condition;
 	}
-	public void setOrder_condition(char order_condition) {
+	public void setOrder_condition(String order_condition) {
 		Order_condition = order_condition;
 	}
 	
