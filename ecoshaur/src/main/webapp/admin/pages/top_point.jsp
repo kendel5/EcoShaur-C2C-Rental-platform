@@ -32,12 +32,12 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">최근 주문목록</h2>
+                            <h2 class="pageheader-title">Top 유저 포인트</h2>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="../index.do" class="breadcrumb-link">대시보드</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">최근 주문목록</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Top 유저 포인트</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -53,61 +53,28 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">최근 주문목록</h5>
+                            <h5 class="card-header">Top 유저 포인트</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>이미지</th>
-                                                <th>상품이름</th>
-                                                <th>주문자</th>
-                                                <th>갯수</th>
-                                                <th>총 금액</th>
-                                                <th>결제일</th>
-                                                <th>결제방법</th>
-                                                <th>상태</th>
+                                                <th>ID</th>
+                                                <th>포인트</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="dto" items="${Olist}" varStatus="status">
-                                            <tr>
-                                                <td>${status.index+1 }</td>
-                                                <td><div class="m-r-10"><img src="../../category/storage/${Rlist[status.index].thmb_name}" alt="user" class="rounded" width="45"></div></td>
-                                                <td>${Rlist[status.index].product_name }</td>
-                                                <td>${IDlist[status.index].id  } </td>
-                                                <td>${dto.quantity }</td>
-                                                <td>${dto.total_price }</td>
-                                                <td>${dto.payment_date }</td>
-                                                <td>${dto.payment }</td>
-
-                                                <c:choose>
-													<c:when  test="${dto.order_condition eq 'C'}">
-												    	<td>대여완료 <span class="badge-dot badge-success mr-1"></span>
-													</c:when>
-													<c:when  test="${dto.order_condition eq 'P'}">
-												    	<td>대여중 <span class="badge-dot badge-brand mr-1"></span>
-													</c:when>
-													<c:when  test="${dto.order_condition eq 'F'}">
-												    	<td>환불 <span class="badge-dot badge-danger mr-1"></span>
-													</c:when>
-												</c:choose>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
+                                        <c:forEach var="dto" items="${top_point}" varStatus="status">
+                                                    <tr>
+                                                        <td>${dto.id }</td>
+                                                        <td>${dto.point } </td>
+                                                    </tr>
+                                                </c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>#</th>
-                                                <th>이미지</th>
-                                                <th>상품이름</th>
-                                                <th>주문자</th>
-                                                <th>갯수</th>
-                                                <th>총 금액</th>
-                                                <th>결제일</th>
-                                                <th>결제방법</th>
-                                                <th>상태</th>
+                                                <th>ID</th>
+                                                <th>포인트</th>
                                             </tr>
                                         </tfoot>
                                     </table>

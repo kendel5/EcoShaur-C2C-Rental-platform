@@ -123,7 +123,7 @@
                      <div class="form-group">
                         <label for="amount" class="col-sm-2 control-label">결제카드 번호</label>
                         <div class="col-sm-10">
-                           <input type="text" class="form-control" id="card_num" name="card_num">
+                           <input type="text" class="form-control" id="card_num" name="card_num" placeholder="0000-0000-0000-0000 형식으로 써주세요">
                         </div>
                      </div>
                      <div class="form-group">

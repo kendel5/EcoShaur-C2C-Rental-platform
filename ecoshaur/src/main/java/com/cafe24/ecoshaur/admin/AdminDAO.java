@@ -458,7 +458,111 @@ public class AdminDAO {
       return list;
     }//read() end
     
-    
+  //---------------------------------------------------------------------------------------
+  //----------------------------------------------------------------------------------------
+      
+      // top 유저포인트
+      public ArrayList<PointDTO> top_point_t() {
+        PointDTO dto = new PointDTO();
+        ArrayList<PointDTO> list = null;
+        try {
+          con = dbopen.getConnection();
+          sql = new StringBuilder();
+          sql.append(" SELECT id, sum(point) point ");
+          sql.append(" FROM point ");
+          sql.append(" group by id ");
+          sql.append(" ORDER BY point DESC ");
+          pstmt = con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+          if (rs.next()) {
+            list = new ArrayList<PointDTO>();
+            do {
+              dto = new PointDTO();
+              dto.setId(rs.getString("id").trim());
+              dto.setPoint(rs.getInt("point"));
+              list.add(dto);
+            } while (rs.next());
+          } else {
+            list = null;
+          } // if end
+        } catch (Exception e) {
+          System.out.println("포인트 순위 가져오기 실패:" + e);
+        } finally {
+          DBClose.close(con, pstmt, rs);
+        }
+        return list;
+      }//read() end
+      
+      
+   // top 환불이 많은 상품의 대여자 순위(rental)
+      public ArrayList<RentalDTO> topFail_rental_t() {
+        RentalDTO dto = new RentalDTO();
+        ArrayList<RentalDTO> list = null;
+        try {
+          con = dbopen.getConnection();
+          sql = new StringBuilder();
+          sql.append(" select A.id id, A.product_no product_no, count(B.order_condition) as BB from rental_list A ");
+          sql.append(" inner join order_history B ");
+          sql.append(" on A.product_no = B.product_no ");
+          sql.append(" where B.order_condition = 'F' ");
+          sql.append(" group by id ");
+          sql.append(" order by BB ");
+          pstmt = con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+          if (rs.next()) {
+            list = new ArrayList<RentalDTO>();
+            do {
+              dto = new RentalDTO();
+              dto.setId(rs.getString("id").trim());
+              dto.setProduct_no(rs.getString("product_no"));
+              list.add(dto);
+            } while (rs.next());
+          } else {
+            list = null;
+          } // if end
+        } catch (Exception e) {
+          System.out.println("환불순위 가져오기 실패:" + e);
+        } finally {
+          DBClose.close(con, pstmt, rs);
+        }
+        return list;
+      }//read() end
+      
+      
+      
+   // top 환불이 많은 상품의 대여자 순위(count)
+      public ArrayList<OrderHistoryDTO> topFail_condition_t() {
+        OrderHistoryDTO dto = new OrderHistoryDTO();
+        ArrayList<OrderHistoryDTO> list = null;
+        try {
+          con = dbopen.getConnection();
+          sql = new StringBuilder();
+          sql.append(" select count(B.order_condition) BB from rental_list A ");
+          sql.append(" inner join order_history B ");
+          sql.append(" on A.product_no = B.product_no ");
+          sql.append(" where B.order_condition = 'F' ");
+          sql.append(" group by A.id ");
+          sql.append(" order by BB ");
+          pstmt = con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+          if (rs.next()) {
+            list = new ArrayList<OrderHistoryDTO>();
+            do {
+              dto = new OrderHistoryDTO();
+              dto.setDeposit(rs.getInt("BB"));
+              list.add(dto);
+            } while (rs.next());
+          } else {
+            list = null;
+          } // if end
+        } catch (Exception e) {
+          System.out.println("환불 순위 가져오기(갯수) 실패:" + e);
+        } finally {
+          DBClose.close(con, pstmt, rs);
+        }
+        return list;
+      }//read() end
+//------------------------------------------------------------------------------------------------
   //세부목록
     public String[][] Category_info() {
       String[][] list = new String[5][8];

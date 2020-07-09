@@ -193,7 +193,7 @@
                             <!-- ============================================================== -->
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
-                                    <h5 class="card-header">Top 유저 포인트/좋아요</h5>
+                                    <h5 class="card-header">Top 유저 포인트</h5>
                                     <div class="card-body p-0">
                                         <div class="table-responsive">
                                             <table class="table no-wrap p-table">
@@ -213,7 +213,7 @@
                                                     
                                                     <tr>
                                                         <td colspan="2">
-                                                            <a href="#" class="btn btn-outline-light float-right">Details</a>
+                                                            <a href="./pages/top_point.do" class="btn btn-outline-light float-right">상세보기</a>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -272,7 +272,7 @@
                     </div>
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
-                                    <h5 class="card-header">교환/환불/반품 Top 대여자</h5>
+                                    <h5 class="card-header">환불 Top 대여자</h5>
                                     <div class="card-body p-0">
                                         <div class="table-responsive">
                                             <table class="table no-wrap p-table">
@@ -294,7 +294,7 @@
                                                    
                                                     <tr>
                                                         <td colspan="3">
-                                                            <a href="#" class="btn btn-outline-light float-right">Details</a>
+                                                            <a href="./pages/BadTopUser.do" class="btn btn-outline-light float-right">상세보기</a>
                                                         </td>
                                                     </tr>
                                                 </tbody>

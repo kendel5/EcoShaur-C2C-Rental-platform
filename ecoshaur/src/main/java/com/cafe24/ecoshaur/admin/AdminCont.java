@@ -57,7 +57,7 @@ public class AdminCont {
    return mav;
  }// read() end
   
-  //상세보기
+  //최근 주문목록
   @RequestMapping(value = "admin/pages/newOrderList.do", method = RequestMethod.GET)
   public ModelAndView newOrderList() {
     ModelAndView mav = new ModelAndView();
@@ -70,6 +70,32 @@ public class AdminCont {
     mav.addObject("Olist", dao.orderhistory_list_t());
     // Order_sheet -> id
     mav.addObject("IDlist", dao.ID_list_t());
+    
+    return mav;
+  }
+  
+  //Top 포인트
+  @RequestMapping(value = "admin/pages/top_point.do", method = RequestMethod.GET)
+  public ModelAndView top_point() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("admin/pages/top_point");     
+    
+ // top 포인트
+    mav.addObject("top_point", dao.top_point_t());
+    
+    return mav;
+  }
+  
+  
+  // top 환불 
+  @RequestMapping(value = "admin/pages/BadTopUser.do", method = RequestMethod.GET)
+  public ModelAndView badTopuser() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("admin/pages/BadTopUser");     
+    
+ // 환불 TOP 순위
+    mav.addObject("topFail_rental", dao.topFail_rental_t());
+    mav.addObject("topFail_condition", dao.topFail_condition_t()); // Deposit 으로 받음
     
     return mav;
   }

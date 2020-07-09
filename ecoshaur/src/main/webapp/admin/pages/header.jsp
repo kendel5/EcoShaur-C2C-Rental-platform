@@ -13,7 +13,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.do">Ecoshaur</a>
+                <a class="navbar-brand" href="../index.do">Ecoshaur</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -38,24 +38,24 @@
                                 	메뉴
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="./index.do" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>통합관리 <span class="badge badge-success">6</span></a>
+                                <a class="nav-link active" href="../index.do" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>통합관리 <span class="badge badge-success">6</span></a>
                                 <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="./index.do" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">대시보드</a>
+                                            <a class="nav-link" href="../index.do" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">대시보드</a>
                                             <div id="submenu-1-2" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="./index.do">통합 대시보드</a>
+                                                        <a class="nav-link" href="../index.do">통합 대시보드</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="./pages/newOrderList.do">최근 주문목록</a>
+                                                        <a class="nav-link" href="newOrderList.do">최근 주문목록</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="./pages/top_point.do">Top 유저 포인트</a>
+                                                        <a class="nav-link" href="top_point.do">Top 유저 포인트</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="./pages/BadTopUser.do">환불 Top 대여자</a>
+                                                        <a class="nav-link" href="BadTopUser.do">환불 Top 대여자</a>
                                                     </li>
                                                 </ul>
                                             </div>
