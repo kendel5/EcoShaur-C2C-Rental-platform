@@ -28,7 +28,7 @@
       method="post"
       action="updateProc.do"
       onsubmit="return memberCheck(this)" >
-      
+      <input type="hidden" id="id" name="id" value="${id}">
         <div class="py-5 text-center">
             <h4>회원정보 수정</h4>
         </div>

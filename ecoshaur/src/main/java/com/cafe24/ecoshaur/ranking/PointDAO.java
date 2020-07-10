@@ -212,7 +212,7 @@ public class PointDAO {
 			sql.append(" 			) AS A ");
 			sql.append(" 		ORDER BY point DESC ");
 			sql.append(" 	  ) AS B ");
-			sql.append(" WHERE RNUM > 5 ");
+			sql.append(" WHERE RNUM BETWEEN 6 AND 20 ");
 			pstmt = con.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -230,7 +230,7 @@ public class PointDAO {
 				others = null;
 			} // if end
 		} catch (Exception e) {
-			System.out.println("나머지 순위 불러오기 실패:" + e);
+			System.out.println("6~20순위 불러오기 실패:" + e);
 		} finally {
 			DBClose.close(con, pstmt, rs);
 		} // try end

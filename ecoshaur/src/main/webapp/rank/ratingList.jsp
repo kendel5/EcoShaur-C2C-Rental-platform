@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/pointlist.css">
-
 <br><br><br><br><br>
+
 <!-- 본문 시작 ratingList.jsp--> 
 <div>
 	<input type="button" value="Point" onClick="location.href='./Point.do'" class="btn">
@@ -106,7 +106,7 @@
 
 
 <div class="ranking-pagination__desc">
-	<span>1 ~ 10</span> 위
+	<span>1 ~ 20</span> 위
 </div>
 
 
