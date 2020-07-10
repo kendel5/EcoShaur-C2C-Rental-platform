@@ -13,7 +13,7 @@
 
 
 <div class="container">
-	<a href="Rental_resister.do" class="btn btn-success">글 쓰기</a>
+	<a href="Rental_register.do" class="btn btn-success">글 쓰기</a>
 	<nav class="category">
 		<div class="list">
 			<ul class="menu"><!-- class="active" -->
@@ -37,8 +37,10 @@
 			<input type="hidden" name="nowpage" id="nowpage" value="${nowpage}">
 			<table align="center">
 				<tr class="checktd">
-				<c:forEach var="cdto" items="${category}">
-					<td width="3%"><input type="radio" id="filter_b1" name="test_check" value="${cdto.minor }" ></td><td>${cdto.minor }</td><td width="3%"></td>
+				<c:forEach var="cdto" items="${category}" varStatus="status">
+					<td width="3%"><input type="radio" id="filter_b1" name="test_check" value="${cdto.minor }"
+						<c:if test="${status.index==0}"> checked="checked" </c:if>
+					></td><td>${cdto.minor }</td><td width="3%"></td>
 				</c:forEach>
 				</tr>
 			</table>

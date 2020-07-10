@@ -11,7 +11,7 @@
 <br><br><br><br><br><br><br><br>
 
 
-<a href="Rental_resister.do" class="btn btn-success">글 쓰기</a>
+<a href="Rental_register.do" class="btn btn-success">글 쓰기</a>
 <div class="container">
 	<nav class="category">
 		<div class="list">

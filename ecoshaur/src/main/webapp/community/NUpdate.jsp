@@ -26,8 +26,13 @@
     </tr>
     <tr>
       <th>내용</th>
-      <td><textarea style="resize: none; "name="contents" 
-	  cols="53" rows="7" value='${dto.contents }' required></textarea></td>  
+      <td><textarea style="resize: none; "name="contents" id="contents" 
+	  cols="53" rows="7" value='${dto.contents }' required></textarea>
+	  <!-- ckeditor -->
+					<script>
+						CKEDITOR.replace("contents");
+					</script>
+	  </td>  
     </tr>
     <tr align="left">
       <th>이미지</th>

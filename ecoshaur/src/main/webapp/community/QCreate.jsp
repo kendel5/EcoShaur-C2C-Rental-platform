@@ -24,8 +24,13 @@
 				<td><input type='text' name='title' size='50' required></td>
 			</tr>
 				<th>내용</th>
-				<td><textarea style="resize: none; "name="contents" 
-				cols="53" rows="7" wrap="hard" required></textarea></td>
+				<td><textarea style="resize: none;" id="contents" name="contents" 
+				cols="53" rows="7" wrap="hard" required></textarea>
+				<!-- ckeditor --> 
+						<script>
+							CKEDITOR.replace("contents");
+						</script>
+						</td>
 			</tr>
 			<tr>
 				<th>이미지</th>

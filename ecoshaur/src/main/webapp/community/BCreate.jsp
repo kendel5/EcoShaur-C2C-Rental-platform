@@ -2,6 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
+
+
 <!-- 본문 시작 BCreate.jsp-->
 
 <div class="container">
@@ -18,9 +20,13 @@
     </tr>
     <tr>
       <th>내용</th>
-	  <td><textarea style="resize: none; "name="contents" 
-	  cols="53" rows="7" wrap="hard" required></textarea></td>
-    </tr>
+				<td><textarea style="resize: none;" id="contents" name="contents" cols="53"
+						rows="7" wrap="hard" required></textarea>
+						<!-- ckeditor --> 
+						<script>
+							CKEDITOR.replace("contents");
+						</script></td>
+			</tr>
     <tr>
       <th>이미지</th>
       <td align='left'><input type='file' name='posterMF' size='50'></td>    

@@ -94,15 +94,15 @@ public ModelAndView testCheck(HttpServletRequest req, String cg, int nowpage) {
 }
  
 // 상품등록
-@RequestMapping(value = "Rental_resister.do", method = RequestMethod.GET)
-public ModelAndView Rental_resister() {
+@RequestMapping(value = "Rental_register.do", method = RequestMethod.GET)
+public ModelAndView Rental_register() {
   ModelAndView mav = new ModelAndView();
-  mav.setViewName("category/Rental_resister");   
+  mav.setViewName("category/Rental_register");   
   mav.addObject("minor", dao.MNcategory());
   return mav;
 }// CategoryList() end
 
- @RequestMapping(value = "Rental_resister.do", method = RequestMethod.POST)
+ @RequestMapping(value = "Rental_register.do", method = RequestMethod.POST)
  public ModelAndView createProc(RentalDTO dto, HttpServletRequest req, String ctCode) {
    ModelAndView mav = new ModelAndView();
    mav.setViewName("category/Category");

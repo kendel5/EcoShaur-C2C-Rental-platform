@@ -44,6 +44,10 @@
 				<th>내용</th>
 				<td>
 					<textarea class="form-control" id="description" name="description">${dto.description}</textarea>
+					<!-- ckeditor --> 
+						<script>
+							CKEDITOR.replace("description");
+						</script>
 				</td>
 			</tr>
 			<tr>

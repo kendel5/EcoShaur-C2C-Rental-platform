@@ -7,7 +7,8 @@
 
 <head>
 <!-- CKeditor -->
-  <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="./ckeditor/ckeditor.js"></script>
+
 <script src="assets/js/myscript.js"></script>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
