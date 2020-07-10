@@ -79,7 +79,7 @@ p {
                </tr>
                
               <form action="Cart.do" method="post">
-               <input type="hidden" value="Buyer" id="id" name="id">
+               <input type="hidden" value="${id }" id="id" name="id">
                <input type="hidden" value="1" id="nowpage" name="nowpage">
                <input type="hidden" value="${dto.product_no }" id="product_no" name="product_no">
                <input type="hidden" value="" id="RENTAL_PERIOD" name="rental_period">

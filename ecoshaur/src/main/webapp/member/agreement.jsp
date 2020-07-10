@@ -1,9 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
 <!-- 본문시작 agreement.jsp-->
-<br><br><br><br>
+<br><br><br><br><br>
 
 <h3 style="text-align: center">* 회 원 약 관 *</h3>
 <br>	    
@@ -220,8 +219,8 @@
 </script>
 
 <!-- 본문 끝 -->
-<br>
-<%@ include file="../e_footer.jsp" %>	
+<br><br><br>
+<%@ include file="../e_footer.jsp" %>
 
 
 

@@ -12,20 +12,21 @@
 </style>
 
 <!-- 본문 시작 template.jsp-->
-<h3> 비밀번호 찾기 </h3>
+<br><br><br><br><br><br><br><br>
+<h3> 비밀번호 찾기 </h3><br><br>
 
-<div class="container">
-	<form name=memberUpdate
+<div class="container" align="center">
+	<form name=findpw
 	      method='post'
-	      action="find_passwordProc.do"
+	      action="findPw.do"
 		  onsubmit="return findPasswdCheck(this)">
 		<div class="col-sm-4"></div><div class="col-sm-4">
 	 	<div class="row">
 	 	<div class="login-box well">
 			<div class="form-group text-left">
 				<div class="input-group">
-					<span class="input-group-addon font1" style="min-width:120px; font-size:120%;">이름</span>
-					<input type="text" class="form-control" name="mem_name" id="mem_name" size="20" placeholder="이름을 입력하세요" required>
+					<span class="input-group-addon font1" style="min-width:120px; font-size:120%;">아이디</span>
+					<input type="text" class="form-control" name="id" id="id" size="20" placeholder="아이디를 입력하세요" required>
 	 			</div>
 	        </div>
 			<div class="form-group text-left">

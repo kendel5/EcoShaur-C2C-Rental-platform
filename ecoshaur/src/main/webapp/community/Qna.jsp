@@ -1,11 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<!-- 본문 시작 template.jsp-->
+<!-- 본문 시작 Qna.jsp-->
+
 <div class="container">
 <br><br><br><br><br><br><br><br>
+	<H3>자주하는 질문</H3>
+<br><br>
 
-<a href="QCreate.do" class="btn btn-success">문의하기</a>
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
@@ -50,8 +52,11 @@
     </div>
   </div>
 </div>
-<a href="QList.do" class="btn btn-success">문의목록 보기</a>
-
+<br><br>
+<div align="right">
+<a href="QCreate.do" class="btn btn-success">문의하기</a>
+<a href="QList.do?nowpage=1" class="btn btn-success">문의목록 보기</a>
+</div>
 <br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->		
 <%@ include file="../e_footer.jsp" %>

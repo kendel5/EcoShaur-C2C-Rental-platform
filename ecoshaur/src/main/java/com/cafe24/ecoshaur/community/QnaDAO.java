@@ -28,16 +28,22 @@ public class QnaDAO {
     QnaDTO dto = null;
     public QnaDAO() { }
     
-    public ArrayList<QnaDTO> list(){
+    public ArrayList<QnaDTO> list(int nowpage, int recordPerPage){
       try{
+        QnaDTO dto = new QnaDTO();
+        
+        int startRow = ((nowpage-1) * recordPerPage) ;
+        int endRow   = recordPerPage;
+        
         con = dbopen.getConnection();
         sql = new StringBuilder();
         sql.append(" SELECT postno, head, title, contents, image_name, post_date, ");
         sql.append(" id, pcode, ccode FROM qna ");       
-        sql.append(" ORDER BY pcode DESC, ccode, postno DESC");
-        
-        pstmt = con.prepareStatement(sql.toString());
-        rs = pstmt.executeQuery();
+        sql.append(" ORDER BY pcode DESC, ccode");
+        sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;       
+       
+        pstmt = con.prepareStatement(sql.toString());     
+        rs = pstmt.executeQuery();       
         if(rs.next()){
           list = new ArrayList<QnaDTO>();
           do {
@@ -65,6 +71,30 @@ public class QnaDAO {
       return list;
     }//list() end
     
+    // 목록 최대 페이징 수
+    public int count() {
+      int count=0;
+      try {
+        // DB연결
+        con = dbopen.getConnection();
+        
+        //4)SQL문 작성
+          sql=new StringBuilder();
+          sql.append(" SELECT count(*) as cnt FROM qna ");
+          pstmt=con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+        if(rs.next()) { // cursor 가 있는지?
+          count = rs.getInt("cnt");
+        }else {
+          System.out.println("행 갯수를 얻지못함!!");
+        }// if end
+      }catch(Exception e) {
+        System.out.println(" 카운트실패:" + e);
+      }finally {
+        DBClose.close(con, pstmt ,rs);
+      }// try end
+      return count;
+    } // count() end    
     public QnaDTO read(int postno){
       try{
         con = dbopen.getConnection();
@@ -127,7 +157,7 @@ public class QnaDAO {
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" INSERT INTO qna(postno, head, title, contents, image_name, post_date,id, pcode, ccode)");
+        sql.append(" INSERT INTO qna(postno, head, title, contents, image_name, post_date,id,                                    pcode, ccode)");
         sql.append(" VALUES((select ifnull(max(postno),0)+1 from qna as TB),");
         sql.append(" ?, ?, ?, ?, now(), ?, ?,?)");
        
@@ -147,4 +177,22 @@ public class QnaDAO {
       }//end
       return cnt;
     }//create() end 
+    
+    public int delete(int postno) {
+      int cnt = 0;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" DELETE FROM qna");
+        sql.append(" WHERE postno=?");  
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setInt(1, postno);
+        cnt = pstmt.executeUpdate();
+      } catch (Exception e) {
+          System.out.println("삭제실패"+e);
+      } finally {
+          dbclose.close(con, pstmt);
+      }//end
+      return cnt;
+    }//delete() end
 }

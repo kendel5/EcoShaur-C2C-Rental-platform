@@ -1,99 +1,40 @@
-<%@page import="java.sql.Timestamp"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="../header.jsp"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+
+<c:choose>
+	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
+
+		<script>window.location.href = 'mypage.do';</script>
+
+		
+	</c:when>
+	<c:otherwise>
+	    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="./assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/libs/css/style.css">
+    <link rel="stylesheet" href="./assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+				<style>
 
-<style>
- p {
-    font-family: "Nanum Gothic", sans-serif;
-    font-size: 30px;
-    font-weight: 800;
-   }
-   body {
-       color: #999;
-	   font-family: 'Varela Round', sans-serif;
-	}
-	
 
-	.form-control {
-		box-shadow: none;
-		border-color: #ddd;
-	}
-	.form-control:focus {
-		border-color: #4aba70; 
-	}
-	.login-form {
-        width: 350px;
-		margin: 0 auto;
-		padding: 30px 0;
-	}
-    .login-form form {
-        color: #434343;
-		border-radius: 1px;
-    	margin-bottom: 15px;
-        background: #fff;
-		border: 1px solid #f3f3f3;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        padding: 30px;
-	}
-	.login-form h4 {
-		text-align: center;
-		font-size: 22px;
-        margin-bottom: 20px;
-	}
-    .login-form .avatar {
-        color: #fff;
-		margin: 0 auto 30px;
-        text-align: center;
-		width: 80px;
-		height: 80px;
-		border-radius: 50%;
-		z-index: 9;
-		padding: 15px;
-		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-	}
-    .login-form .avatar i {
-        font-size: 62px;
+    html,
+    body {
+        height: 100%;
     }
-    .login-form .form-group {
-        margin-bottom: 20px;
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
-	.login-form .form-control, .login-form .btn {
-		min-height: 40px;
-		border-radius: 2px; 
-        transition: all 0.5s;
-	}
-	.login-form .close {
-        position: absolute;
-		top: 15px;
-		right: 15px;
-	}
-	.login-form .btn {
-		background: #00D7FF;
-		border: none;
-		line-height: normal;
-	}
-	.login-form .btn:hover, .login-form .btn:focus {
-		background: 	#DC143C;
-	}
-    .login-form .checkbox-inline {
-        float: left;
-    }
-    .login-form input[type="checkbox"] {
-        margin-top: 2px;
-    }
-    .login-form .forgot-link {
-        float: right;
-    }
-    .login-form .small {
-        font-size: 13px;
-    }
-    .login-form a {
-        color: 	#DC143C;
-    }  
-} 
+
+
 </style>
 
 <!-- 본문 시작 loginForm.jsp-->
@@ -103,30 +44,41 @@
 <br>
 <br>
 
-<h4>* 로 그 인 *</h4>
-<div class="login-form">    
-    <form name="loginfrm"
-	      method="post"
-	      action="login.do"
-	      onsubmit="return loginCheck(this)">
-    	<h4 class="modal-title"></h4>
-        <div class="form-group">
-            <input type="text" name="id" placeholder="아이디" required>
+<!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card ">
+            <div class="card-header text-center"><h2 style="color:#5c8bf5; font-weight: bold;">로그인</h2></div>
+            <div class="card-body">
+                <form name="loginfrm" method="post" action="login.do">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="id" name="id" type="text" placeholder="아이디" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pw" name="pw" type="password" placeholder="패스워드" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="id"  value="SAVE"><span class="custom-control-label">아이디 저장</span>
+                        </label>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="로그인">
+                </form>
+            </div>
+            <div class="card-footer bg-white p-0  ">
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="agree.do" class="footer-link">회원가입</a></div>
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="findpw.do" class="footer-link">비밀번호 찾기</a>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="password" name="pw" placeholder="비밀번호" required>
-        </div>
-        <div class="form-group small clearfix">
-            <input type="checkbox" name="id"  value="SAVE">아이디저장
-            <a href="findPw.do" class="forgot-link">비밀번호를 잊으셨나요?</a>
-        </div> 
-        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">              
-    </form>			
-    <div class="text-center small">회원이 아니신가요? <a href="agree.do">회원가입</a></div>
-</div>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+    </div>
+  
+    <!-- ============================================================== -->
+    <!-- end login page  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+	</c:otherwise>
+	        
+</c:choose>
+    

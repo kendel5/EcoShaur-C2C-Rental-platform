@@ -22,12 +22,22 @@ public class BoardCont {
 
   //글 목록
   @RequestMapping("Board.do")
-  public ModelAndView Board() {
+  public ModelAndView Board(int nowpage) {
+    int recordPerPage = 8;
+    int endRow   = nowpage * recordPerPage;
+
+    
     ModelAndView mav = new ModelAndView();
     mav.setViewName("community/Board");
-    mav.addObject("list", dao.list());
+    mav.addObject("list", dao.list(nowpage, recordPerPage));
+    mav.addObject("end", endRow);
+    mav.addObject("nowpage", nowpage);
+    mav.addObject("recordPerPage", recordPerPage);
+    mav.addObject("count", dao.count());
     return mav;
   }
+  
+  
   
   //글 상세보기
   @RequestMapping("BRead.do")
@@ -58,7 +68,6 @@ public class BoardCont {
     String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
 
     dto.setImage_name(poster);
-    dto.setImage_size(posterMF.getSize());
 
     int cnt = dao.create(dto);
     if (cnt == 0) {

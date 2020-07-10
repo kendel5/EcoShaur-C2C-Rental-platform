@@ -8,7 +8,6 @@ public class BoardDTO {
 	private String title;
 	private String contents;
 	private String image_name;
-	private long image_size;
 	private String post_date;
 	private String id;
 	private int view;
@@ -18,10 +17,7 @@ public class BoardDTO {
   //1)스프링 파일 객체 멤버 변수 선언
   //<input type='file' name='posterMF'>
   private MultipartFile posterMF;
-  
-  //<input type='file' name='filenameMF'>
-  private MultipartFile filenameMF;
-  
+   
   //2)getter와 setter작성
   public MultipartFile getPosterMF() {
     return posterMF;
@@ -30,24 +26,15 @@ public class BoardDTO {
   public void setPosterMF(MultipartFile posterMF) {
     this.posterMF = posterMF;
   }
-
-  public MultipartFile getFilenameMF() {
-    return filenameMF;
-  }
-
-  public void setFilenameMF(MultipartFile filenameMF) {
-    this.filenameMF = filenameMF;
-  }
 	
 	public BoardDTO() { }
 	
-	public BoardDTO(int postno, String title, String contents, String image_name, long image_size, String post_date,
+	public BoardDTO(int postno, String title, String contents, String image_name, String post_date,
       String id, int view, int good, int bad) {
     this.postno = postno;
     this.title = title;
     this.contents = contents;
     this.image_name = image_name;
-    this.image_size = image_size;
     this.post_date = post_date;
     this.id = id;
     this.view = view;
@@ -79,12 +66,7 @@ public class BoardDTO {
 	public void setImage_name(String image_name) {
 		this.image_name = image_name;
 	}
-	public long getImage_size() {
-		return image_size;
-	}
-	public void setImage_size(long image_size) {
-		this.image_size = image_size;
-	}
+
 	public String getPost_date() {
 		return post_date;
 	}

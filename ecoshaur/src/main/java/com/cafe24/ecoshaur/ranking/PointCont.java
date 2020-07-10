@@ -15,18 +15,18 @@ public class PointCont {
   private PointDAO dao;
   
   public PointCont() {
-	  System.out.println("객체 생성 됨");
+	  System.out.println("---PointCont()객체 생성 됨");
   }
   
   //전체보기 
-  @RequestMapping(value = "point/pointList.do", method = RequestMethod.GET)
-  public ModelAndView CategoryList() {
+  @RequestMapping(value = "Point.do", method = RequestMethod.GET)
+  public ModelAndView List() {
 	  ModelAndView mav = new ModelAndView();
-	  mav.setViewName("point/pointList");   
+	  mav.setViewName("rank/pointList");   
 	  mav.addObject("root", Utility.getRoot());
-	  mav.addObject("pointlist", dao.pointlist());
-	  mav.addObject("memberlist", dao.memberlist());
-	  	
+	  mav.addObject("first", dao.first());	 
+	  mav.addObject("second", dao.second());	
+	  mav.addObject("others", dao.others());	
 	  return mav;
   }//PointList() end
  

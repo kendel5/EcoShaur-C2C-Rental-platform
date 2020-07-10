@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cafe24.ecoshaur.category.RentalDTO;
+
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -28,14 +30,23 @@ public class BoardDAO {
 
     public BoardDAO() { }
 
-    public ArrayList<BoardDTO> list(){
-      try{
+    public ArrayList<BoardDTO> list(int nowpage, int recordPerPage){
+      try{        
+        BoardDTO dto = new BoardDTO();
+        
+        //startRow 시작할 레코드의 번호
+        //nowpage 현재 페이지의 목록 번호  
+        //recordPerPage 한페이지에 보여줄 게시글수
+        
+        int startRow = ((nowpage-1) * recordPerPage) ;
+        int endRow   = recordPerPage;
+        
         con = dbopen.getConnection();
         sql = new StringBuilder();
         sql.append(" SELECT postno, title, post_date, id, view, good, bad ");
         sql.append(" FROM board");       
         sql.append(" ORDER BY postno DESC");
-        
+        sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;        
         pstmt = con.prepareStatement(sql.toString());
         rs = pstmt.executeQuery();
         if(rs.next()){
@@ -63,11 +74,36 @@ public class BoardDAO {
       return list;
     }//list() end
     
+    // 목록 최대 페이징 수
+    public int count() {
+      int count=0;
+      try {
+        // DB연결
+        con = dbopen.getConnection();
+        
+        //4)SQL문 작성
+          sql=new StringBuilder();
+          sql.append(" SELECT count(*) as cnt FROM board ");
+          pstmt=con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+        if(rs.next()) { // cursor 가 있는지?
+          count = rs.getInt("cnt");
+        }else {
+          System.out.println("행 갯수를 얻지못함!!");
+        }// if end
+      }catch(Exception e) {
+        System.out.println(" 카운트실패:" + e);
+      }finally {
+        DBClose.close(con, pstmt ,rs);
+      }// try end
+      return count;
+    } // count() end
+    
     public BoardDTO read(int postno){
       try{
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" SELECT postno, title, contents, image_name, image_size, post_date, id, view, good, bad ");
+        sql.append(" SELECT postno, title, contents, image_name, post_date, id, view, good, bad ");
         sql.append(" FROM board");       
         sql.append(" WHERE postno = ?");       
         
@@ -80,7 +116,6 @@ public class BoardDAO {
             dto.setTitle(rs.getString("title"));
             dto.setContents(rs.getString("contents"));
             dto.setImage_name(rs.getString("image_name"));
-            dto.setImage_size(rs.getLong("image_size"));
             dto.setPost_date(rs.getString("post_date"));
             dto.setId(rs.getString("id"));
             dto.setView(rs.getInt("view"));
@@ -100,19 +135,18 @@ public class BoardDAO {
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" INSERT INTO board(postno, title, contents, image_name, image_size, post_date, id, view, good, bad)");
+        sql.append(" INSERT INTO board(postno, title, contents, image_name, post_date, id, view, good, bad)");
         sql.append(" VALUES((select ifnull(max(postno),0)+1 from board as TB),");
-        sql.append(" ?, ?, ?, ?, now(), ?, ?, ?, ?)");
+        sql.append(" ?, ?, ?, now(), ?, ?, ?, ?)");
        
         pstmt = con.prepareStatement(sql.toString());
         pstmt.setString(1, dto.getTitle());
         pstmt.setString(2, dto.getContents());
         pstmt.setString(3, dto.getImage_name());
-        pstmt.setLong(4, dto.getImage_size());
-        pstmt.setString(5, dto.getId());
-        pstmt.setInt(6, dto.getView());
-        pstmt.setInt(7, dto.getGood());
-        pstmt.setInt(8, dto.getBad());
+        pstmt.setString(4, dto.getId());
+        pstmt.setInt(5, dto.getView());
+        pstmt.setInt(6, dto.getGood());
+        pstmt.setInt(7, dto.getBad());
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {
           System.out.println("자유게시물 등록실패"+e);

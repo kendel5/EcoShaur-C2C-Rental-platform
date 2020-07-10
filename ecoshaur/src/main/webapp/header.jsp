@@ -6,11 +6,15 @@
 <html lang="ko">
 
 <head>
-	<script src="../js/myscript.js"></script>
+<!-- CKeditor -->
+  <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+<script src="assets/js/myscript.js"></script>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="assets/css/header.css" rel="stylesheet" type="text/css">
 	<link href="css/header.css" rel="stylesheet" type="text/css">
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -25,31 +29,31 @@
 	  </button>
 	  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 		<ul class="navbar-nav">
-	     <li class="nav-item"> <a class="nav-link" href="#">TOP</a> </li>
+	     <li class="nav-item"> <a class="nav-link" href="./Point.do">TOP</a> </li>
 		  <li class="nav-item dropdown">
 		  	<a class="nav-link" href="Category.do?nowpage=1" id="navbarDropdown" role="button">대여목록</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <a class="dropdown-item" href="./CategoryDT.do?category=컴퓨터">컴퓨터</a>
-			  <a class="dropdown-item" href="./CategoryDT.do?category=TV/영상가전">TV/영상가전</a>
-			  <a class="dropdown-item" href="./CategoryDT.do?category=음향기기">음향기기</a>
-			  <a class="dropdown-item" href="./CategoryDT.do?category=콘솔/게이밍">콘솔/게이밍</a>
-			  <a class="dropdown-item" href="./CategoryDT.do?category=카메라">카메라</a>
+			  <a class="dropdown-item" href="CategoryDT.do?category=컴퓨터&nowpage=1">컴퓨터</a>
+			  <a class="dropdown-item" href="CategoryDT.do?category=TV/영상가전&nowpage=1">TV/영상가전</a>
+			  <a class="dropdown-item" href="CategoryDT.do?category=음향기기&nowpage=1">음향기기</a>
+			  <a class="dropdown-item" href="CategoryDT.do?category=콘솔/게이밍&nowpage=1">콘솔/게이밍</a>
+			  <a class="dropdown-item" href="CategoryDT.do?category=카메라&nowpage=1">카메라</a>
 			</div>
 		  </li>
-		  <li class="nav-item"> <a class="nav-link" href="Board.do">커뮤니티</a> </li>
+		  <li class="nav-item"> <a class="nav-link" href="Board.do?nowpage=1">커뮤니티</a> </li>
 		   <li class="nav-item dropdown">
-		  	<a class="nav-link dropdown-toggle" href="Notice.do" id="navbarDropdown" role="button" >고객센터</a>
+		  	<a class="nav-link dropdown-toggle" href="Notice.do?nowpage=1" id="navbarDropdown" role="button">고객센터</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <a class="dropdown-item" href="Notice.do">공지사항</a>
+			  <a class="dropdown-item" href="Notice.do?nowpage=1">공지사항</a>
 			  <a class="dropdown-item" href="Qna.do">QnA</a>
 			</div>
 		  </li>
 		  <li class="nav-item dropdown">
-		  	<a class="nav-link dropdown-toggle" href="login.do" id="navbarDropdown" role="button" >마이페이지</a>
+		  	<a class="nav-link dropdown-toggle" href="login.do" id="navbarDropdown" role="button">마이페이지</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			  <a class="dropdown-item" href="login.do">로그인/회원가입</a>
-			  <a class="dropdown-item" href="Mypage.do">회원정보</a>
-			  <a class="dropdown-item" href="Cart.do?id=Buyer&nowpage=1">장바구니</a>
+			  <a class="dropdown-item" href="mypage.do">회원정보</a>
+			  <a class="dropdown-item" href="Cart.do?nowpage=1&id=${id }">장바구니</a>
 			</div>
 		  </li>
 		

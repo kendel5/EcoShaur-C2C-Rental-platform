@@ -29,14 +29,20 @@ public class NoticeDAO {
 
     public NoticeDAO() { }
 
-    public ArrayList<NoticeDTO> list(){
+    public ArrayList<NoticeDTO> list(int nowpage, int recordPerPage){
       try{
+        NoticeDTO dto = new NoticeDTO();
+        
+        int startRow = ((nowpage-1) * recordPerPage) ;
+        int endRow   = recordPerPage;
+        
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" SELECT postno, head, title, contents, image_name, image_size, post_date, view ");
+        sql.append(" SELECT postno, head, title, contents, image_name, post_date, view ");
         sql.append(" FROM notice");       
         sql.append(" ORDER BY head DESC, postno DESC");
-        
+        sql.append(" LIMIT " + startRow + " , " + endRow + " ") ;
+      
         pstmt = con.prepareStatement(sql.toString());
         rs = pstmt.executeQuery();
         if(rs.next()){
@@ -62,11 +68,36 @@ public class NoticeDAO {
       return list;
     }//list() end
     
+    // 목록 최대 페이징 수
+    public int count() {
+      int count=0;
+      try {
+        // DB연결
+        con = dbopen.getConnection();
+        
+        //4)SQL문 작성
+          sql=new StringBuilder();
+          sql.append(" SELECT count(*) as cnt FROM notice ");
+          pstmt=con.prepareStatement(sql.toString());
+          rs = pstmt.executeQuery();
+        if(rs.next()) { // cursor 가 있는지?
+          count = rs.getInt("cnt");
+        }else {
+          System.out.println("행 갯수를 얻지못함!!");
+        }// if end
+      }catch(Exception e) {
+        System.out.println(" 카운트실패:" + e);
+      }finally {
+        DBClose.close(con, pstmt ,rs);
+      }// try end
+      return count;
+    } // count() end
+    
     public NoticeDTO read(int postno){
       try{
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" SELECT postno, head, title, contents, image_name, image_size, post_date, view ");
+        sql.append(" SELECT postno, head, title, contents, image_name, post_date, view ");
         sql.append(" FROM notice");       
         sql.append(" WHERE postno = ?");       
         
@@ -80,7 +111,6 @@ public class NoticeDAO {
             dto.setTitle(rs.getString("title"));
             dto.setContents(rs.getString("contents"));
             dto.setImage_name(rs.getString("image_name"));
-            dto.setImage_size(rs.getLong("image_size"));
             dto.setPost_date(rs.getString("post_date"));
             dto.setView(rs.getInt("view"));
         }
@@ -97,17 +127,16 @@ public class NoticeDAO {
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" INSERT INTO notice(postno, head, title, contents, image_name, image_size, post_date, view)");
+        sql.append(" INSERT INTO notice(postno, head, title, contents, image_name, post_date, view)");
         sql.append(" VALUES((select ifnull(max(postno),0)+1 from notice as TB),");
-        sql.append(" ?, ?, ?, ?, ?, now(), ?)");
+        sql.append(" ?, ?, ?, ?, now(), ?)");
        
         pstmt = con.prepareStatement(sql.toString());
         pstmt.setString(1, dto.getHead());
         pstmt.setString(2, dto.getTitle());
         pstmt.setString(3, dto.getContents());
         pstmt.setString(4, dto.getImage_name());
-        pstmt.setLong(5, dto.getImage_size());
-        pstmt.setInt(6, dto.getView());
+        pstmt.setInt(5, dto.getView());
 
         cnt = pstmt.executeUpdate();
       } catch (Exception e) {

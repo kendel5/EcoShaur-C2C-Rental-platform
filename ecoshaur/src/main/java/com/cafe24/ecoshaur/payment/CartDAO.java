@@ -343,13 +343,14 @@ public class CartDAO {
       try {
         con = dbopen.getConnection();
         sql = new StringBuilder();
-        sql.append(" SELECT cart_no ");
-        sql.append(" FROM cart ");
+        sql.append(" SELECT ORDER_NO ");
+        sql.append(" FROM ORDER_SHEET ");
+        sql.append(" order by ORDER_NO desc ");
         sql.append(" LIMIT 1 ");
         pstmt = con.prepareStatement(sql.toString());
         rs = pstmt.executeQuery();
         if (rs.next()) {
-          num = rs.getInt("cart_no");
+          num = rs.getInt("ORDER_NO");
         }
       } catch (Exception e) {
         System.out.println("max값 가져오기 실패:" + e);

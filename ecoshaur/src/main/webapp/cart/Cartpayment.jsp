@@ -62,17 +62,17 @@
 		  <ul class="pagination">
 		    <li class="page-item">
 		    <c:choose><c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
-		    		  <c:otherwise> <a class="page-link" href="Cartpayment.do?id=Buyer&nowpage=${nowpage-1 }"> </c:otherwise>
+		    		  <c:otherwise> <a class="page-link" href="Cartpayment.do?id=${id }&nowpage=${nowpage-1 }"> </c:otherwise>
 		    </c:choose>
 		    Previous</a></li>
 		    
 		    <c:forEach var="i" begin="1" end="${count%recordPerPage==0 ? (count/recordPerPage) : (count/recordPerPage)+1}">
-		    	<li class="page-item ${nowpage==i ? 'active' : ''}"><a class="page-link" href="Cartpayment.do?id=Buyer&nowpage=${i}"><c:out value="${i}"/></a></li>
+		    	<li class="page-item ${nowpage==i ? 'active' : ''}"><a class="page-link" href="Cartpayment.do?${id }&nowpage=${i}"><c:out value="${i}"/></a></li>
 		    </c:forEach>
 		    
 		    <li class="page-item">
 		    <c:choose><c:when test="${nowpage == i}"> <a class="page-link disabled">  </c:when>
-		    		  <c:otherwise> <a class="page-link" href="Cartpayment.do?id=Buyer&nowpage=${nowpage+1 }"> </c:otherwise>
+		    		  <c:otherwise> <a class="page-link" href="Cartpayment.do?${id }&nowpage=${nowpage+1 }"> </c:otherwise>
 		    </c:choose>
 		    Next</a></li>
 		  </ul>

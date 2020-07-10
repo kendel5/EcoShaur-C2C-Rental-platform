@@ -28,10 +28,17 @@ public class QnaCont {
   
   //Qna 목록
   @RequestMapping("QList.do")
-  public ModelAndView QList() {
+  public ModelAndView QList(int nowpage) {
+    int recordPerPage = 8;
+    int endRow   = nowpage * recordPerPage;
+
     ModelAndView mav = new ModelAndView();
     mav.setViewName("community/QList");
-    mav.addObject("list", dao.list());
+    mav.addObject("list", dao.list(nowpage, recordPerPage));
+    mav.addObject("end", endRow);
+    mav.addObject("nowpage", nowpage);
+    mav.addObject("recordPerPage", recordPerPage);
+    mav.addObject("count", dao.count());
     return mav;
   }
 
@@ -62,7 +69,6 @@ public class QnaCont {
     String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
 
     dto.setImage_name(poster);
-    dto.setImage_size(posterMF.getSize());
 
     int cnt = dao.create(dto);
     if (cnt == 0) {
@@ -95,7 +101,6 @@ public class QnaCont {
     String poster = UploadSaveManager.saveFileSpring30(posterMF, basePath);
 
     dto.setImage_name(poster);
-    dto.setImage_size(posterMF.getSize());
 
     int cnt = dao.Rcreate(dto);
     if (cnt == 0) {
@@ -105,5 +110,27 @@ public class QnaCont {
     }
     return mav;
   }
-
+  
+  //Qna 삭제 페이지 호출
+  @RequestMapping(value="QDelete.do", method=RequestMethod.GET)
+  public ModelAndView QDelete(QnaDTO dto) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("community/QDelete");
+    mav.addObject("dto", dao.read(dto.getPostno()));
+    return mav;
+  }
+  
+  //Qna 삭제
+  @RequestMapping(value = "QDelete.do", method = RequestMethod.POST)
+  public ModelAndView QDelete(QnaDTO dto, HttpServletRequest req) {
+    ModelAndView mav = new ModelAndView();  
+    mav.setViewName("community/QResult"); 
+    int cnt = dao.delete(dto.getPostno());
+    if (cnt == 0) {
+      mav.addObject("msg",  "<p>문의사항 삭제를 실패하였습니다.ㅠㅠ</p>");
+    } else {
+      mav.addObject("msg",  "<p>정상적으로 문의사항이 삭제되었습니다!</p>");
+    }
+    return mav;
+  }
 }

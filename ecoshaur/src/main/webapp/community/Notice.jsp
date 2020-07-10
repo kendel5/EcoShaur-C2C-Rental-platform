@@ -4,14 +4,16 @@
 
 <!-- 본문 시작 Notice.jsp-->
 
-	<div class="container">
-<br><br><br><br><br><br><br><br><br>
+<div class="container">
+<br><br><br><br><br><br><br><br>
+	<H3>공지사항 목록</H3>
+<br><br>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel-body">
 					<table class="table table-striped table-bordered table-hover"
 						   style="text-align: center;">
-						<thead>
+						<thead width="7%">
 							<tr>
 								<th>NO</th>
 								<th>제목</th>															
@@ -36,9 +38,25 @@
 			</div>
 		</div>
 	</div>
-  <div class='bottom'>
-    <input type='button' value='공지사항 작성' onclick="location.href='NCreate.do'">
-  </div>
+		<nav class="nav justify-content-center"
+		aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:choose><c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
+                  <c:otherwise> <a class="page-link" href="Notice.do?nowpage=${nowpage-1 }"> </c:otherwise>
+          </c:choose>
+          Previous</a></li>
+		    <c:forEach var="i" begin="1" 
+		    end="${count%recordPerPage==0 ? (count/recordPerPage) : (count/recordPerPage)+1}">
+		    	<li class="page-item ${nowpage==i ? 'active' : ''}">
+		    	<a class="page-link" href="Notice.do?nowpage=${i}"><c:out value="${i}"/></a></li>
+		    </c:forEach>
+		          <li class="page-item"><c:choose><c:when test="${nowpage == i}"> 
+		          <a class="page-link disabled">  </c:when>
+                  <c:otherwise> <a class="page-link" href="Notice.do?nowpage=${nowpage+1 }"> </c:otherwise>
+          </c:choose>Next</a></li>        
+	</ul>
+	</nav>
+	<a href="NCreate.do" class="btn btn-success">공지사항 작성</a>
 
 <br><br><br><br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->

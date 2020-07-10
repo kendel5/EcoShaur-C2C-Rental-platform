@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
+<c:choose>
+	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
+
 <link href="css/cart_payment.css" rel="stylesheet" type="text/css">
 <script src="../js/cart_payment.js"></script>
 
@@ -108,5 +111,13 @@
 	}//checkID() end
 </script>
 <!-- 본문끝 -->
+	
+
+		
+	</c:when>
+	<c:otherwise>
+	<script>window.location.href = './';</script>
+</c:otherwise>
+</c:choose>
 
 <%@ include file="../e_footer.jsp"%>

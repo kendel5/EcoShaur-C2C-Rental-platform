@@ -1,8 +1,10 @@
-<%@page import="java.sql.Timestamp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>    
+    <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
 <style>
@@ -21,13 +23,8 @@
 	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
     	아이디 :${id } <br>
     	등급 :${grade }
-	</c:when>
-	<c:otherwise>
-		
-	</c:otherwise>
-</c:choose>
-	
-<br><br>
+    	
+    	<br><br>
 <tr>
     <td colspan="2" align="center">
     	<form method="post" action="logout.do">
@@ -40,5 +37,12 @@
 
     </td>
 </tr>
+	</c:when>
+	<c:otherwise>
+		
+	</c:otherwise>
+</c:choose>
+	
+
 <br><br><br><br>
 <%@ include file="../e_footer.jsp" %>
