@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 QCreate.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>문의사항 등록</H3>
 <br><br>
 	<form method="post" action="QCreate.do" enctype="multipart/form-data">
@@ -24,13 +23,8 @@
 				<td><input type='text' name='title' size='50' required></td>
 			</tr>
 				<th>내용</th>
-				<td><textarea style="resize: none;" id="contents" name="contents" 
-				cols="53" rows="7" wrap="hard" required></textarea>
-				<!-- ckeditor --> 
-						<script>
-							CKEDITOR.replace("contents");
-						</script>
-						</td>
+				<td><textarea style="resize: none; "name="contents" 
+				cols="53" rows="7" wrap="hard" required></textarea></td>
 			</tr>
 			<tr>
 				<th>이미지</th>
@@ -45,8 +39,8 @@
 		<input type='submit' value='등록' class="btn btn-success">
         <a href="Qna.do" class="btn btn-success">등록취소</a>
 	</form>
+</div>	
 </body>
 
-<br><br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

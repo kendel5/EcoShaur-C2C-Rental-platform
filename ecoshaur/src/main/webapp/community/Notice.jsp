@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 Notice.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>공지사항 목록</H3>
 <br><br>
 		<div class="row">
@@ -57,7 +56,6 @@
 	</ul>
 	</nav>
 	<a href="NCreate.do" class="btn btn-success">공지사항 작성</a>
-
-<br><br><br><br><br><br><br><br><br><br><br>
+</body>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

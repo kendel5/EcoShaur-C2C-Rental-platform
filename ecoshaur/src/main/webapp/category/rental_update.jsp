@@ -13,7 +13,6 @@
     font-weight: 800;
    }
 </style>
-<br><br><br><br><br><br><br><br>
 
 <!-- 본문 시작 template.jsp-->
 <div class="container">
@@ -44,10 +43,6 @@
 				<th>내용</th>
 				<td>
 					<textarea class="form-control" id="description" name="description">${dto.description}</textarea>
-					<!-- ckeditor --> 
-						<script>
-							CKEDITOR.replace("description");
-						</script>
 				</td>
 			</tr>
 			<tr>
@@ -99,11 +94,8 @@
 </div>
 
 
-
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

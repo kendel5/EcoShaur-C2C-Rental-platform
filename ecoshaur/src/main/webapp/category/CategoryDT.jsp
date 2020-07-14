@@ -2,18 +2,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-<link href="css/category.css" rel="stylesheet" type="text/css">
+<link href="assets/libs/css/category.css" rel="stylesheet" type="text/css">
 
-
-
-<!-- 본문 시작 template.jsp-->
-<br><br><br><br><br><br><br><br>
-
-
-
+<!-- 본문 시작 CategoryDT.jsp-->
 
 <div class="container">
-	<a href="Rental_register.do" class="btn btn-success">글 쓰기</a>
+	<a href="Rental_resister.do" class="btn btn-success">글 쓰기</a>
 	<nav class="category">
 		<div class="list">
 			<ul class="menu"><!-- class="active" -->
@@ -37,16 +31,18 @@
 			<input type="hidden" name="nowpage" id="nowpage" value="${nowpage}">
 			<table align="center">
 				<tr class="checktd">
-				<c:forEach var="cdto" items="${category}" varStatus="status">
-					<td width="3%"><input type="radio" id="filter_b1" name="test_check" value="${cdto.minor }"
-						<c:if test="${status.index==0}"> checked="checked" </c:if>
-					></td><td>${cdto.minor }</td><td width="3%"></td>
+				<c:forEach var="cdto" items="${category}">
+				<td>
+					<label class="custom-control custom-radio custom-control-inline">
+                         <input type="radio"  id="filter_b1" name="test_check" checked="" class="custom-control-input" value="${cdto.minor }"><span class="custom-control-label">${cdto.minor }</span>
+                    </label>
+				</td>	
 				</c:forEach>
 				</tr>
 			</table>
-			<div class="btns">
+			<div class="btns" align="center">
 					<input type="hidden" value="${cg }" name="cg">
-					<input type="submit" class="btn sm red btnApply" value="적용">
+					<input type="submit" class="btn btn-primary" value="적용">
 				</form>
 			</div>
 		</div>
@@ -105,9 +101,8 @@
 
 
 
-<br><br><br><br><br>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

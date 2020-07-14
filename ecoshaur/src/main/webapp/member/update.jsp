@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
 <style>
@@ -28,7 +26,7 @@
       method="post"
       action="updateProc.do"
       onsubmit="return memberCheck(this)" >
-      <input type="hidden" id="id" name="id" value="${id}">
+      
         <div class="py-5 text-center">
             <h4>회원정보 수정</h4>
         </div>
@@ -291,5 +289,5 @@ $("#sm").click(function() {
 </script>
 </c:if>
 <!-- 본문 끝 -->		
-<br><br><br>
-<%@ include file="../e_footer.jsp" %>
+
+<%@ include file="../footer.jsp" %>

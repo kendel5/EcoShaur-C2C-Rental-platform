@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 NUpdate.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>공지사항 수정하기</H3>
 <br><br>	
   <form method="post"
@@ -26,13 +25,8 @@
     </tr>
     <tr>
       <th>내용</th>
-      <td><textarea style="resize: none; "name="contents" id="contents" 
-	  cols="53" rows="7" value='${dto.contents }' required></textarea>
-	  <!-- ckeditor -->
-					<script>
-						CKEDITOR.replace("contents");
-					</script>
-	  </td>  
+      <td><textarea style="resize: none; "name="contents" 
+	  cols="53" rows="7" value='${dto.contents }' required></textarea></td>  
     </tr>
     <tr align="left">
       <th>이미지</th>
@@ -47,8 +41,8 @@
   <input type='submit' value='수정' class="btn btn-success">
   <a href="Notice.do?nowpage=1" class="btn btn-success">수정취소</a>
   </form>
+</div>  
 </body>
 
-<br><br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

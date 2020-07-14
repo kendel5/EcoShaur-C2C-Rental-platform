@@ -2,12 +2,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-
-
 <!-- 본문 시작 BCreate.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>게시물 등록</H3>
 <br><br>	
   <form method="post"
@@ -20,13 +17,9 @@
     </tr>
     <tr>
       <th>내용</th>
-				<td><textarea style="resize: none;" id="contents" name="contents" cols="53"
-						rows="7" wrap="hard" required></textarea>
-						<!-- ckeditor --> 
-						<script>
-							CKEDITOR.replace("contents");
-						</script></td>
-			</tr>
+	  <td><textarea style="resize: none; "name="contents" 
+	  cols="53" rows="7" wrap="hard" required></textarea></td>
+    </tr>
     <tr>
       <th>이미지</th>
       <td align='left'><input type='file' name='posterMF' size='50'></td>    
@@ -40,8 +33,8 @@
   <input type='submit' value='등록' class="btn btn-success">
   <a href="Board.do?nowpage=1" class="btn btn-success">등록취소</a>
   </form>
+  </div>
 </body>
 
-<br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

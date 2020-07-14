@@ -37,4 +37,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 BRead.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	
   <H3>[ 알 림 창 ]</H3>
  	<br><br>
@@ -19,6 +18,7 @@
 		<input type='button' value='게시판 목록'
 			onclick="location.href='Board.do?nowpage=1'">
 	</div>
-<br><br><br><br><br><br><br><br>
+</div>	
+</body>
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<br><br><br><br><br><br><br><br>
-
 <h3>장바구니결제페이지</h3>
 <h3>장바구니</h3>
 <table border="1" align="center">
@@ -101,4 +99,4 @@
       	</form>
 <!-- 본문끝 -->
 
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

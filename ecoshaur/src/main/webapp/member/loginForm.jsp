@@ -7,7 +7,6 @@
 
 		<script>window.location.href = 'mypage.do';</script>
 
-		
 	</c:when>
 	<c:otherwise>
 	    <!-- Bootstrap CSS -->
@@ -68,7 +67,10 @@
                 <div class="card-footer-item card-footer-item-bordered">
                     <a href="agree.do" class="footer-link">회원가입</a></div>
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="findpw.do" class="footer-link">비밀번호 찾기</a>
+                    <a href="findpw.do" class="footer-link">비번찾기</a>
+                </div>
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="./" class="footer-link">돌아가기</a>
                 </div>
             </div>
         </div>

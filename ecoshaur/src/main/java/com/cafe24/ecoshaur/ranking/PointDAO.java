@@ -16,9 +16,7 @@ import net.utility.DBOpen;
 public class PointDAO {
 	@Autowired
 	private DBOpen dbopen;
-	@Autowired
-	private DBClose dbclose;
-
+	
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;

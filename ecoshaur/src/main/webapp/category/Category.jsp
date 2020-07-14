@@ -2,16 +2,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-<link href="css/category.css" rel="stylesheet" type="text/css">
+<link href="assets/libs/css/category.css" rel="stylesheet" type="text/css">
 
 
 <!-- 깃 테스트 -->
 
-<!-- 본문 시작 template.jsp-->
-<br><br><br><br><br><br><br><br>
+<!-- 본문 시작 Category.jsp-->
 
-
-<a href="Rental_register.do" class="btn btn-success">글 쓰기</a>
+<a href="Rental_resister.do" class="btn btn-success">글 쓰기</a>
 <div class="container">
 	<nav class="category">
 		<div class="list">
@@ -54,13 +52,14 @@
        
         
 </div>
-<br>
+<br><br><br>
 
         <nav class="nav justify-content-center" aria-label="Page navigation example">
 		  <ul class="pagination">
 		    <li class="page-item">
-		    <c:choose><c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
-		    		  <c:otherwise> <a class="page-link" href="Category.do?nowpage=${nowpage-1 }"> </c:otherwise>
+		    <c:choose>
+		    	<c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
+		    	<c:otherwise> <a class="page-link" href="Category.do?nowpage=${nowpage-1 }"> </c:otherwise>
 		    </c:choose>
 		    Previous</a></li>
 		    
@@ -70,16 +69,14 @@
 		    
 		    <li class="page-item">
 		    <c:choose><c:when test="${nowpage == i}"> <a class="page-link disabled">  </c:when>
-		    		  <c:otherwise> <a class="page-link" href="Category.do?nowpage=${nowpage+1 }"> </c:otherwise>
+		    	<c:otherwise> <a class="page-link" href="Category.do?nowpage=${nowpage+1 }"> </c:otherwise>
 		    </c:choose>
 		    Next</a></li>
 		  </ul>
 		</nav>
 
-
-<br><br><br><br><br>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>
