@@ -1,0 +1,498 @@
+
+.ranking-highest__list{
+    text-align:center;
+    margin-bottom:20px;
+}
+ .ranking-highest__item{
+    position:relative;
+    display:inline-block;
+    padding:14px 18px;
+    border:2px solid #FFED58;
+    width:220px;
+    background:#fff;
+    box-sizing:border-box;
+    text-align:left;
+    margin-top:30px;
+    margin-left:30px;
+}
+.ranking-highest__item a{
+    text-decoration:none;
+}
+ .ranking-highest__item--big{
+    display:block;
+    width:450px;
+    margin:0 auto;
+    padding:35px 40px;
+    border-width:5px;
+}
+ .ranking-highest__item--big+.ranking-highest__item{
+    margin-left:0;
+}
+ .ranking-highest__item:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"";
+    clear:both;
+    height:0;
+}
+
+ .ranking-highest__rank{
+    width:30px;
+    background:#FFED58;
+    padding:3px 0;
+    line-height:24px;
+    font-family:Helvetica,AppleSDGothic,"Apple SD Gothic Neo",AppleGothic,Arial,Tahoma;
+    font-size:21px;
+    text-align:center;
+    color:#fff;
+}
+.ranking-highest__item .ranking-highest__rank{
+    position:absolute;
+    top:0;
+    left:0;
+    margin-top:-2px;
+    margin-left:-2px;
+}
+ .ranking-highest__item.ranking-highest__item--big .ranking-highest__rank{
+    margin-top:-5px;
+    margin-left:-5px;
+}
+ .ranking-highest__team{
+    position:absolute;
+    top:0;
+    right:0;
+    margin-top:3px;
+    margin-right:4px;
+    font-family:Helvetica,AppleSDGothic,"Apple SD Gothic Neo",AppleGothic,Arial,Tahoma;
+    line-height:14px;
+    font-size:12px;
+    text-align:right;
+    color:#1d2f51;
+}
+.ranking-highest__item--big .ranking-highest__team{
+    margin-top:7px;
+    margin-right:9px;
+}
+ .ranking-highest__icon{
+    position:relative;
+    display:block;
+    width:49px;
+    height:49px;
+    margin:10px auto 0;
+}
+.ranking-highest__item--big .ranking-highest__icon{
+    width:100px;
+    height:100px;
+    margin:0 20px 0 0;
+    float:left;
+}
+ .ranking-highest__icon .ranking-highest__level{
+    position:absolute;
+    top:100%;
+    left:50%;
+    margin-top:-14px;
+    margin-left:-22px;
+    width:44px;
+    height:24px;
+    padding-top:3px;
+    box-sizing:border-box;
+    background:url(../images/site/summoner/bg-levelbox.png);
+    background-size:100%;
+    line-height:20px;
+    font-family:Helvetica,AppleSDGothic,"Apple SD Gothic Neo",AppleGothic,Arial,Tahoma;
+    font-size:12px;
+    text-align:center;
+    color:#eabd56;
+}
+ .ranking-highest__border{
+    position:absolute;
+    left:-10px;
+    top:-10px;
+    width:120px;
+    height:120px;
+    background-position:center bottom;
+    background-repeat:no-repeat;
+}
+ .ranking-highest__image{
+    display:block;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+}
+.ranking-highest__item--big .ranking-highest__image{
+    border-radius:0;
+}
+ .ranking-highest__icon .ranking-highest__level{
+    display:none;
+}
+.ranking-highest__item--big .ranking-highest__icon .ranking-highest__level{
+    display:block;
+}
+ .ranking-highest__tierrank .ranking-highest__level{
+    float:right;
+    display:block;
+}
+.ranking-highest__item--big .ranking-highest__tierrank .ranking-highest__level{
+    display:none;
+}
+ .ranking-highest__name{
+    display:block;
+    margin-top:5px;
+    line-height:17px;
+    font-size:14px;
+    font-weight:bold;
+    text-align:center;
+    color:#444b4b;
+}
+.ranking-highest__item--big .ranking-highest__name{
+    display:inline-block;
+    line-height:24px;
+    font-size:20px;
+    color:#242929;
+    text-align:left;
+}
+ .ranking-highest__level{
+    line-height:25px;
+    font-family:Helvetica,AppleSDGothic,"Apple SD Gothic Neo",AppleGothic,Arial,Tahoma;
+    font-size:12px;
+    color:#666;
+    text-align:center;
+}
+ .ranking-highest__tierrank{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.ranking-highest__tierrank:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"";
+    clear:both;
+    height:0;
+}
+ .ranking-highest__tierrank.first{
+    margin-top:14px;
+    justify-content:flex-start;
+}
+ .ranking-highest__tierrank img{
+    width:25px;
+    vertical-align:middle;
+}
+ .ranking-highest__tierrank span,.ranking-highest__tierrank b{
+    line-height:14px;
+    font-size:12px;
+    color:#666;
+    vertical-align:middle;
+    margin-right:4px;
+}
+ .ranking-highest__item--big .ranking-highest__tierrank img{
+    width:33px;
+}
+ .ranking-highest__item--big .ranking-highest__tierrank span,.ranking-highest__item--big .ranking-highest__tierrank b{
+    line-height:17px;
+    font-size:14px;
+}
+ .ranking-highest__item--big .ranking-highest__tierrank:after{
+    display:none;
+}
+ .ranking-highest-winratio{
+    margin-top:5px;
+}
+.ranking-highest-winratio .winratio{
+    display:inline-block;
+    white-space:nowrap;
+    vertical-align:middle;
+}
+ .ranking-highest-winratio .winratio-graph{
+    width:150px;
+    text-align: center;
+}
+ .ranking-highest-winratio__label{
+    display:inline-block;
+    line-height:15px;
+    font-size:12px;
+    color:#666;
+    vertical-align:middle;
+    margin-right:7px;
+}
+ .ranking-highest-champions{
+    float:right;
+}
+ .ranking-highest-champion{
+    white-space:nowrap;
+    line-height:15px;
+    font-size:12px;
+    color:#666;
+}
+.ranking-highest-champion:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"";
+    clear:both;
+    height:0;
+}
+ .ranking-highest-champions .ranking-highest-champion{
+    margin-top:8px;
+}
+.ranking-highest-champions .ranking-highest-champion:first-child{
+    margin-top:0;
+}
+ .ranking-highest-champion span{
+    vertical-align:middle;
+}
+ .ranking-highest-champion__image{
+    display:inline-block;
+    width:34px;
+    height:34px;
+    margin-right:5px;
+    vertical-align:middle;
+    border-radius:50%;
+}
+ .ranking-highest-champion__winratio--red{
+    color:#c6443e;
+}
+ .ranking-highest-champion__kda--blue span{
+    color:#1f8ecd;
+}
+ .ranking-highest-champion__kda--orange span{
+    color:#e19205;
+}
+ .ranking-highest-champion__kda--green span{
+    color:#2daf7f;
+}
+ 
+ .ranking-pagination{
+    text-align:center;
+    margin-top:30px;
+}
+ .ranking-pagination__item{
+    display:inline-block;
+    margin-left:10px;
+}
+.ranking-pagination__item:first-child{
+    margin-left:0;
+}
+ .ranking-pagination__item a{
+    display:block;
+    width:90px;
+    padding:4px 0 8px;
+    background-color:#fff;
+    border:solid 1px #cdd2d2;
+    line-height:16px;
+    font-family:Helvetica,AppleSDGothic,"Apple SD Gothic Neo",AppleGothic,Arial,Tahoma;
+    font-size:14px;
+    text-align:center;
+    text-decoration:none;
+    color:#444b4b;
+    box-sizing:border-box;
+}
+ .ranking-pagination__item--arrow a{
+    background:#f2f2f2;
+}
+ .ranking-pagination__item--disable a{
+    outline:none;
+    cursor:default;
+    background:#d8d8d8;
+}
+ .ranking-pagination__arrow{
+    font-size:0;
+}
+.ranking-pagination__arrow--left{
+    width:0;
+    height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-left:8px solid #4a4a4a;
+}
+ .ranking-pagination__arrow--right{
+    width:0;
+    height:0;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-right:8px solid #4a4a4a;
+}
+ .ranking-pagination__desc{
+    margin-top:20px;
+    line-height:17px;
+    font-size:14px;
+    text-align:center;
+    color:#a0a0a0;
+}
+.ranking-pagination__desc span{
+    color:#4a4a4a;
+}
+ .ranking-table__row--selected{
+    border:2px solid #1f8ecd;
+}
+ .ranking-summary__item{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #d7dada;
+}
+.ranking-summary__item:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"";
+    clear:both;
+    height:0;
+}
+ .ranking-summary__item a{
+    text-decoration:none;
+}
+ .ranking-summary__item:first-child{
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+}
+ .ranking-summary-champion{
+    float:left;
+    width:75px;
+    margin-right:18px;
+}
+ .ranking-summary-champion__image{
+    width:100%;
+}
+ .ranking-summary-champion__label{
+    margin-top:10px;
+    line-height:17px;
+    font-size:14px;
+    text-align:left;
+    color:#444b4b;
+}
+ .ranking-summary-summoner:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"";
+    clear:both;
+    height:0;
+}
+ .ranking-summary-summoner a{
+    text-decoration:none;
+}
+ .ranking-summary--index .ranking-summary-summoner{
+    margin-left:93px;
+}
+ .ranking-summary-summoner__item{
+    float:left;
+    position:relative;
+    background-color:#ededed;
+    border:solid 1px #cdd2d2;
+    text-align:center;
+    box-sizing:border-box;
+    width:210px;
+    margin-left:24px;
+}
+.ranking-summary--index .ranking-summary-summoner__item{
+    width:180px;
+    margin-left:20px;
+}
+ .ranking-summary-summoner__item:first-child{
+    margin-left:0;
+}
+ .ranking-summary-summoner__rank{
+    position:absolute;
+    top:0;
+    right:0;
+    padding:3px 0;
+    width:30px;
+    line-height:24px;
+    font-size:21px;
+    color:#fff;
+    background:#c1c1c1;
+    text-align:center;
+}
+ .ranking-summary-summoner__image{
+    display:block;
+    margin:12px auto 0;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+.ranking-summary-summoner__image .ranking-summary--index{
+    margin-top:14px;
+}
+ .ranking-summary-summoner__name{
+    margin-top:5px;
+    line-height:17px;
+    font-size:14px;
+    text-align:center;
+    color:#444b4b;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-weight:bold;
+}
+.ranking-summary-summoner__name .ranking-summary--index{
+    margin-top:0;
+}
+ .ranking-summary-summoner__gamecount{
+    margin-top:5px;
+    line-height:17px;
+    font-size:14px;
+    color:#444b4b;
+    text-align:center;
+}
+.ranking-summary-summoner__gamecount small{
+    font-size:12px;
+}
+ .ranking-summary-summoner__gamecount .ranking-summary--index{
+    margin-top:10px;
+    font-weight:bold;
+}
+ .ranking-summary-summoner__tierlevel{
+    line-height:20px;
+    font-size:14px;
+    color:#9b9b9b;
+}
+.ranking-summary-summoner__tierlevel img{
+    vertical-align:middle;
+}
+ .ranking-summary-summoner__tierlevel b{
+    display:inline-block;
+    font-weight:normal;
+    color:#444b4b;
+    margin-right:10px;
+    vertical-align:middle;
+}
+ .ranking-summary-summoner__tierlevel span{
+    vertical-align:middle;
+}
+ .ranking-summary-summoner__stats{
+    margin-top:18px;
+    margin-bottom:9px;
+}
+.ranking-summary-summoner__stats span{
+    display:inline-block;
+    width:90px;
+    min-height:34px;
+    line-height:17px;
+    font-size:14px;
+    color:#444b4b;
+    text-align:center;
+}
+ .ranking-summary-summoner__winratio .winratio-graph{
+    width:90px;
+    height:20px;
+}
+ .ranking-summary-summoner-footer{
+    border-top:1px solid #cdd2d2;
+    margin-top:9px;
+    padding:4px 5px 3px;
+}
+ .ranking-summary-summoner__button{
+    display:block;
+    width:100%;
+    padding:7px 0 8px;
+    border-radius:4px;
+    background-color:#fff;
+    border:solid 1px #cdd2d2;
+    line-height:15px;
+    font-size:12px;
+    text-align:center;
+    color:#9b9b9b;
+}
