@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="/view/color.jspf" %>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,11 +14,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link href="assets/css/header.css" rel="stylesheet" type="text/css">
-	<link href="css/header.css" rel="stylesheet" type="text/css">
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<link href="css/index_style.css" rel="stylesheet" type="text/css">
+	<link href="assets/libs/css/header.css" rel="stylesheet" type="text/css">
+	<link href="assets/libs/css/header.css" rel="stylesheet" type="text/css">
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="assets/libs/css/index_style.css" rel="stylesheet" type="text/css">
 <!-- 헤더 시작	 -->
 
 </head>
@@ -31,7 +31,7 @@
 		    	<a href="admin/index.do"><button style="width:150px; height:43px; cursor:hand; opacity:0;"></button></a>
 			</c:when>
 		</c:choose>
-	  <input type="image" name="button" src="images/ㄹㅇ공룡.png" width="100" height="100">
+	  <input type="image" name="button" src="assets/images/ㄹㅇ공룡.png" width="100" height="100">
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	  </button>

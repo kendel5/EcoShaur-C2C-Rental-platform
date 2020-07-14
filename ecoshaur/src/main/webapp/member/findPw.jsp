@@ -11,8 +11,7 @@
    }
 </style>
 
-<!-- 본문 시작 template.jsp-->
-<br><br><br><br><br><br><br><br>
+<!-- 본문 시작 findpw.jsp-->
 <h3> 비밀번호 찾기 </h3><br><br>
 
 <div class="container" align="center">
@@ -45,9 +44,8 @@
 
 
 
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

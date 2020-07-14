@@ -1,13 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<link href="css/cart_payment.css" rel="stylesheet" type="text/css">
-<script src="../js/cart_payment.js"></script>
+<link href="assets/libs/css/cart_payment.css" rel="stylesheet" type="text/css">
+<script src="../assets/libs/js/cart_payment.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<br><br><br><br><br><br><br><br>
 <div class="cart-wrap">
    <div class="container">
       <div class="row">
@@ -302,11 +301,7 @@
 	    }
    
 </script>
-<br><br><br><br><br><br><br><br><br><br><br>
-
-
-
 
 
 <!-- 본문끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

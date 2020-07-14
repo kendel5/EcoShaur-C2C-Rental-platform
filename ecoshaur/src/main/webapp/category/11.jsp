@@ -3,10 +3,7 @@
 <%@ include file="../header.jsp"%>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
-
-
-<!-- 본문 시작 template.jsp-->
-<br><br><br><br><br><br><br><br>
+<!-- 본문 시작 11.jsp-->
 
 <div class="container">
 <p>
@@ -27,4 +24,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

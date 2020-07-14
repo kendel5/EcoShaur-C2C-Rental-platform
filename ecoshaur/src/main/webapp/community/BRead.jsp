@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 BRead.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>게시물</H3>
 <br><br>
 		<div class="row">
@@ -63,6 +62,5 @@
 	<a href="BDelete.do?postno=${dto.postno}" class="btn btn-success">삭제</a>
 </body>
 
-<br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 BDelete.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 
 	<form method="post" action="BDelete.do">
 		<input type="hidden" name="postno" value="${dto.postno}">
@@ -20,8 +19,9 @@
 				onclick="location.href='BRead.do?postno=${dto.postno}'">
 		</div>
 	</form>
+	
+</div>	
 </body>
 
-<br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

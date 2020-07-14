@@ -18,7 +18,7 @@
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="../">
-                            	<img src="../images/ㄹㅇ공룡.png" alt="" class="user-avatar-md rounded-circle">
+                            	<img src="../assets/images/ㄹㅇ공룡.png" alt="" class="user-avatar-md rounded-circle">
                             </a>
                         </li>
                     </ul>
@@ -68,7 +68,7 @@
                                             </div>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-finance.html">회원목록</a>
+                                            <a class="nav-link" href="./pages/member_list.do">회원목록</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="dashboard-sales.html">주문목록</a>

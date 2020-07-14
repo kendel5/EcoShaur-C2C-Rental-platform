@@ -7,7 +7,6 @@
 
 		<script>window.location.href = 'mypage.do';</script>
 
-		
 	</c:when>
 	<c:otherwise>
 	    <!-- Bootstrap CSS -->

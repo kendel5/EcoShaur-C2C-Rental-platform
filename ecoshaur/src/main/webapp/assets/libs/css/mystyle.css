@@ -1,0 +1,47 @@
+/* mystyle.css */
+/* 한글인코딩 utf-8 */
+
+body{
+      background-color:white;
+      margin:0;         /*바깥쪽 여백*/
+	  padding:0;        /*안쪽 여백*/
+	  color:black;
+	  line-height:10px; /*줄간격*/
+    }
+		  
+p {font-size: 16px;}
+
+.margin {margin-bottom: 45px;}
+
+.bg-1 { 
+  background-color: #1abc9c; /* Green */
+  color: #ffffff;
+}
+.bg-2 { 
+  background-color: red; /* Dark Blue */
+  color: #ffffff;
+}
+.bg-3 { 
+  background-color: #ffffff; /* White */
+  color: #555555;
+}
+.bg-4 { 
+  background-color: #2f2f2f; /* Black Gray */
+  color: #fff;
+}
+.container-fluid {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+.navbar-nav  li a:hover {
+  color: #1abc9c !important;
+}

@@ -18,11 +18,6 @@
 		test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
 
 <!-- 본문 시작 memberForm.jsp-->
-<br>
-<br>
-<br>
-<br>
-
 
 <div class="container">
 <form class="form-horizontal"
@@ -306,5 +301,5 @@ $("#sm").click(function() {
 </c:choose>
 
 <!-- 본문 끝 -->		
-<br><br><br>
-<%@ include file="../e_footer.jsp" %>
+
+<%@ include file="../footer.jsp" %>
