@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cafe24.ecoshaur.admin.*;
-import com.cafe24.ecoshaur.category.RentalDTO;
 
 import net.utility.DBClose;
 import net.utility.DBOpen;
@@ -140,15 +139,15 @@ public class AdminDAO {
           do {
             dto = new RentalDTO();
             dto.setProduct_no(rs.getString("product_no"));
-            dto.setTitle(rs.getString("title").trim());
-            dto.setSub_title(rs.getString("sub_title").trim());
-            dto.setProduct_name(rs.getString("product_name").trim());
+            dto.setTitle(rs.getString("title"));
+            dto.setSub_title(rs.getString("sub_title"));
+            dto.setProduct_name(rs.getString("product_name"));
             dto.setPrice_daily(rs.getInt("price_daily"));
             dto.setDeposit(rs.getInt("deposit"));
             dto.setTotal_quantity(rs.getInt("total_quantity"));
             dto.setRemaining_quantity(rs.getInt("remaining_quantity"));
-            dto.setThmb_name(rs.getString("thmb_name").trim());
-            dto.setId(rs.getString("id").trim());
+            dto.setThmb_name(rs.getString("thmb_name"));
+            dto.setId(rs.getString("id"));
             list.add(dto);
           } while (rs.next());
         } else {
@@ -181,13 +180,13 @@ public class AdminDAO {
             dto = new OrderHistoryDTO();
             dto.setOrder_detail_no(rs.getInt("ORDER_DETAIL_NO"));
             dto.setOrder_no(rs.getInt("order_no"));
-            dto.setProduct_no(rs.getString("product_no").trim());
+            dto.setProduct_no(rs.getString("product_no"));
             dto.setQuantity(rs.getInt("quantity"));
             dto.setTotal_price(rs.getInt("total_price"));
             dto.setPayment(rs.getString("payment"));
             dto.setCredit_card(rs.getString("credit_card"));
             dto.setCard_num(rs.getString("card_num"));
-            dto.setPayment_date(rs.getString("payment_date").trim());
+            dto.setPayment_date(rs.getString("payment_date"));
             dto.setOrder_condition(rs.getString("Order_condition"));
             dto.setDeposit(rs.getInt("deposit"));
             list.add(dto);
@@ -222,7 +221,7 @@ public class AdminDAO {
           list = new ArrayList<OrderDTO>();
           do {
             dto = new OrderDTO();
-            dto.setId(rs.getString("id").trim());
+            dto.setId(rs.getString("id"));
             list.add(dto);
           } while (rs.next());
         } else {
@@ -257,15 +256,15 @@ public class AdminDAO {
           do {
             dto = new RentalDTO();
             dto.setProduct_no(rs.getString("product_no"));
-            dto.setTitle(rs.getString("title").trim());
-            dto.setSub_title(rs.getString("sub_title").trim());
-            dto.setProduct_name(rs.getString("product_name").trim());
+            dto.setTitle(rs.getString("title"));
+            dto.setSub_title(rs.getString("sub_title"));
+            dto.setProduct_name(rs.getString("product_name"));
             dto.setPrice_daily(rs.getInt("price_daily"));
             dto.setDeposit(rs.getInt("deposit"));
             dto.setTotal_quantity(rs.getInt("total_quantity"));
             dto.setRemaining_quantity(rs.getInt("remaining_quantity"));
-            dto.setThmb_name(rs.getString("thmb_name").trim());
-            dto.setId(rs.getString("id").trim());
+            dto.setThmb_name(rs.getString("thmb_name"));
+            dto.setId(rs.getString("id"));
             list.add(dto);
           } while (rs.next());
         } else {
@@ -297,13 +296,13 @@ public class AdminDAO {
             dto = new OrderHistoryDTO();
             dto.setOrder_detail_no(rs.getInt("ORDER_DETAIL_NO"));
             dto.setOrder_no(rs.getInt("order_no"));
-            dto.setProduct_no(rs.getString("product_no").trim());
+            dto.setProduct_no(rs.getString("product_no"));
             dto.setQuantity(rs.getInt("quantity"));
             dto.setTotal_price(rs.getInt("total_price"));
             dto.setPayment(rs.getString("payment"));
             dto.setCredit_card(rs.getString("credit_card"));
             dto.setCard_num(rs.getString("card_num"));
-            dto.setPayment_date(rs.getString("payment_date").trim());
+            dto.setPayment_date(rs.getString("payment_date"));
             dto.setOrder_condition(rs.getString("Order_condition"));
             dto.setDeposit(rs.getInt("deposit"));
             list.add(dto);
@@ -337,7 +336,7 @@ public class AdminDAO {
           list = new ArrayList<OrderDTO>();
           do {
             dto = new OrderDTO();
-            dto.setId(rs.getString("id").trim());
+            dto.setId(rs.getString("id"));
             list.add(dto);
           } while (rs.next());
         } else {
@@ -371,7 +370,7 @@ public class AdminDAO {
           list = new ArrayList<PointDTO>();
           do {
             dto = new PointDTO();
-            dto.setId(rs.getString("id").trim());
+            dto.setId(rs.getString("id"));
             dto.setPoint(rs.getInt("point"));
             list.add(dto);
           } while (rs.next());
@@ -407,7 +406,7 @@ public class AdminDAO {
           list = new ArrayList<RentalDTO>();
           do {
             dto = new RentalDTO();
-            dto.setId(rs.getString("id").trim());
+            dto.setId(rs.getString("id"));
             dto.setProduct_no(rs.getString("product_no"));
             list.add(dto);
           } while (rs.next());
@@ -468,7 +467,7 @@ public class AdminDAO {
         try {
           con = dbopen.getConnection();
           sql = new StringBuilder();
-          sql.append(" SELECT id, sum(point) point ");
+          sql.append(" SELECT id, sum(point) point, date ");
           sql.append(" FROM point ");
           sql.append(" group by id ");
           sql.append(" ORDER BY point DESC ");
@@ -478,8 +477,9 @@ public class AdminDAO {
             list = new ArrayList<PointDTO>();
             do {
               dto = new PointDTO();
-              dto.setId(rs.getString("id").trim());
+              dto.setId(rs.getString("id"));
               dto.setPoint(rs.getInt("point"));
+              dto.setDate(rs.getString("date"));
               list.add(dto);
             } while (rs.next());
           } else {
@@ -513,7 +513,7 @@ public class AdminDAO {
             list = new ArrayList<RentalDTO>();
             do {
               dto = new RentalDTO();
-              dto.setId(rs.getString("id").trim());
+              dto.setId(rs.getString("id"));
               dto.setProduct_no(rs.getString("product_no"));
               list.add(dto);
             } while (rs.next());
@@ -626,4 +626,279 @@ public class AdminDAO {
       }
       return list;
     }//read() end
+    
+    
+ // 회원목록 리스트
+    public ArrayList<MemberDTO> member_list() {
+      MemberDTO dto = new MemberDTO();
+      ArrayList<MemberDTO> list = null;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" select id, mem_name, pw, birth, contact_number, email, zip, address, address_r, grade, joined_date, lastdate, pro_name ");
+        sql.append(" from member ");
+        sql.append(" order by id ");
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          list = new ArrayList<MemberDTO>();
+          do {
+            dto = new MemberDTO();
+            dto.setId(rs.getString("id"));
+            dto.setMem_name(rs.getString("mem_name"));
+            dto.setPw(rs.getString("pw"));
+            dto.setBirth(rs.getString("birth"));
+            dto.setContact_number(rs.getString("contact_number"));
+            dto.setEmail(rs.getString("email"));
+            dto.setZip(rs.getString("zip"));
+            dto.setAddress(rs.getString("address"));
+            dto.setAddress_r(rs.getString("address_r"));
+            dto.setGrade(rs.getString("grade"));
+            dto.setJoined_date(rs.getString("joined_date"));
+            dto.setLastdate(rs.getString("lastdate"));
+            dto.setPro_name(rs.getString("pro_name"));
+            list.add(dto);
+          } while (rs.next());
+        } else {
+          list = null;
+        } // if end
+      } catch (Exception e) {
+        System.out.println("회원목록 가져오기 실패:" + e);
+      } finally {
+        DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }//read() end
+    
+  //회원정보 수정
+    public int member_update(MemberDTO dto){
+        int cnt = 0;
+        try{
+          con = dbopen.getConnection();
+          sql = new StringBuilder();
+          sql.append(" UPDATE member");
+          sql.append(" SET mem_name=?, id=?, pw=?, birth=?, contact_number=?, email=?, zip=?, address=?, address_r=?, lastdate=?, pro_name=?, joined_date=?");
+          sql.append(" WHERE id = ?");
+          pstmt = con.prepareStatement(sql.toString());
+          pstmt.setString(1, dto.getMem_name());
+          pstmt.setString(2, dto.getId());
+          pstmt.setString(3, dto.getPw());
+          pstmt.setString(4, dto.getBirth());
+          pstmt.setString(5, dto.getContact_number());
+          pstmt.setString(6, dto.getEmail());
+          pstmt.setString(7, dto.getZip());
+          pstmt.setString(8, dto.getAddress());
+          pstmt.setString(9, dto.getAddress_r());
+          pstmt.setString(10, dto.getLastdate());
+          pstmt.setString(11, dto.getPro_name());
+          pstmt.setString(12, dto.getJoined_date());
+          pstmt.setString(13, dto.getId());
+          cnt = pstmt.executeUpdate();
+        }catch(Exception e){
+          System.out.println("회원정보 수정 실패: "+e);
+        }finally{
+          DBClose.close(con, pstmt);
+        }
+        return cnt;
+      }//update() end
+    
+    
+  //회원정보 불러오기
+    public MemberDTO member_read(String id) {
+          MemberDTO dto = new MemberDTO();
+          try {
+            con = dbopen.getConnection();
+            sql = new StringBuilder();
+            sql.append(" SELECT id, pw, mem_name, birth, contact_number, email, zip, address, address_r, joined_date, lastdate, pro_name, grade ");
+            sql.append(" FROM member ");
+            sql.append(" WHERE id = ? ");
+            pstmt = con.prepareStatement(sql.toString());
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+              dto.setId(rs.getString("id"));
+              dto.setPw(rs.getString("pw"));
+              dto.setMem_name(rs.getString("mem_name"));
+              dto.setBirth(rs.getString("birth"));
+              dto.setContact_number(rs.getString("contact_number"));
+              dto.setEmail(rs.getString("email"));
+              dto.setZip(rs.getString("zip"));
+              dto.setAddress(rs.getString("address"));
+              dto.setAddress_r(rs.getString("address_r"));
+              dto.setJoined_date(rs.getString("joined_date"));
+              dto.setLastdate(rs.getString("lastdate"));
+              dto.setPro_name(rs.getString("pro_name"));
+              dto.setGrade(rs.getString("grade"));
+            }
+          } catch (Exception e) {
+            System.out.println("회원정보 가져오기 실패:" + e);
+          } finally {
+            DBClose.close(con, pstmt, rs);
+          }
+          return dto;
+        }// read()
+    
+    
+  //회원정보 수정
+    public int update(MemberDTO dto){
+        int cnt = 0;
+        String id = dto.getId();
+        try{
+          con = dbopen.getConnection();
+          sql = new StringBuilder();
+          sql.append(" UPDATE member");
+          sql.append(" SET mem_name=?, pw=?, birth=?, contact_number=?, email=?, zip=?, address=?, address_r=?, lastdate=?, id=?, pro_name=?, joined_date=?, grade=? ");
+          sql.append(" WHERE id = ?");
+          pstmt = con.prepareStatement(sql.toString());
+          pstmt.setString(1, dto.getMem_name());
+          pstmt.setString(2, dto.getPw());
+          pstmt.setString(3, dto.getBirth());
+          pstmt.setString(4, dto.getContact_number());
+          pstmt.setString(5, dto.getEmail());
+          pstmt.setString(6, dto.getZip());
+          pstmt.setString(7, dto.getAddress());
+          pstmt.setString(8, dto.getAddress_r());
+          pstmt.setString(9, dto.getLastdate());
+          pstmt.setString(10, id);
+          pstmt.setString(11, dto.getPro_name());
+          pstmt.setString(12, dto.getJoined_date());
+          pstmt.setString(13, dto.getGrade());
+          pstmt.setString(14, id);
+          cnt = pstmt.executeUpdate();
+        }catch(Exception e){
+          System.out.println("회원정보 수정 실패: "+e);
+        }finally{
+          DBClose.close(con, pstmt);
+        }
+        return cnt;
+      }//update() end
+    
+ // top 유저포인트
+    public ArrayList<PointDTO> point() {
+      PointDTO dto = new PointDTO();
+      ArrayList<PointDTO> list = null;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT id, point, date ");
+        sql.append(" FROM point ");
+        sql.append(" ORDER BY date DESC ");
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          list = new ArrayList<PointDTO>();
+          do {
+            dto = new PointDTO();
+            dto.setId(rs.getString("id"));
+            dto.setPoint(rs.getInt("point"));
+            dto.setDate(rs.getString("date"));
+            list.add(dto);
+          } while (rs.next());
+        } else {
+          list = null;
+        } // if end
+      } catch (Exception e) {
+        System.out.println("포인트 순위 가져오기 실패:" + e);
+      } finally {
+        DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }//read() end
+    
+    
+ // 포인트 증감
+    public int point_insert(PointDTO dto) {
+      int cnt = 0;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" INSERT INTO POINT(NO, ID, POINT, DATE) ");
+        sql.append(" VALUES((SELECT Ifnull(Max(no), 0) FROM point AS TB), ?, ?, NOW()) ");
+        pstmt = con.prepareStatement(sql.toString());
+        pstmt.setString(1, dto.getId());
+        pstmt.setInt(2, dto.getPoint());
+        cnt = pstmt.executeUpdate();
+      } catch (Exception e) {
+        System.out.println("포인트 증감실패 : " + e);
+      } finally {
+        dbclose.close(con, pstmt);
+      }
+      return cnt;
+    }
+    
+ // 좋아요/싫어요 리스트
+    public ArrayList<RatingDTO> rating() {
+      RatingDTO dto = new RatingDTO();
+      ArrayList<RatingDTO> list = null;
+      try {
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT NO, id_give, id_receive, evaluation, rated_date ");
+        sql.append(" FROM rating ");
+        sql.append(" ORDER BY Rated_date DESC ");
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          list = new ArrayList<RatingDTO>();
+          do {
+            dto = new RatingDTO();
+            dto.setNo(rs.getString("NO"));
+            dto.setId_give(rs.getString("id_give"));
+            dto.setId_receive(rs.getString("id_receive"));
+            dto.setEvaluation(rs.getString("evaluation"));
+            dto.setRated_date(rs.getString("rated_date"));
+            list.add(dto);
+          } while (rs.next());
+        } else {
+          list = null;
+        } // if end
+      } catch (Exception e) {
+        System.out.println("좋아요/싫어요 리스트 가져오기 실패:" + e);
+      } finally {
+        DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }//read() end
+    
+    
+  //상품목록 리스트
+    public ArrayList<RentalDTO> rental_list() {
+      ArrayList<RentalDTO> list = null;
+      RentalDTO dto = new RentalDTO();
+      try {       
+        con = dbopen.getConnection();
+        sql = new StringBuilder();
+        sql.append(" SELECT product_no, title, sub_title, product_name, price_daily, deposit, total_quantity, remaining_quantity, thmb_name, id, availability, reg_date ");
+        sql.append(" FROM RENTAL_LIST ");
+        sql.append(" ORDER BY product_no DESC ");
+        pstmt = con.prepareStatement(sql.toString());
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          list = new ArrayList<RentalDTO>();
+          do {
+            dto = new RentalDTO();
+            dto.setProduct_no(rs.getString("product_no"));
+            dto.setTitle(rs.getString("title").trim());
+            dto.setSub_title(rs.getString("sub_title").trim());
+            dto.setProduct_name(rs.getString("product_name").trim());
+            dto.setPrice_daily(rs.getInt("price_daily"));
+            dto.setDeposit(rs.getInt("deposit"));
+            dto.setTotal_quantity(rs.getInt("total_quantity"));
+            dto.setRemaining_quantity(rs.getInt("remaining_quantity"));
+            dto.setThmb_name(rs.getString("thmb_name").trim());
+            dto.setId(rs.getString("id").trim());
+            dto.setAvailability(rs.getString("availability"));
+            dto.setReg_date(rs.getString("reg_date"));
+            list.add(dto);
+          } while (rs.next());
+        } else {
+          list = null;
+        } // if end
+      } catch (Exception e) {
+        System.out.println("상품목록 실패:" + e);
+      } finally {
+        DBClose.close(con, pstmt, rs);
+      }
+      return list;
+    }
 }

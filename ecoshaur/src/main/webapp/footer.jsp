@@ -1,18 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<br>
-<br>
-<br>
 
-<footer class="footer-small">
-   <div class="container">
-        <div class="col-md-4">
-           <div class="copyright">
-           	  <P>개발자: 김유진, 김윤호, 안재원, 송기환, 최지호, 황정하</P>
-              <p>Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a><a href="http://freehtml5.co" target="_blank">FreeHTML5</a></p>         
-           </div>
-        </div>  
-    </div>       
-</footer>
+    </div>   
+  </div>
+  
+	<!-- container 끝 -->
+	<br><br><br><br><br>
+
+	<!-- Footer -->
+	<div class="footer" align="center">
+  	<div class="container-fluid">
+       	<div class="row">
+           	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+               	Copyright &copy; 2020 ECOSHAUR all rights reserved.	DashBoard created by <a href="https://colorlib.com/wp/">Colorlib</a>.<br>
+               	<small>개발자:송기환,황정하,김유진,최지호,안재원,김윤호</small>
+           	</div>
+       	</div>
+   	</div>
+	</div>
+
+</div>
+
 </body>
 </html>

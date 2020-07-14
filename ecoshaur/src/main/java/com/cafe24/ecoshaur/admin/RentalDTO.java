@@ -19,7 +19,7 @@ public class RentalDTO {
   private String reg_date;
   private String id;
   private String category_code;
-  private char availability;
+  private String availability;
 //---------------------------------------  
   //1)스프링 파일 객체 멤버 변수 선언
   //<input type='file' name='posterMF'>
@@ -53,7 +53,7 @@ public class RentalDTO {
 
   public RentalDTO(String product_no, String product_name, String title, String sub_title, String description,
       int price_daily, int deposit, int total_quantity, int remaining_quantity, String thmb_name, long thmb_size,
-      String image_name, long image_size, String reg_date, String id, String category_code, char availability) {
+      String image_name, long image_size, String reg_date, String id, String category_code, String availability) {
     this.product_no = product_no;
     this.product_name = product_name;
     this.title = title;
@@ -234,12 +234,12 @@ public class RentalDTO {
   }
 
 
-  public char getAvailability() {
+  public String getAvailability() {
     return availability;
   }
 
 
-  public void setAvailability(char availability) {
+  public void setAvailability(String availability) {
     this.availability = availability;
   }
   

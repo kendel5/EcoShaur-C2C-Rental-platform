@@ -40,7 +40,7 @@ public class RentalCont {
    
    ModelAndView mav = new ModelAndView();
    mav.setViewName("category/Category");   
-   mav.addObject("root", Utility.getRoot());// 
+   mav.addObject("root", Utility.getRoot());
    mav.addObject("list", dao.list(nowpage, recordPerPage));
    mav.addObject("recordPerPage", recordPerPage);
    mav.addObject("end", endRow);
@@ -94,15 +94,15 @@ public ModelAndView testCheck(HttpServletRequest req, String cg, int nowpage) {
 }
  
 // 상품등록
-@RequestMapping(value = "Rental_register.do", method = RequestMethod.GET)
-public ModelAndView Rental_register() {
+@RequestMapping(value = "Rental_resister.do", method = RequestMethod.GET)
+public ModelAndView Rental_resister() {
   ModelAndView mav = new ModelAndView();
-  mav.setViewName("category/Rental_register");   
+  mav.setViewName("category/Rental_resister");   
   mav.addObject("minor", dao.MNcategory());
   return mav;
 }// CategoryList() end
 
- @RequestMapping(value = "Rental_register.do", method = RequestMethod.POST)
+ @RequestMapping(value = "Rental_resister.do", method = RequestMethod.POST)
  public ModelAndView createProc(RentalDTO dto, HttpServletRequest req, String ctCode) {
    ModelAndView mav = new ModelAndView();
    mav.setViewName("category/Category");

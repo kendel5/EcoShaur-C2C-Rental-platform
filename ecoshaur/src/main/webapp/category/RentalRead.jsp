@@ -6,10 +6,9 @@
    href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<link
-   href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean"
-   rel="stylesheet">
-<link href="css/category.css" rel="stylesheet" type="text/css">
+<link  href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+<link href="assets/libs/css/category.css" rel="stylesheet" type="text/css">
+
 <style>
 p {
    font-family: "Nanum Gothic", sans-serif;
@@ -17,9 +16,6 @@ p {
    font-weight: 800;
 }
 </style>
-
-<br><br><br>
-<br><br><br>
 
 <br>
 
@@ -125,7 +121,8 @@ p {
 </div>
 
  </form>
-                     <script>
+ 
+     <script>
          function call() {
             var sdd = document.getElementById("receipt_date").value;
             var edd = document.getElementById("regDate2").value;
@@ -141,24 +138,11 @@ p {
             }
          }
       </script>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <a href="rental_update.do?product_no=${dto.product_no}" class="btn btn-warning">수정하기</a>
 <a href="rental_delete.do?product_no=${dto.product_no}" class="btn btn-danger">삭제하기</a>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

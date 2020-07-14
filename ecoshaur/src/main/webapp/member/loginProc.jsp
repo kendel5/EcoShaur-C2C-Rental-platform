@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
-    <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>    
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../header.jsp"%>
@@ -16,7 +15,6 @@
 </style>
 
 <!-- 본문 시작 loginProc.jsp-->
-<br><br><br><br>
 
 <h3>로그인 결과</h3>
 <c:choose>
@@ -44,5 +42,4 @@
 </c:choose>
 	
 
-<br><br><br><br>
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

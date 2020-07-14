@@ -14,10 +14,6 @@
 </style>
 
 <!-- 본문 시작 memberForm.jsp-->
-<br>
-<br>
-<br>
-<br>
 
 
 <div class="container">
@@ -25,7 +21,7 @@
 	  name="memberForm"
       method="post"
       action="memberProc.do"
-      onsubmit="return memberCheck(this)" >
+      onsubmit="return signUp(this)" >
       
         <div class="py-5 text-center">
             <h4>회원가입</h4>
@@ -86,7 +82,7 @@
                 <div class="form-group text-left font1">
                     <div class="input-group">
                     	<span class="input-group-addon" style="min-width:120px;">* 이메일</span>
-                        <input type="text" class="form-control" name="email" id="email" size="15">
+                        <input type="text" class="form-control" name="email" id="email" size="15" onclick="checkEmail()">
                     </div>
                 </div>
 
@@ -198,9 +194,6 @@
 </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
   <div class="modal" id="idcheck">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -297,6 +290,60 @@ $("#sm").click(function() {
 });
 </script>
 
+<script>
+function signUp(f) {
+    
+	var pw = f.pw.value;
+    if(pw.length == 0){
+        alert("비밀번호를 입력해 주세요"); 
+        f.pw.focus();
+        return false;
+    }
+    
+    if(pw.length<4){
+		alert("비밀번호 4글자이상 입력해 주세요");
+		f.passwd.focus();
+		return false;
+	}//if end
+ 
+    var pw2 = f.pw2.value;
+    if(pw != pw2){
+        alert("비밀번호가 서로 다릅니다. 비밀번호를 확인해 주세요."); 
+        f.pw2.focus();
+        return false; 
+    }
+ 
+    var mem_name = f.mem_name.value;
+    if(mem_name.length == 0){
+        alert("이름을 입력해주세요");
+        f.mem_name.focus();
+        return false;
+    }
+    
+    var email = f.email.value;
+    if(email.length == 0){
+        alert("이메일을 입력해주세요");
+        f.email.focus();
+        return false;
+    }
+    
+    var contact_number = f.contact_number.value;
+    if(contact_number.length == 0){
+        alert("연락처를 입력해주세요");
+        f.contact_number.focus();
+        return false;
+    }
+    
+    if(confirm("회원가입을 하시겠습니까?")){
+        alert("회원가입을 축하합니다");
+        return true;
+    }
+    
+}
+
+
+</script>
+
 <!-- 본문 끝 -->		
 <br><br><br>
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

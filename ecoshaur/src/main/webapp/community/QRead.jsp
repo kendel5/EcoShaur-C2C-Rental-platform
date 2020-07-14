@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 QRead.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>문의사항</H3>
 <br><br>
 		<div class="row">
@@ -51,7 +50,6 @@
 	<a href="QRes.do?pcode=${dto.pcode}&ccode=${dto.ccode+1}" 
 	class="btn btn-success">답변하기</a>
 	<a href="QDelete.do?postno=${dto.postno}" class="btn btn-success">삭제</a>
-
-<br><br><br><br><br><br><br><br><br>
+</body>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

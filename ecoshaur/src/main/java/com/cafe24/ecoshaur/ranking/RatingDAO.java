@@ -20,8 +20,6 @@ import net.utility.DBOpen;
 public class RatingDAO {
 	@Autowired
 	private DBOpen dbopen;
-	@Autowired
-	private DBClose dbclose;
 
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -83,7 +81,7 @@ public class RatingDAO {
 			sql.append(" FROM rating AS r ");
 			sql.append(" JOIN member AS m ");
 			sql.append(" ON m.id = r.id_receive ");
-			sql.append(" WHERE evaluation = 'Good' ");
+			sql.append(" WHERE evaluation = 'Good'");
 			sql.append(" GROUP BY r.id_receive ");
 			sql.append(" ORDER BY cnt desc; ");
 			pstmt = con.prepareStatement(sql.toString());

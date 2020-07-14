@@ -3,10 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 NDelete.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
-
 	<form method="post" action="NDelete.do">
 		<input type="hidden" name="postno" value="${dto.postno}">
 		<div class="content">
@@ -20,8 +18,8 @@
 				onclick="location.href='NRead.do?postno=${dto.postno}'">
 		</div>
 	</form>
+</div>
 </body>
 
-<br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

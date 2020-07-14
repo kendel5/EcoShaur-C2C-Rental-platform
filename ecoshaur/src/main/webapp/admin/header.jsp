@@ -18,7 +18,7 @@
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="../">
-                            	<img src="../images/ㄹㅇ공룡.png" alt="" class="user-avatar-md rounded-circle">
+                            	<img src="../assets/images/ㄹㅇ공룡.png" alt="" class="user-avatar-md rounded-circle">
                             </a>
                         </li>
                     </ul>
@@ -68,26 +68,37 @@
                                             </div>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-finance.html">회원목록</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-sales.html">주문목록</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
-                                            <div id="submenu-1-1" class="collapse submenu" style="">
+                                        	<a class="nav-link" href="./pages/member_list.do" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12">회원관리</a>
+                                            <div id="submenu-12" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="dashboard-influencer.html">Influencer</a>
+                                                	<li class="nav-item">
+                                                        <a class="nav-link" href="./pages/member_list.do">회원목록</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="influencer-finder.html">Influencer Finder</a>
+                                                        <a class="nav-link" href="./pages/point.do">포인트</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="influencer-profile.html">Influencer Profile</a>
+                                                        <a class="nav-link" href="./pages/rating.do">좋아요/싫어요</a>
                                                     </li>
                                                 </ul>
                                             </div>
+                                        </li>
+                                        <li class="nav-item">
+	                                        <a class="nav-link" href="./pages/member_list.do" data-toggle="collapse" aria-expanded="false" data-target="#submenu-11" aria-controls="submenu-11">상품관리</a>
+	                                            <div id="submenu-11" class="collapse submenu" style="">
+	                                                <ul class="nav flex-column">
+	                                                	<li class="nav-item">
+	                                                        <a class="nav-link" href="./pages/member_list.do">상품목록</a>
+	                                                    </li>
+	                                                    <li class="nav-item">
+	                                                        <a class="nav-link" href="./pages/point.do">주문서 목록</a>
+	                                                    </li>
+	                                                    <li class="nav-item">
+	                                                        <a class="nav-link" href="./pages/rating.do">주문내역서 목록</a>
+	                                                    </li>
+	                                                </ul>
+	                                            </div>
+                                            <a class="nav-link" href="dashboard-sales.html"></a>
                                         </li>
                                     </ul>
                                 </div>

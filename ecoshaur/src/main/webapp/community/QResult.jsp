@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 QResult.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br><br>
   <div class="content">
 	<dl>
 		<dd>${msg }</dd>
@@ -16,6 +15,7 @@
 		<input type='button' value='돌아가기'
 			onclick="location.href='Qna.do'">
 	</div>
-<br><br><br><br><br><br><br><br><br>
+</div>
+</body>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

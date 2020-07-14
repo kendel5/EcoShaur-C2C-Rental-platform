@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 QList.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>문의사항 목록</H3>
 <br><br>
 
@@ -66,7 +65,6 @@
           </c:choose>Next</a></li>        
 	</ul>
 	</nav>
-
-<br><br><br><br><br><br><br><br><br><br><br>
+</body>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

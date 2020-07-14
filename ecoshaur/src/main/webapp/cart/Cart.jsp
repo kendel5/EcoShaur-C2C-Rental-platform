@@ -5,12 +5,12 @@
 <c:choose>
 	<c:when  test="${(grade eq 'U') || (grade eq 'S') || (grade eq 'P') || (grade eq 'M')}">
 
-<link href="css/cart_payment.css" rel="stylesheet" type="text/css">
-<script src="../js/cart_payment.js"></script>
+<link href="assets/css/cart_payment.css" rel="stylesheet" type="text/css">
+<script src="../assets/js/cart_payment.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<br><br><br><br><br><br><br><br>
+
 	<div class="cart-wrap">
 	<div class="container">
 	<div class="row">
@@ -32,7 +32,7 @@
                        <td>
                        	<div class="display-flex align-center">
                             <div class="img-product">
-                                <img src="category/storage/${dto.thmb_name}" alt="" class="mCS_img_loaded">
+                                <img src="category/storage/${dto.thmb_name}"alt="" width=100 class="mCS_img_loaded">
                             </div>
                             <div class="name-product">
                                 ${dto.title}
@@ -120,4 +120,4 @@
 </c:otherwise>
 </c:choose>
 
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

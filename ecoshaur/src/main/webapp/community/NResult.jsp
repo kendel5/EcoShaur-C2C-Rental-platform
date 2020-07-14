@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 NResult.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br><br>
 	
   <H3>[ 알 림 창 ]</H3>
  	<br><br>
@@ -19,7 +18,7 @@
 		<input type='button' value='공지사항 목록'
 			onclick="location.href='Notice.do?nowpage=1'">
 	</div>
-	
-<br><br><br><br><br><br><br><br><br>
+</div>	
+</body>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

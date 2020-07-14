@@ -3,9 +3,8 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 NRead.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
 	<H3>공지사항</H3>
 <br><br>
 		<div class="row">
@@ -46,7 +45,6 @@
 	<a href="Notice.do?nowpage=1" class="btn btn-success">돌아가기</a>
 	<a href="NUpdate.do?postno=${dto.postno}" class="btn btn-success">수정</a>
 	<a href="NDelete.do?postno=${dto.postno}" class="btn btn-success">삭제</a>
-		
-<br><br><br><br><br><br><br><br><br>
+</body>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

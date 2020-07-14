@@ -3,9 +3,9 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 QRes.jsp-->
-
+<body>
 <div class="container">
-<br><br><br><br><br><br><br><br>
+
 	<H3>문의사항 답변</H3>
 <br><br>
 	<form method="post" action="QRes.do" enctype="multipart/form-data">
@@ -26,13 +26,8 @@
 				<td><input type='text' name='title' size='50' required></td>
     		<tr>
     			<th>내용</th>
-	  			<td><textarea style="resize: none; "name="contents" id="contents" 
-				cols="53" rows="7" wrap="hard" required></textarea>
-				<!-- ckeditor -->
-					<script>
-						CKEDITOR.replace("contents");
-					</script>
-				</td>
+	  			<td><textarea style="resize: none; "name="contents" 
+				cols="53" rows="7" wrap="hard" required></textarea></td>
     		</tr>
 			<tr >
 				<th>이미지</th>
@@ -51,8 +46,8 @@
 		</div>
 
 	</form>
+	</div>
 </body>
 
-<br><br><br><br><br><br><br><br><br>
 <!-- 본문 끝 -->
-<%@ include file="../e_footer.jsp"%>
+<%@ include file="../footer.jsp"%>

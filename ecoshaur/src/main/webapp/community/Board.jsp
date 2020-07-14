@@ -2,11 +2,10 @@
 <%@ include file="../header.jsp"%>
 
 <!-- 본문 시작 Board.jsp-->
-
-<div class="container">
-<br><br><br><br><br><br><br><br>
+<body>
+	<div class="container">
 	<H3>게시물 목록</H3>
-<br><br>
+	<br><br>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel-body">
@@ -43,7 +42,8 @@
 	<nav class="nav justify-content-center"
 		aria-label="Page navigation example">
 		<ul class="pagination">
-			<c:choose><c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
+			<c:choose>
+				  <c:when test="${(nowpage-1)==0}"> <a class="page-link disabled">  </c:when>
                   <c:otherwise> <a class="page-link" href="Board.do?nowpage=${nowpage-1 }"> </c:otherwise>
           </c:choose>
           Previous</a></li>
@@ -62,6 +62,6 @@
 
 <a href="BCreate.do" class="btn btn-success">글쓰기</a>
 
-<br><br><br><br><br><br><br><br>
+</body>
 <!-- 본문 끝 -->		
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>

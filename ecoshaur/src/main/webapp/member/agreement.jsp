@@ -16,7 +16,7 @@
 <table border="0" cellspacing="0" cellpadding="2"  align="center">
     <tr align="center" height="10"> 
         <td>
-            <textarea class="font1" style="font-size:15px;" cols="55" rows="14" readonly>Community 서비스약관 (2005. 7. 18 부터 유효)
+            <textarea class="font1" style="font-size:15px;" cols="55" rows="14" readonly>Community 서비스약관 
 
 제1조(목적 등)
 
@@ -201,8 +201,8 @@
 </table>
 <div class="font1" style="text-align: center; font-size:15px;">
   <input type="checkbox" name="agree"/> 약관에 동의합니다<br>
-  <input type="submit" value="회원가입" class="btn btn-info font1" style="font-size:120%;"> 
-  <input type="button" value="취소"  class="btn btn-info font1" style="font-size:120%;" onclick="javascript:history.back();"/>
+  <input type="submit" value="회원가입" class="btn btn-outline-primary" style="font-size:120%;"> 
+  <input type="button" value="취소"  class="btn btn-outline-secondary" style="font-size:120%;" onclick="javascript:history.back();"/>
 </div>
 
 </form>
@@ -220,7 +220,7 @@
 
 <!-- 본문 끝 -->
 <br><br><br>
-<%@ include file="../e_footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 
 
 
